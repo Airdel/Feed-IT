@@ -5,9 +5,11 @@
  */
 package main;
 
+import interfaces.Editor; 
+
 /**
  *
- * @author darie
+ * @author Equipo 5.
  */
 public class FeedIT {
 
@@ -15,7 +17,8 @@ public class FeedIT {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
+        Editor mainWindow = new Editor();
+        mainWindow.setVisible(true);
     }
     
 }
