@@ -7,7 +7,7 @@ package interfaces;
 
 /**
  *
- * @author Darien
+ * @author Feed-IT Team
  */
 public class Editor extends javax.swing.JFrame {
 
