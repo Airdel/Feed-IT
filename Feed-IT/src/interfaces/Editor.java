@@ -6,6 +6,7 @@
  */
 package interfaces;
 
+import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import javax.swing.ImageIcon;
 
@@ -20,8 +21,9 @@ public class Editor extends javax.swing.JFrame {
      */
     public Editor() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/ico.jpg")).getImage());
-         this.setExtendedState(MAXIMIZED_BOTH);
+        setIconImage(new ImageIcon(getClass().getResource("/Imagenes/icon.png")).getImage());
+        this.setExtendedState(MAXIMIZED_BOTH);
+        btntemaclaro.setEnabled(false);
     }
 
     /**
@@ -33,8 +35,8 @@ public class Editor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        btnLexico = new javax.swing.JButton();
+        jPanelbotones = new javax.swing.JPanel();
+        btnEjecutar = new javax.swing.JButton();
         btnSintactico = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jDesktopPane1 = new javax.swing.JDesktopPane();
@@ -57,6 +59,10 @@ public class Editor extends javax.swing.JFrame {
         jMenu7 = new javax.swing.JMenu();
         jMenuItem9 = new javax.swing.JMenuItem();
         jMenuItem10 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        btntemaoscuro = new javax.swing.JMenuItem();
+        btntemaclaro = new javax.swing.JMenuItem();
         jMenu8 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
 
@@ -65,8 +71,12 @@ public class Editor extends javax.swing.JFrame {
         setIconImages(getIconImages());
         setName("editor"); // NOI18N
 
-        btnLexico.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnEjecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perro_2.png"))); // NOI18N
+        btnEjecutar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnEjecutar.setInheritsPopupMenu(true);
+        btnEjecutar.setPreferredSize(new java.awt.Dimension(50, 50));
 
+        btnSintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardrp30.png"))); // NOI18N
         btnSintactico.setPreferredSize(new java.awt.Dimension(50, 50));
 
         jButton3.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -76,30 +86,27 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addContainerGap()
-                            .addComponent(btnLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(btnSintactico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
+        javax.swing.GroupLayout jPanelbotonesLayout = new javax.swing.GroupLayout(jPanelbotones);
+        jPanelbotones.setLayout(jPanelbotonesLayout);
+        jPanelbotonesLayout.setHorizontalGroup(
+            jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelbotonesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, Short.MAX_VALUE)
+                    .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        jPanelbotonesLayout.setVerticalGroup(
+            jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanelbotonesLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(btnLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 155, Short.MAX_VALUE))
+                .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         txtEditor.setColumns(20);
@@ -113,16 +120,14 @@ public class Editor extends javax.swing.JFrame {
         jDesktopPane1Layout.setHorizontalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 542, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 202, Short.MAX_VALUE))
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 97, Short.MAX_VALUE))
         );
 
         jMenu5.setText("Archivo");
@@ -185,6 +190,30 @@ public class Editor extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu7);
 
+        jMenu1.setText("Opciones");
+
+        jMenu2.setText("Tema");
+
+        btntemaoscuro.setText("Oscuro");
+        btntemaoscuro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntemaoscuroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btntemaoscuro);
+
+        btntemaclaro.setText("Claro");
+        btntemaclaro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btntemaclaroActionPerformed(evt);
+            }
+        });
+        jMenu2.add(btntemaclaro);
+
+        jMenu1.add(jMenu2);
+
+        jMenuBar2.add(jMenu1);
+
         jMenu8.setText("Ayuda");
 
         jMenuItem8.setText("Acerca de ");
@@ -204,14 +233,14 @@ public class Editor extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanelbotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jDesktopPane1)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanelbotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jDesktopPane1)
         );
 
@@ -233,6 +262,83 @@ public class Editor extends javax.swing.JFrame {
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void btntemaoscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntemaoscuroActionPerformed
+      
+            btntemaoscuro.setEnabled(false);
+            btntemaclaro.setEnabled(true);
+            btntemaclaro.setSelected(false);
+            System.out.print("Tema Oscuro");
+        txtEditor.setBackground(Color.black);
+       txtEditor.setForeground(Color.white);
+       jPanelbotones.setForeground(Color.black);
+       jPanelbotones.setBackground(Color.black);
+       jMenuBar2.setBackground(Color.black);
+       //letra menus
+       jMenu1.setForeground(Color.white);
+       jMenuBar2.setForeground(Color.white);
+       jMenu2.setForeground(Color.white);
+       jMenu5.setForeground(Color.white);
+       jMenu6.setForeground(Color.white);
+       jMenu7.setForeground(Color.white);
+       jMenu8.setForeground(Color.white);
+       jMenuItem1.setForeground(Color.white);
+       jMenuItem10.setForeground(Color.white);
+       jMenuItem11.setForeground(Color.white);
+       jMenuItem12.setForeground(Color.white);
+       jMenuItem13.setForeground(Color.white);
+       jMenuItem2.setForeground(Color.white);
+       jMenuItem3.setForeground(Color.white);
+       jMenuItem4.setForeground(Color.white);      
+       jMenuItem5.setForeground(Color.white);
+       jMenuItem6.setForeground(Color.white);
+       jMenuItem7.setForeground(Color.white);
+       jMenuItem8.setForeground(Color.white);
+       jMenuItem9.setForeground(Color.white);
+       btntemaclaro.setForeground(Color.white);
+       btntemaoscuro.setForeground(Color.white);
+       jSeparator1.setForeground(Color.white);
+       //fondo menus
+       jMenu1.setBackground(Color.black);
+       jMenuBar2.setBackground(Color.black);
+       jMenu2.setBackground(Color.black);
+       jMenu5.setBackground(Color.black);
+       jMenu6.setBackground(Color.black);
+       jMenu7.setBackground(Color.black);
+       jMenu8.setBackground(Color.black);
+       jMenuItem1.setBackground(Color.black);
+       jMenuItem10.setBackground(Color.black);
+       jMenuItem11.setBackground(Color.black);
+       jMenuItem12.setBackground(Color.black);
+       jMenuItem13.setBackground(Color.black);
+       jMenuItem2.setBackground(Color.black);
+       jMenuItem3.setBackground(Color.black);
+       jMenuItem4.setBackground(Color.black);
+       jMenuItem5.setBackground(Color.black);
+       jMenuItem6.setBackground(Color.black);
+       jMenuItem7.setBackground(Color.black);
+       jMenuItem8.setBackground(Color.black);
+       jMenuItem9.setBackground(Color.black);
+       btntemaclaro.setBackground(Color.black);
+       btntemaoscuro.setBackground(Color.black);
+       jSeparator1.setBackground(Color.black);
+       
+       
+       
+        
+    }//GEN-LAST:event_btntemaoscuroActionPerformed
+
+    private void btntemaclaroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntemaclaroActionPerformed
+     
+            btntemaclaro.setEnabled(false);
+
+            btntemaoscuro.setEnabled(true);
+            btntemaoscuro.setSelected(false);
+            System.out.print("Tema Claro");
+        txtEditor.setBackground(Color.white);
+       txtEditor.setForeground(Color.black);
+        
+    }//GEN-LAST:event_btntemaclaroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -273,10 +379,14 @@ public class Editor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnLexico;
+    private javax.swing.JButton btnEjecutar;
     private javax.swing.JButton btnSintactico;
+    private javax.swing.JMenuItem btntemaclaro;
+    private javax.swing.JMenuItem btntemaoscuro;
     private javax.swing.JButton jButton3;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu5;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu7;
@@ -295,7 +405,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanelbotones;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JTextArea txtEditor;
