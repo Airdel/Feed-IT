@@ -214,6 +214,11 @@ public class Editor extends javax.swing.JFrame {
         btnEjecutar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnEjecutar.setInheritsPopupMenu(true);
         btnEjecutar.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnEjecutar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnEjecutarMouseClicked(evt);
+            }
+        });
         btnEjecutar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEjecutarActionPerformed(evt);
@@ -447,6 +452,10 @@ public class Editor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnEjecutarActionPerformed
 
+    private void btnEjecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEjecutarMouseClicked
+        correr();
+    }//GEN-LAST:event_btnEjecutarMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -484,6 +493,12 @@ public class Editor extends javax.swing.JFrame {
         });
     }
 
+    private void correr(){
+        //lexico();
+        //sintactico();
+        //semantico();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEjecutar;
     private javax.swing.JButton btnGuardar;
