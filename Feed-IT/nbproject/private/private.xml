@@ -3,10 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/darie/OneDrive/Documentos/GitHub/Feed-IT/Feed-IT/src/analizador/GeneradorAF.java</file>
-            <file>file:/C:/Users/darie/OneDrive/Documentos/GitHub/Feed-IT/Feed-IT/src/interfaces/Editor.java</file>
-            <file>file:/C:/Users/darie/OneDrive/Documentos/GitHub/Feed-IT/Feed-IT/src/analizador/Tokens.java</file>
-            <file>file:/C:/Users/darie/OneDrive/Documentos/GitHub/Feed-IT/Feed-IT/src/analizador/Lexer.flex</file>
+            <file>file:/C:/Feed-IT/Feed-IT/src/interfaces/Editor.java</file>
+            <file>file:/C:/Feed-IT/Feed-IT/src/analizador/LexerCup.flex</file>
+            <file>file:/C:/Feed-IT/Feed-IT/src/analizador/Sintax.cup</file>
+            <file>file:/C:/Feed-IT/Feed-IT/src/analizador/Sintax.java</file>
         </group>
     </open-files>
 </project-private>

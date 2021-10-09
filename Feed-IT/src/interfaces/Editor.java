@@ -6,8 +6,10 @@
  */
 package interfaces;
 
+import analizador.*;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.StringReader;
 import javax.swing.ImageIcon;
 
 /**
@@ -267,7 +269,7 @@ public class Editor extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPanelbotonesLayout = new javax.swing.GroupLayout(jPanelbotones);
@@ -522,6 +524,13 @@ public class Editor extends javax.swing.JFrame {
         //lexico();
         //sintactico();
         //semantico();
+    }
+    
+    private void analisisSintactico(){
+        
+        String ST = txtEditor.getText();
+        //Sintax s = new Sintax(new analizador.LexerCup(new StringReader (ST)));
+        //erroresSintacticos = erroresLexicos; 
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
