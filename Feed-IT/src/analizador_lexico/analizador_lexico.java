@@ -53,7 +53,7 @@ public class analizador_lexico {
            }
            
        }catch(FileNotFoundException e){} catch (IOException ex) {
-            Logger.getLogger(PruebaLexico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
         }//catch
        return r;
     }
