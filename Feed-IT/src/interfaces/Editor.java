@@ -7,6 +7,7 @@
 package interfaces;
 
 import analizador.*;
+import analizador_lexico.analizador_lexico;
 import controladores.*;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -277,6 +278,49 @@ public class Editor extends javax.swing.JFrame {
     //-------------------------------------------------------------------------------------------------------------------------
     
     
+    //----------------------------ANALISIS LÉXICO---------------------------------
+    
+    public String lexico(String path){
+       String r = "";
+       File file = new File(path);
+       try{
+           PrintWriter write = new PrintWriter(file);
+           write.print(manejadorUI.txtEditor.getText());
+           System.out.println("Obtencion de datos del editor");
+           write.close();
+           Reader read = new BufferedReader(new FileReader(file));
+           Lexer lexer = new Lexer(read);
+           
+           while(true){
+               Tokens tokens = lexer.yylex();
+               if(tokens == null){
+                 System.out.println("Escritura en el Log"+ r );
+                 return r;
+               }//if
+               
+               switch(tokens){
+                   case ERROR: 
+                       r += "simbolo no definido \n";
+                       break;
+                   case Reserved: 
+                   case Identifier: 
+                   case  Number: 
+                       r += lexer.lexeme + " Es un: " + tokens + "\n"; 
+                       break;
+                   default:
+                       r += "Token: " + tokens + "\n";
+                       break;
+               }//switch
+               return r;
+           }
+       }catch(FileNotFoundException e){} catch (IOException ex) {
+            Logger.getLogger(PruebaLexico.class.getName()).log(Level.SEVERE, null, ex);
+        }//catch
+       return r;
+    }
+    
+    //----------------------------------------------------------------------------
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -489,6 +533,11 @@ public class Editor extends javax.swing.JFrame {
         jmenu_Ejecutar.setText("Ejecutar");
 
         jmi_analisis_lexico.setText("Analisis Lexico");
+        jmi_analisis_lexico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_analisis_lexicoActionPerformed(evt);
+            }
+        });
         jmenu_Ejecutar.add(jmi_analisis_lexico);
 
         jmi_analisis_sintactico.setText("Analisis Sintactico");
@@ -690,6 +739,14 @@ public class Editor extends javax.swing.JFrame {
     private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
         guardar();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void jmi_analisis_lexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_analisis_lexicoActionPerformed
+        analizador_lexico lex = new analizador_lexico();
+        String r = lex.lexico(archivo.getAbsolutePath(),txtEditor.getText());
+        System.out.println("Lex: "+r);
+        txtLog.setText(r.toString());
+        txt_notificaciones.setText("Analisis léxico realizado.");
+    }//GEN-LAST:event_jmi_analisis_lexicoActionPerformed
 
     /**
      * @param args the command line arguments
