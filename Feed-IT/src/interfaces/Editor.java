@@ -7,10 +7,21 @@
 package interfaces;
 
 import analizador.*;
+import controladores.*;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -41,58 +52,48 @@ public class Editor extends javax.swing.JFrame {
         //pintar interfaz
         txtEditor.setBackground(Color.black);
         txtEditor.setForeground(Color.white);
-        jPanelbotones.setForeground(Color.black);
-        jPanelbotones.setBackground(Color.black);
-        jMenuBar2.setBackground(Color.black);
+        txtLog.setBackground(Color.black);
+        txtLog.setForeground(Color.white);
+        txt_notificaciones.setBackground(Color.black);
+        txt_notificaciones.setForeground(Color.white);
+        jpanel_principal.setForeground(Color.black);
+        jpanel_principal.setBackground(Color.black);
+        jmenu_superior.setBackground(Color.black);
+        
         //letra menus
-        jMenu1.setForeground(Color.white);
-        jMenuBar2.setForeground(Color.white);
-        jMenu2.setForeground(Color.white);
-        jMenu5.setForeground(Color.white);
-        jMenu6.setForeground(Color.white);
-        jMenu7.setForeground(Color.white);
-        jMenu8.setForeground(Color.white);
-        jMenuItem1.setForeground(Color.white);
-        jMenuItem10.setForeground(Color.white);
-        jMenuItem11.setForeground(Color.white);
-        jMenuItem12.setForeground(Color.white);
-        jMenuItem13.setForeground(Color.white);
-        jMenuItem2.setForeground(Color.white);
-        jMenuItem3.setForeground(Color.white);
-        jMenuItem4.setForeground(Color.white);
-        jMenuItem5.setForeground(Color.white);
-        jMenuItem6.setForeground(Color.white);
-        jMenuItem7.setForeground(Color.white);
-        jMenuItem8.setForeground(Color.white);
-        jMenuItem9.setForeground(Color.white);
+        jmenu_Ver.setForeground(Color.white);
+        jmenu_opciones.setForeground(Color.white);
+        jmenu_superior.setForeground(Color.white);
+        jmenu_Archivo.setForeground(Color.white);
+        jmenu_Ejecutar.setForeground(Color.white);
+        jmenu_Ayuda.setForeground(Color.white);
+        jmi_nuevo.setForeground(Color.white);
+        jmi_analisis_sintactico.setForeground(Color.white);
+        jmi_abrir.setForeground(Color.white);
+        jmi_guardar.setForeground(Color.white);
+        jmi_guardar_como.setForeground(Color.white);
+        jmi_acerca_de.setForeground(Color.white);
+        jmi_analisis_lexico.setForeground(Color.white);
         btntemaclaro.setForeground(Color.white);
         btntemaoscuro.setForeground(Color.white);
-        jSeparator1.setForeground(Color.white);
+        
         //fondo menus
-        jMenu1.setBackground(Color.black);
-        jMenuBar2.setBackground(Color.black);
+        jmenu_opciones.setBackground(Color.black);
+        jmenu_superior.setBackground(Color.black);
         jMenu2.setBackground(Color.black);
-        jMenu5.setBackground(Color.black);
-        jMenu6.setBackground(Color.black);
-        jMenu7.setBackground(Color.black);
-        jMenu8.setBackground(Color.black);
-        jMenuItem1.setBackground(Color.black);
-        jMenuItem10.setBackground(Color.black);
-        jMenuItem11.setBackground(Color.black);
-        jMenuItem12.setBackground(Color.black);
-        jMenuItem13.setBackground(Color.black);
-        jMenuItem2.setBackground(Color.black);
-        jMenuItem3.setBackground(Color.black);
-        jMenuItem4.setBackground(Color.black);
-        jMenuItem5.setBackground(Color.black);
-        jMenuItem6.setBackground(Color.black);
-        jMenuItem7.setBackground(Color.black);
-        jMenuItem8.setBackground(Color.black);
-        jMenuItem9.setBackground(Color.black);
+        jmenu_Archivo.setBackground(Color.black);
+        jmenu_Ejecutar.setBackground(Color.black);
+        jmenu_Ayuda.setBackground(Color.black);
+        jmi_nuevo.setBackground(Color.black);
+        jmi_analisis_sintactico.setBackground(Color.black);
+        jmi_abrir.setBackground(Color.black);
+        jmi_guardar.setBackground(Color.black);
+        jmi_guardar_como.setBackground(Color.black);
+        jmi_acerca_de.setBackground(Color.black);
+        jmi_analisis_lexico.setBackground(Color.black);
         btntemaclaro.setBackground(Color.black);
         btntemaoscuro.setBackground(Color.black);
-        jSeparator1.setBackground(Color.black);
-        jDesktopPane1.setBackground(Color.darkGray);
+        jdp_workspace.setBackground(Color.darkGray);
         
         //BOTONES IMAGENES
        
@@ -108,64 +109,174 @@ public class Editor extends javax.swing.JFrame {
         //pintar interfaz
         txtEditor.setBackground(Color.white);
         txtEditor.setForeground(Color.black);
-        jPanelbotones.setForeground(Color.white);
-        jPanelbotones.setBackground(Color.white);
-        jMenuBar2.setBackground(Color.white);
+        txtLog.setBackground(Color.white);
+        txtLog.setForeground(Color.black);
+        txt_notificaciones.setBackground(Color.white);
+        txt_notificaciones.setForeground(Color.black);        
+        jpanel_principal.setForeground(Color.white);
+        jpanel_principal.setBackground(Color.white);
+        jmenu_superior.setBackground(Color.white);
         //letra menus
-        jMenu1.setForeground(Color.black);
-        jMenuBar2.setForeground(Color.black);
+        jmenu_opciones.setForeground(Color.black);
+        jmenu_superior.setForeground(Color.black);
         jMenu2.setForeground(Color.black);
-        jMenu5.setForeground(Color.black);
-        jMenu6.setForeground(Color.black);
-        jMenu7.setForeground(Color.black);
-        jMenu8.setForeground(Color.black);
-        jMenuItem1.setForeground(Color.black);
-        jMenuItem10.setForeground(Color.black);
-        jMenuItem11.setForeground(Color.black);
-        jMenuItem12.setForeground(Color.black);
-        jMenuItem13.setForeground(Color.black);
-        jMenuItem2.setForeground(Color.black);
-        jMenuItem3.setForeground(Color.black);
-        jMenuItem4.setForeground(Color.black);
-        jMenuItem5.setForeground(Color.black);
-        jMenuItem6.setForeground(Color.black);
-        jMenuItem7.setForeground(Color.black);
-        jMenuItem8.setForeground(Color.black);
-        jMenuItem9.setForeground(Color.black);
+        jmenu_Archivo.setForeground(Color.black);
+        jmenu_Ejecutar.setForeground(Color.black);
+        jmenu_Ayuda.setForeground(Color.black);
+        jmi_nuevo.setForeground(Color.black);
+        jmi_analisis_sintactico.setForeground(Color.black);
+        jmi_abrir.setForeground(Color.black);
+        jmi_guardar.setForeground(Color.black);
+        jmi_guardar_como.setForeground(Color.black);
+        jmi_acerca_de.setForeground(Color.black);
+        jmi_analisis_lexico.setForeground(Color.black);
         btntemaclaro.setForeground(Color.black);
         btntemaoscuro.setForeground(Color.black);
-        jSeparator1.setForeground(Color.black);
         //fondo menus
-        jMenu1.setBackground(Color.white);
-        jMenuBar2.setBackground(Color.white);
+        jmenu_opciones.setBackground(Color.white);
+        jmenu_superior.setBackground(Color.white);
         jMenu2.setBackground(Color.white);
-        jMenu5.setBackground(Color.white);
-        jMenu6.setBackground(Color.white);
-        jMenu7.setBackground(Color.white);
-        jMenu8.setBackground(Color.white);
-        jMenuItem1.setBackground(Color.white);
-        jMenuItem10.setBackground(Color.white);
-        jMenuItem11.setBackground(Color.white);
-        jMenuItem12.setBackground(Color.white);
-        jMenuItem13.setBackground(Color.white);
-        jMenuItem2.setBackground(Color.white);
-        jMenuItem3.setBackground(Color.white);
-        jMenuItem4.setBackground(Color.white);
-        jMenuItem5.setBackground(Color.white);
-        jMenuItem6.setBackground(Color.white);
-        jMenuItem7.setBackground(Color.white);
-        jMenuItem8.setBackground(Color.white);
-        jMenuItem9.setBackground(Color.white);
+        jmenu_Archivo.setBackground(Color.white);
+        jmenu_Ejecutar.setBackground(Color.white);
+        jmenu_Ayuda.setBackground(Color.white);
+        jmi_nuevo.setBackground(Color.white);
+        jmi_analisis_sintactico.setBackground(Color.white);
+        jmi_abrir.setBackground(Color.white);
+        jmi_guardar.setBackground(Color.white);
+        jmi_guardar_como.setBackground(Color.white);
+        jmi_acerca_de.setBackground(Color.white);
+        jmi_analisis_lexico.setBackground(Color.white);
         btntemaclaro.setBackground(Color.white);
         btntemaoscuro.setBackground(Color.white);
-        jSeparator1.setBackground(Color.white);
-        jDesktopPane1.setBackground(Color.white);
-
+        jdp_workspace.setBackground(Color.white);
+        
         //BOTONES IMAGENES
        
         btnEjecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perro_2.png")));
     }
 
+    
+    public void limpiar(){
+        txtEditor.setText("");
+        txtLog.setText("");
+    }
+    
+    private void reacomodar() {
+        jsp_editor.setBounds(jsp_editor.getX(), jsp_editor.getY(), 570, 350);
+        txtEditor.setBounds(txtEditor.getX(), txtEditor.getY(), 570, 350);
+    }
+
+    /*-------------------------------------SECCION DE MANEJO DE ARCHIVOS (GUARDAR, GUARDARCOMO, ABRIR)-----------------------*/
+    
+    private File archivo;
+    private boolean guardar = false;
+    private boolean guardarComo = true;
+    private boolean mostrar = true;
+    
+    private void guardarComo(){
+        Editor manejador_txt = new Editor();
+        Editor manejador_popup = new Editor();
+        
+        try {
+            JFileChooser file = new JFileChooser();
+            if (file.showSaveDialog(manejador_popup) == JFileChooser.APPROVE_OPTION) {
+                archivo = file.getSelectedFile();
+                if (archivo != null) {
+                    FileWriter save = new FileWriter(archivo.getAbsolutePath() + ".fit");
+                    String nombre = archivo.getName();
+                    setTitle(nombre);
+                    System.out.println(txtEditor.getText());
+                    save.write(txtEditor.getText());
+                    save.close();
+                    guardarComo = false;
+                    txt_notificaciones.setText("Se ha guardado un archivo");
+                }
+            }
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null,
+                    "El archivo no ha podido ser guardado!",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+        }
+    }
+    
+    private void guardar() {
+        FileWriter save = null;
+        try {
+            save = new FileWriter(archivo.getAbsolutePath());
+            save.write(txtEditor.getText());
+            save.close();
+            txt_notificaciones.setText("Se ha guardado un archivo");
+            txt_notificaciones.setForeground(new java.awt.Color(0, 158, 58));
+        } catch (IOException ex) {
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                save.close();
+            } catch (IOException ex) {
+                Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+    
+    
+    private ArrayList<String> leerArchivo(String file) {
+        ArrayList<String> texto = null;
+        FileReader fr = null;
+        BufferedReader br = null;
+        String line = "";
+        try {
+            texto = new ArrayList<String>();
+            archivo = new File(file);
+            String nombre = archivo.getName();
+            setTitle(nombre);
+            if (archivo.exists()) {
+                if (archivo.isFile()) {
+                    fr = new FileReader(archivo);
+                    br = new BufferedReader(fr);
+                    line = br.readLine();
+                    while (line != null) {
+                        if (!line.equalsIgnoreCase("")) {
+                            texto.add(line);
+                        }
+                        line = br.readLine();
+                    }
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return texto;
+    }
+    
+    public void abrirArchivo() {
+        ArrayList<String> linea = null;
+        int resp = 0;
+        String codigo = "";
+        txtEditor.setText("");
+        resp = jFileChooser1.showOpenDialog(this);
+        if (resp == JFileChooser.APPROVE_OPTION) {
+            linea = leerArchivo(jFileChooser1.getSelectedFile().toString());
+            if (linea.size() > 0) {
+                for (int i = 0; i < linea.size(); i++) {
+                    codigo = (String) linea.get(i);
+                    txtEditor.append(codigo + "\n");
+
+                }
+            }
+            jsp_editor.setBounds(jsp_editor.getX(), jsp_editor.getY(), 570, 350);
+            txtEditor.setBounds(txtEditor.getX(), txtEditor.getY(), 570, 350);
+            //lbCaracteres.setText(contarCar() + "");
+            //lbPalabras.setText(contarPal() + "");
+            guardarComo = false;
+            txt_notificaciones.setText("Se ha abierto un archivo");
+            txt_notificaciones.setForeground(new java.awt.Color(15, 136, 232));
+        }
+    }
+    
+    
+    //-------------------------------------------------------------------------------------------------------------------------
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -175,47 +286,109 @@ public class Editor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanelbotones = new javax.swing.JPanel();
+        jpanel_principal = new javax.swing.JPanel();
+        jdp_workspace = new javax.swing.JDesktopPane();
+        jsp_editor = new javax.swing.JScrollPane();
+        txtEditor = new javax.swing.JTextArea();
+        jsp_log = new javax.swing.JScrollPane();
+        txtLog = new javax.swing.JTextArea();
+        jSeparator2 = new javax.swing.JSeparator();
+        jsp_notificaciones = new javax.swing.JScrollPane();
+        txt_notificaciones = new javax.swing.JTextArea();
+        jFileChooser1 = new javax.swing.JFileChooser();
+        jpanel_botonera = new javax.swing.JPanel();
         btnEjecutar = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        txtEditor = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
-        jSeparator2 = new javax.swing.JSeparator();
-        jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu5 = new javax.swing.JMenu();
+        jmenu_superior = new javax.swing.JMenuBar();
+        jmenu_Archivo = new javax.swing.JMenu();
+        jmi_nuevo = new javax.swing.JMenuItem();
+        jmi_abrir = new javax.swing.JMenuItem();
+        jmi_guardar = new javax.swing.JMenuItem();
+        jmi_guardar_como = new javax.swing.JMenuItem();
+        jmenu_Ejecutar = new javax.swing.JMenu();
+        jmi_analisis_lexico = new javax.swing.JMenuItem();
+        jmi_analisis_sintactico = new javax.swing.JMenuItem();
+        jmenu_Ver = new javax.swing.JMenu();
+        jmi_tablaSimbolos = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu6 = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
-        jMenuItem12 = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenuItem7 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenu7 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem10 = new javax.swing.JMenuItem();
-        jMenu3 = new javax.swing.JMenu();
-        jMenuItem14 = new javax.swing.JMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        jmenu_opciones = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         btntemaoscuro = new javax.swing.JMenuItem();
         btntemaclaro = new javax.swing.JMenuItem();
-        jMenu8 = new javax.swing.JMenu();
-        jMenuItem8 = new javax.swing.JMenuItem();
+        jmenu_Ayuda = new javax.swing.JMenu();
+        jmi_tabla_reservadas = new javax.swing.JMenuItem();
+        jmi_acerca_de = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Feed-IT");
         setBackground(new java.awt.Color(255, 255, 255));
         setIconImages(getIconImages());
         setName("editor"); // NOI18N
+
+        txtEditor.setColumns(20);
+        txtEditor.setRows(5);
+        jsp_editor.setViewportView(txtEditor);
+
+        txtLog.setEditable(false);
+        txtLog.setColumns(20);
+        txtLog.setRows(5);
+        jsp_log.setViewportView(txtLog);
+
+        txt_notificaciones.setColumns(20);
+        txt_notificaciones.setRows(5);
+        jsp_notificaciones.setViewportView(txt_notificaciones);
+
+        jdp_workspace.setLayer(jsp_editor, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp_workspace.setLayer(jsp_log, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp_workspace.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp_workspace.setLayer(jsp_notificaciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jdp_workspaceLayout = new javax.swing.GroupLayout(jdp_workspace);
+        jdp_workspace.setLayout(jdp_workspaceLayout);
+        jdp_workspaceLayout.setHorizontalGroup(
+            jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdp_workspaceLayout.createSequentialGroup()
+                .addGap(0, 0, 0)
+                .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jsp_editor, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator2)
+                    .addGroup(jdp_workspaceLayout.createSequentialGroup()
+                        .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jsp_notificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
+                .addGap(0, 0, 0))
+        );
+        jdp_workspaceLayout.setVerticalGroup(
+            jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jdp_workspaceLayout.createSequentialGroup()
+                .addComponent(jsp_editor, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(jsp_notificaciones)))
+        );
+
+        javax.swing.GroupLayout jpanel_principalLayout = new javax.swing.GroupLayout(jpanel_principal);
+        jpanel_principal.setLayout(jpanel_principalLayout);
+        jpanel_principalLayout.setHorizontalGroup(
+            jpanel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanel_principalLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jdp_workspace)
+                .addContainerGap())
+            .addGroup(jpanel_principalLayout.createSequentialGroup()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 6, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        jpanel_principalLayout.setVerticalGroup(
+            jpanel_principalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanel_principalLayout.createSequentialGroup()
+                .addComponent(jFileChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jdp_workspace))
+        );
 
         btnEjecutar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perro_2.png"))); // NOI18N
         btnEjecutar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -234,150 +407,115 @@ public class Editor extends javax.swing.JFrame {
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/guardrp30.png"))); // NOI18N
         btnGuardar.setPreferredSize(new java.awt.Dimension(50, 50));
-
-        jButton3.setPreferredSize(new java.awt.Dimension(50, 50));
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnGuardarActionPerformed(evt);
             }
         });
 
-        txtEditor.setColumns(20);
-        txtEditor.setRows(5);
-        jScrollPane1.setViewportView(txtEditor);
-
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane2.setViewportView(jTextArea1);
-
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 688, Short.MAX_VALUE)
-            .addComponent(jScrollPane2)
-            .addComponent(jSeparator2)
+        javax.swing.GroupLayout jpanel_botoneraLayout = new javax.swing.GroupLayout(jpanel_botonera);
+        jpanel_botonera.setLayout(jpanel_botoneraLayout);
+        jpanel_botoneraLayout.setHorizontalGroup(
+            jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanel_botoneraLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addGroup(jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        javax.swing.GroupLayout jPanelbotonesLayout = new javax.swing.GroupLayout(jPanelbotones);
-        jPanelbotones.setLayout(jPanelbotonesLayout);
-        jPanelbotonesLayout.setHorizontalGroup(
-            jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelbotonesLayout.createSequentialGroup()
+        jpanel_botoneraLayout.setVerticalGroup(
+            jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpanel_botoneraLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelbotonesLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanelbotonesLayout.createSequentialGroup()
-                        .addGroup(jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jDesktopPane1)
-                .addContainerGap())
-        );
-        jPanelbotonesLayout.setVerticalGroup(
-            jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelbotonesLayout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addGroup(jPanelbotonesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanelbotonesLayout.createSequentialGroup()
-                        .addComponent(btnEjecutar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 274, Short.MAX_VALUE))))
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jMenu5.setText("Archivo");
+        jmenu_superior.setName("jmenu_Principal"); // NOI18N
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
-        jMenuItem1.setText("Nuevo");
-        jMenu5.add(jMenuItem1);
-
-        jMenuItem2.setText("Abrir");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+        jmenu_Archivo.setText("Archivo");
+        jmenu_Archivo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+                jmenu_ArchivoActionPerformed(evt);
             }
         });
-        jMenu5.add(jMenuItem2);
 
-        jMenuItem3.setText("Guardar");
-        jMenu5.add(jMenuItem3);
-
-        jMenuItem4.setText("Guardar como");
-        jMenu5.add(jMenuItem4);
-
-        jMenuBar2.add(jMenu5);
-
-        jMenu6.setText("Editar");
-
-        jMenuItem11.setText("Deshacer");
-        jMenu6.add(jMenuItem11);
-
-        jMenuItem12.setText("Reacer");
-        jMenu6.add(jMenuItem12);
-        jMenu6.add(jSeparator1);
-
-        jMenuItem5.setText("Cortar");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+        jmi_nuevo.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_nuevo.setText("Nuevo");
+        jmi_nuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
+                jmi_nuevoActionPerformed(evt);
             }
         });
-        jMenu6.add(jMenuItem5);
+        jmenu_Archivo.add(jmi_nuevo);
 
-        jMenuItem6.setText("Copiar");
-        jMenu6.add(jMenuItem6);
-
-        jMenuItem7.setText("Pegar");
-        jMenu6.add(jMenuItem7);
-
-        jMenuItem13.setText("Buscar");
-        jMenu6.add(jMenuItem13);
-
-        jMenuBar2.add(jMenu6);
-
-        jMenu7.setText("Ejecutar");
-
-        jMenuItem9.setText("Analisis Lexico");
-        jMenu7.add(jMenuItem9);
-
-        jMenuItem10.setText("Analisis Sintactico");
-        jMenu7.add(jMenuItem10);
-
-        jMenuBar2.add(jMenu7);
-
-        jMenu3.setText("Ver");
-
-        jMenuItem14.setText("jMenuItem14");
-        jMenu3.add(jMenuItem14);
-
-        jMenuBar2.add(jMenu3);
-
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
-        jMenu1.setText("Opciones");
-        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+        jmi_abrir.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_A, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_abrir.setText("Abrir");
+        jmi_abrir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jmi_abrirMouseClicked(evt);
+            }
+        });
+        jmi_abrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu1ActionPerformed(evt);
+                jmi_abrirActionPerformed(evt);
+            }
+        });
+        jmenu_Archivo.add(jmi_abrir);
+
+        jmi_guardar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_S, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_guardar.setText("Guardar");
+        jmi_guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_guardarActionPerformed(evt);
+            }
+        });
+        jmenu_Archivo.add(jmi_guardar);
+
+        jmi_guardar_como.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_G, java.awt.event.InputEvent.CTRL_DOWN_MASK));
+        jmi_guardar_como.setText("Guardar como");
+        jmi_guardar_como.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_guardar_comoActionPerformed(evt);
+            }
+        });
+        jmenu_Archivo.add(jmi_guardar_como);
+
+        jmenu_superior.add(jmenu_Archivo);
+
+        jmenu_Ejecutar.setText("Ejecutar");
+
+        jmi_analisis_lexico.setText("Analisis Lexico");
+        jmenu_Ejecutar.add(jmi_analisis_lexico);
+
+        jmi_analisis_sintactico.setText("Analisis Sintactico");
+        jmenu_Ejecutar.add(jmi_analisis_sintactico);
+
+        jmenu_superior.add(jmenu_Ejecutar);
+
+        jmenu_Ver.setText("Ver");
+
+        jmi_tablaSimbolos.setText("Tabla de Simbolos");
+        jmi_tablaSimbolos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmi_tablaSimbolosActionPerformed(evt);
+            }
+        });
+        jmenu_Ver.add(jmi_tablaSimbolos);
+
+        jMenuItem1.setText("Codigo Intermedio");
+        jmenu_Ver.add(jMenuItem1);
+
+        jmenu_superior.add(jmenu_Ver);
+
+        jmenu_opciones.setBackground(new java.awt.Color(255, 255, 255));
+        jmenu_opciones.setText("Opciones");
+        jmenu_opciones.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jmenu_opcionesActionPerformed(evt);
             }
         });
 
@@ -400,57 +538,74 @@ public class Editor extends javax.swing.JFrame {
         });
         jMenu2.add(btntemaclaro);
 
-        jMenu1.add(jMenu2);
+        jmenu_opciones.add(jMenu2);
 
-        jMenuBar2.add(jMenu1);
+        jmenu_superior.add(jmenu_opciones);
 
-        jMenu8.setText("Ayuda");
+        jmenu_Ayuda.setText("Ayuda");
 
-        jMenuItem8.setText("Acerca de ");
-        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+        jmi_tabla_reservadas.setText("Palabras Reservadas");
+        jmenu_Ayuda.add(jmi_tabla_reservadas);
+
+        jmi_acerca_de.setText("Acerca de ");
+        jmi_acerca_de.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem8ActionPerformed(evt);
+                jmi_acerca_deActionPerformed(evt);
             }
         });
-        jMenu8.add(jMenuItem8);
+        jmenu_Ayuda.add(jmi_acerca_de);
 
-        jMenuBar2.add(jMenu8);
+        jmenu_superior.add(jmenu_Ayuda);
 
-        setJMenuBar(jMenuBar2);
+        setJMenuBar(jmenu_superior);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelbotones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(jpanel_botonera, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jpanel_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanelbotones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jpanel_principal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jpanel_botonera, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
+        int resp = JOptionPane.showConfirmDialog(null,
+                "¿Desea guardar el Archivo?", "Advertencia", JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.INFORMATION_MESSAGE);
+        if (resp == 0) {
+            jmi_guardar.doClick();
+            limpiar();
+            abrirArchivo();
+            reacomodar();
+            txt_notificaciones.setText("Se ha abierto un archivo");
+        }
+        if (resp == 1) {
+            limpiar();
+            abrirArchivo();
+            reacomodar();
+            txt_notificaciones.setText("Se ha abierto un archivo");
+        }
+    }//GEN-LAST:event_jmi_abrirActionPerformed
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jmi_acerca_deActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_acerca_deActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }//GEN-LAST:event_jmi_acerca_deActionPerformed
 
     private void btntemaoscuroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btntemaoscuroActionPerformed
 
@@ -471,9 +626,9 @@ public class Editor extends javax.swing.JFrame {
         pintarclaro();
     }//GEN-LAST:event_btntemaclaroActionPerformed
 
-    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+    private void jmenu_opcionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_opcionesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jMenu1ActionPerformed
+    }//GEN-LAST:event_jmenu_opcionesActionPerformed
 
     private void btnEjecutarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEjecutarActionPerformed
         // TODO add your handling code here:
@@ -482,6 +637,59 @@ public class Editor extends javax.swing.JFrame {
     private void btnEjecutarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEjecutarMouseClicked
         correr();
     }//GEN-LAST:event_btnEjecutarMouseClicked
+
+    private void jmi_abrirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jmi_abrirMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_abrirMouseClicked
+
+    private void jmi_tablaSimbolosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_tablaSimbolosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmi_tablaSimbolosActionPerformed
+
+    private void jmi_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_nuevoActionPerformed
+        archivos controlador = new archivos();
+        if(controlador.nuevoArchivo() == true){
+            
+            guardarComo();
+            System.out.println("^^Se invocó: controlador.guardarComo()^^");
+            limpiar();
+            txt_notificaciones.setText("Se ha creado un nuevo archivo");
+        }else if(controlador.nuevoArchivo() == false){
+            limpiar();
+            System.out.println("^^if(guardarComo == false);");
+            txt_notificaciones.setText("Se ha creado un nuevo archivo");
+        }
+        
+    }//GEN-LAST:event_jmi_nuevoActionPerformed
+
+    private void jmi_guardar_comoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardar_comoActionPerformed
+           try{
+            guardarComo();
+            txt_notificaciones.setText("Se ha guardado el nuevo archivo");
+           } catch ( Exception e){
+                JOptionPane.showMessageDialog(null,
+                    "Su archivo no se ha guardado",
+                    "Advertencia", JOptionPane.WARNING_MESSAGE);
+           }
+    }//GEN-LAST:event_jmi_guardar_comoActionPerformed
+
+    private void jmenu_ArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_ArchivoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jmenu_ArchivoActionPerformed
+
+    private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
+        if (guardarComo) {
+            guardarComo();
+            txt_notificaciones.setText("Se ha guardado el archivo");
+        } else {
+            guardar();
+            txt_notificaciones.setText("Se ha guardado el archivo");
+        }
+    }//GEN-LAST:event_jmi_guardarActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        guardar();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -538,36 +746,33 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JMenuItem btntemaclaro;
     private javax.swing.JMenuItem btntemaoscuro;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
+    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu5;
-    private javax.swing.JMenu jMenu6;
-    private javax.swing.JMenu jMenu7;
-    private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem10;
-    private javax.swing.JMenuItem jMenuItem11;
-    private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem14;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem7;
-    private javax.swing.JMenuItem jMenuItem8;
-    private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanelbotones;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea txtEditor;
+    private javax.swing.JDesktopPane jdp_workspace;
+    private javax.swing.JMenu jmenu_Archivo;
+    private javax.swing.JMenu jmenu_Ayuda;
+    private javax.swing.JMenu jmenu_Ejecutar;
+    private javax.swing.JMenu jmenu_Ver;
+    private javax.swing.JMenu jmenu_opciones;
+    private javax.swing.JMenuBar jmenu_superior;
+    private javax.swing.JMenuItem jmi_abrir;
+    private javax.swing.JMenuItem jmi_acerca_de;
+    private javax.swing.JMenuItem jmi_analisis_lexico;
+    private javax.swing.JMenuItem jmi_analisis_sintactico;
+    private javax.swing.JMenuItem jmi_guardar;
+    private javax.swing.JMenuItem jmi_guardar_como;
+    private javax.swing.JMenuItem jmi_nuevo;
+    private javax.swing.JMenuItem jmi_tablaSimbolos;
+    private javax.swing.JMenuItem jmi_tabla_reservadas;
+    private javax.swing.JPanel jpanel_botonera;
+    private javax.swing.JPanel jpanel_principal;
+    private javax.swing.JScrollPane jsp_editor;
+    private javax.swing.JScrollPane jsp_log;
+    private javax.swing.JScrollPane jsp_notificaciones;
+    public javax.swing.JTextArea txtEditor;
+    public javax.swing.JTextArea txtLog;
+    public javax.swing.JTextArea txt_notificaciones;
     // End of variables declaration//GEN-END:variables
 }
