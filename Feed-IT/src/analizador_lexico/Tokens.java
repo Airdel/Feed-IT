@@ -31,6 +31,7 @@ public enum Tokens {
     Parentesis_I,
     Parentesis_D,
     Salto_Linea,
+    fin_sentencia,
     Identifier,
     Number,
     ERROR

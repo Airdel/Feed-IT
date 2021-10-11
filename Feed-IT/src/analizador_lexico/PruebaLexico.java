@@ -114,6 +114,7 @@ public class PruebaLexico extends javax.swing.JFrame {
                }//switch
                
            }
+           
        }catch(FileNotFoundException e){} catch (IOException ex) {
             Logger.getLogger(PruebaLexico.class.getName()).log(Level.SEVERE, null, ex);
         }//catch

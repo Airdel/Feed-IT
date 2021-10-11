@@ -68,6 +68,7 @@ while {lexeme = yytext(); return Reserved;}
 "(" {return Parentesis_I;}
 ")" {return Parentesis_D;}
 "\n" {return Salto_Linea;}
+";" {return fin_sentencia;}
 {L}({L} | {D})* {lexeme = yytext(); return Identifier;}
 ("-"{D}+) | {D}+ {lexeme = yytext(); return Number;}
  . {return ERROR;}
