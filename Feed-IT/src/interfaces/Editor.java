@@ -13,13 +13,17 @@ import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Reader;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java_cup.Lexer;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -285,7 +289,7 @@ public class Editor extends javax.swing.JFrame {
        File file = new File(path);
        try{
            PrintWriter write = new PrintWriter(file);
-           write.print(manejadorUI.txtEditor.getText());
+           write.print(txtEditor.getText());
            System.out.println("Obtencion de datos del editor");
            write.close();
            Reader read = new BufferedReader(new FileReader(file));
@@ -314,7 +318,7 @@ public class Editor extends javax.swing.JFrame {
                return r;
            }
        }catch(FileNotFoundException e){} catch (IOException ex) {
-            Logger.getLogger(PruebaLexico.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
         }//catch
        return r;
     }
@@ -339,6 +343,7 @@ public class Editor extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jsp_notificaciones = new javax.swing.JScrollPane();
         txt_notificaciones = new javax.swing.JTextArea();
+        lbl_CodigoCursor = new javax.swing.JLabel();
         jFileChooser1 = new javax.swing.JFileChooser();
         jpanel_botonera = new javax.swing.JPanel();
         btnEjecutar = new javax.swing.JButton();
@@ -382,10 +387,13 @@ public class Editor extends javax.swing.JFrame {
         txt_notificaciones.setRows(5);
         jsp_notificaciones.setViewportView(txt_notificaciones);
 
+        lbl_CodigoCursor.setText("-");
+
         jdp_workspace.setLayer(jsp_editor, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jsp_log, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jsp_notificaciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp_workspace.setLayer(lbl_CodigoCursor, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdp_workspaceLayout = new javax.swing.GroupLayout(jdp_workspace);
         jdp_workspace.setLayout(jdp_workspaceLayout);
@@ -399,7 +407,11 @@ public class Editor extends javax.swing.JFrame {
                     .addGroup(jdp_workspaceLayout.createSequentialGroup()
                         .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 502, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jsp_notificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)))
+                        .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jsp_notificaciones, javax.swing.GroupLayout.DEFAULT_SIZE, 237, Short.MAX_VALUE)
+                            .addGroup(jdp_workspaceLayout.createSequentialGroup()
+                                .addComponent(lbl_CodigoCursor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE)))))
                 .addGap(0, 0, 0))
         );
         jdp_workspaceLayout.setVerticalGroup(
@@ -410,8 +422,11 @@ public class Editor extends javax.swing.JFrame {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                    .addComponent(jsp_notificaciones)))
+                    .addComponent(jsp_log)
+                    .addGroup(jdp_workspaceLayout.createSequentialGroup()
+                        .addComponent(jsp_notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl_CodigoCursor))))
         );
 
         javax.swing.GroupLayout jpanel_principalLayout = new javax.swing.GroupLayout(jpanel_principal);
@@ -828,6 +843,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jsp_editor;
     private javax.swing.JScrollPane jsp_log;
     private javax.swing.JScrollPane jsp_notificaciones;
+    private javax.swing.JLabel lbl_CodigoCursor;
     public javax.swing.JTextArea txtEditor;
     public javax.swing.JTextArea txtLog;
     public javax.swing.JTextArea txt_notificaciones;

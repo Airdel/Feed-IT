@@ -260,7 +260,13 @@
                           <Group type="102" attributes="0">
                               <Component id="jsp_log" pref="502" max="32767" attributes="0"/>
                               <EmptySpace min="-2" max="-2" attributes="0"/>
-                              <Component id="jsp_notificaciones" pref="237" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="jsp_notificaciones" pref="237" max="32767" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="lbl_CodigoCursor" min="-2" pref="100" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
+                              </Group>
                           </Group>
                       </Group>
                       <EmptySpace min="-2" pref="0" max="-2" attributes="0"/>
@@ -275,8 +281,12 @@
                       <Component id="jSeparator2" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="-2" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jsp_log" pref="94" max="32767" attributes="0"/>
-                          <Component id="jsp_notificaciones" max="32767" attributes="0"/>
+                          <Component id="jsp_log" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Component id="jsp_notificaciones" min="-2" pref="72" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="lbl_CodigoCursor" min="-2" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
               </Group>
@@ -340,6 +350,11 @@
                 </Component>
               </SubComponents>
             </Container>
+            <Component class="javax.swing.JLabel" name="lbl_CodigoCursor">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="-"/>
+              </Properties>
+            </Component>
           </SubComponents>
         </Container>
         <Component class="javax.swing.JFileChooser" name="jFileChooser1">
