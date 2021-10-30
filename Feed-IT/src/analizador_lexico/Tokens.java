@@ -10,7 +10,7 @@ package analizador_lexico;
  * @author Equipo 5 FEEDIT
  */
 public enum Tokens {
-    Reserved,
+    Reservada,
     Asignacion,
     Igual,
     ExactamenteIgual,
@@ -30,9 +30,14 @@ public enum Tokens {
     operadorLogicoNOT,
     Parentesis_I,
     Parentesis_D,
+    Llave_I,
+    Llave_D,
     Salto_Linea,
     fin_sentencia,
-    Identifier,
-    Number,
+    Identificador,
+    Numero,
+    Flotante,
+    True,
+    False,
     ERROR
 }//Tokens

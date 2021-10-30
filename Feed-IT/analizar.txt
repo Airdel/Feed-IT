@@ -1,1 +1,10 @@
-int pipo_10 ( ) = 35
+class EjemploFeedIT{
+    #Automatización de suministro de comida y agua de la mascota
+    do{
+        #---Alimentación
+        float agua_pipo = valHum(/#Ruta de dispositivo#/);
+        if(agua_pipo < 0.5)then{
+            fAgua(true);
+        }
+    }loop while(true);
+}

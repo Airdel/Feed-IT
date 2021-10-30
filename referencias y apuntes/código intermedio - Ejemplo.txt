@@ -1,0 +1,51 @@
+ A  = B op C
+
+ A, B, C: Operandos
+ op: Operador
+
+v-------Nuestro Lenguaje-------v
+ while(agua_pipo > aux_agua){
+     agua_pipo = agua_pipo + aux_agua
+ }
+ ^-----------------------------^
+
+A -> agua_pipo
+B -> aux_agua   
+
+v-------Código intermedio-------v
+
+ L1 : IF A > B
+ GOTO L2
+ L4 : A = A + B
+ GOTO L1
+
+ ^-------------------------------^
+
+
+int agua_pipo, comida, aux_comida, variableQueNoVoyAUsar;
+
+int agua_pipo;
+int comida;
+int aux_comida;
+#---------------int variableQueNoVoyAUsar; 
+
+var global contadorLuz = ('url_Dispositivo');   #-- <-- Variable global
+
+function test1(){
+
+    var Aux_comida;   #-- <-- Variable local
+
+}
+
+
+const int numero = 420
+const float numero2 = 6.9
+const String mensaje = "H E L P (moais)" 
+
+
+
+variable = valor
+
+
+variable +=
+variable -=

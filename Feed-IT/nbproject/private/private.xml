@@ -5,7 +5,7 @@
             <url>src/interfaces/Editor.java</url>
             <bookmark id="2">
                 <name/>
-                <line>899</line>
+                <line>895</line>
                 <key/>
             </bookmark>
         </file>
@@ -14,7 +14,7 @@
         <group>
             <file>file:/C:/Feed-IT/Feed-IT/src/interfaces/Editor.java</file>
             <file>file:/C:/Feed-IT/Feed-IT/src/analizador_lexico/Tokens.java</file>
-            <file>file:/C:/Feed-IT/Feed-IT/src/analizador_lexico/analizador_lexico.java</file>
+            <file>file:/C:/Feed-IT/Feed-IT/src/analizador_lexico/Lexer.flex</file>
             <file>file:/C:/Feed-IT/Feed-IT/src/analizador_lexico/Generador.java</file>
         </group>
     </open-files>

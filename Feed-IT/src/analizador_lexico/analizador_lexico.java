@@ -40,9 +40,9 @@ public class analizador_lexico {
                    case ERROR: 
                        r += "simbolo no definido \n";
                        break;
-                   case Reserved: 
-                   case Identifier: 
-                   case  Number: 
+                   case Reservada: 
+                   case Identificador: 
+                   case  Numero: 
                        r += lexer.lexeme + " Es un: " + tokens + "\n"; 
                        break;
                    default:

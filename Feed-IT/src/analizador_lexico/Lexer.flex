@@ -14,7 +14,7 @@ SPACE = [ ,\t,\r,\n]+
 %%
 int |
 float |
-String | 
+string | 
 double |
 null |
 boolean |
@@ -34,17 +34,19 @@ else |
 forEach |
 for | 
 do |
-Const |
+const |
 goBack | 
 fun |
 loop |
 and |
 or |
 not | 
-while {lexeme = yytext(); return Reserved;}
+true |
+false |
+while {lexeme = yytext(); return Reservada;}
 {SPACE} {/*Ignore*/}
 "#".* {/*Ignore*/}
-"/#"~"#/".* {/*Ignore*/}
+"/#"~"#/" {/*Ignore*/}
 "=" {return Asignacion;}
 "==" {return Igual;}
 "===" {return ExactamenteIgual;}
@@ -65,10 +67,15 @@ while {lexeme = yytext(); return Reserved;}
 "and" {return operadorLogicoAND;}
 "or" {return operadorLogicoOR;}
 "not" {return operadorLogicoNOT;}
+"true" {return true;}
+"false" {return false;}
 "(" {return Parentesis_I;}
 ")" {return Parentesis_D;}
+"{" {return Llave_I;}
+"}" {return Llave_D;}
 "\n" {return Salto_Linea;}
 ";" {return fin_sentencia;}
-{L}({L} | {D})* {lexeme = yytext(); return Identifier;}
-("-"{D}+) | {D}+ {lexeme = yytext(); return Number;}
+{L}({L} | {D})* {lexeme = yytext(); return Identificador;}
+("-"{D}+) | {D}+ {lexeme = yytext(); return Numero;}
+[-+]?[0-9]*[.][0-9]+ {lexeme = yytext(); return Flotante}
  . {return ERROR;}

@@ -119,58 +119,70 @@ public int Ev_Postfijo(String posfijo) {
         }
         int c = 0;
         while (token.size() != 1) {
-        String operador = token.get(c);
-        if (operador.equals("+") || operador.equals("-") || operador.equals("*") ||
-        operador.equals("/")) {
-        String operando1 = token.get(c - 1);
-        String operando2 = token.get(c - 2);
-        token.remove(c);
-        token.remove(c - 1);
-        token.remove(c - 2);
-        if (operador.equals("+")) {
-        try {
-        String suma = (Integer.parseInt(operando2) + Integer.parseInt(operando1)) + "";
-        token.add(c - 2, suma);
-        c = 0;
-        } catch (NumberFormatException e) {
-        return 0;
+            String operador = token.get(c);
+            if (operador.equals("+") || operador.equals("-") || operador.equals("*") ||
+                operador.equals("/")) {
+                String operando1 = token.get(c - 1);
+                String operando2 = token.get(c - 2);
+                token.remove(c);
+                token.remove(c - 1);
+                token.remove(c - 2);
+                if (operador.equals("+")) {
+                    try {
+                        String suma = (Integer.parseInt(operando2) + Integer.parseInt(operando1)) + "";
+                        token.add(c - 2, suma);
+                        c = 0;
+                    } catch (NumberFormatException e) {
+                        return 0;
+                    }
+                } else if (operador.equals("-")) {
+                    try {
+                        String resta = (Integer.parseInt(operando2) - Integer.parseInt(operando1)) + "";
+                        token.add(c - 2, resta);
+                        c = 0;
+                    } catch (NumberFormatException e) {
+                        return 0;
+                    }
+                } else if (operador.equals("*")) {
+                    try {
+                        String multiplicacion = (Integer.parseInt(operando2) * Integer.parseInt(operando1)) +
+                        "";
+                        token.add(c - 2, multiplicacion);
+                        c = 0;
+                    } catch (NumberFormatException e) {
+                        return 0;
+                    }
+                } else if (operador.equals("/")) {
+                    try {
+                        String division = (Integer.parseInt(operando2) / Integer.parseInt(operando1)) + "";
+                        token.add(c - 2, division);
+                        c = 0;
+                    } catch (NumberFormatException e) {
+                        return 0;
+                    }
+                } else {
+                    c++;
+                }
+            }
+            try {
+                return Integer.parseInt(token.get(0));
+            } catch (NumberFormatException e) {
+                return 0;
+            }
+    }
+}
+
+
+
+public class PruebaTiempo{
+    public static void main(String[] args) throws
+    InterruptedException {
+        long inicio = System.currentTimeMillis();
+        Thread.sleep(2000);
+        long fin = System.currentTimeMillis();
+        double tiempo = (double) ((fin - inicio)/1000);
+        System.out.println(tiempo +" segundos");
         }
-        } else if (operador.equals("-")) {
-        try {
-        String resta = (Integer.parseInt(operando2) - Integer.parseInt(operando1)) + "";
-        token.add(c - 2, resta);
-        c = 0;
-        } catch (NumberFormatException e) {
-        //areaTexto.setText("Error al comvertir un operando\n"+e);
-        return 0;
-        }
-        } else if (operador.equals("*")) {
-        try {
-        String multiplicacion = (Integer.parseInt(operando2) * Integer.parseInt(operando1)) +
-        "";
-        token.add(c - 2, multiplicacion);
-        c = 0;
-        } catch (NumberFormatException e) {
-        //areaTexto.setText("Error al comvertir un operando\n"+e);
-        return 0;
-        }
-        } else if (operador.equals("/")) {
-        try {
-        String division = (Integer.parseInt(operando2) / Integer.parseInt(operando1)) + "";
-        token.add(c - 2, division);
-        c = 0;
-} catch (NumberFormatException e) {
-//areaTexto.setText("Error al comvertir un operando\n"+e);
-return 0;
+    }
 }
-} else {
-c++;
-}
-}
-try {
-return Integer.parseInt(token.get(0));
-} catch (NumberFormatException e) {
-//areaTexto.setText("Error al parsear el resultado\n"+e);
-return 0;
-}
-}
+    

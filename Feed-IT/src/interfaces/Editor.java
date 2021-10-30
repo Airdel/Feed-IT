@@ -343,7 +343,6 @@ public class Editor extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         jsp_notificaciones = new javax.swing.JScrollPane();
         txt_notificaciones = new javax.swing.JTextArea();
-        lbl_CodigoCursor = new javax.swing.JLabel();
         Fecha1 = new javax.swing.JLabel();
         Fecha = new javax.swing.JLabel();
         Hora = new javax.swing.JLabel();
@@ -397,8 +396,6 @@ public class Editor extends javax.swing.JFrame {
         txt_notificaciones.setRows(5);
         jsp_notificaciones.setViewportView(txt_notificaciones);
 
-        lbl_CodigoCursor.setText("-");
-
         Fecha1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         Fecha.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -414,7 +411,6 @@ public class Editor extends javax.swing.JFrame {
         jdp_workspace.setLayer(jsp_log, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jsp_notificaciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdp_workspace.setLayer(lbl_CodigoCursor, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(Fecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(Fecha, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(Hora, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -429,16 +425,13 @@ public class Editor extends javax.swing.JFrame {
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdp_workspaceLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                                .addComponent(jsp_log, javax.swing.GroupLayout.PREFERRED_SIZE, 500, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lbl_CodigoCursor, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jsp_notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(jsp_log, javax.swing.GroupLayout.PREFERRED_SIZE, 562, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jsp_notificaciones))
                             .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                                .addComponent(jsp_editor, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jsp_editor, javax.swing.GroupLayout.DEFAULT_SIZE, 501, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -447,14 +440,14 @@ public class Editor extends javax.swing.JFrame {
                                 .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Fecha1)))
-                        .addGap(javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE))))
+                        .addContainerGap())))
         );
         jdp_workspaceLayout.setVerticalGroup(
             jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdp_workspaceLayout.createSequentialGroup()
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                        .addComponent(jsp_editor, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+                        .addComponent(jsp_editor, javax.swing.GroupLayout.DEFAULT_SIZE, 359, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jdp_workspaceLayout.createSequentialGroup()
                         .addContainerGap()
@@ -463,15 +456,12 @@ public class Editor extends javax.swing.JFrame {
                             .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Hora, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 290, Short.MAX_VALUE)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsp_log)
-                    .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                        .addComponent(jsp_notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lbl_CodigoCursor))))
+                    .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                    .addComponent(jsp_notificaciones)))
         );
 
         javax.swing.GroupLayout jpanel_principalLayout = new javax.swing.GroupLayout(jpanel_principal);
@@ -625,7 +615,7 @@ public class Editor extends javax.swing.JFrame {
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -791,21 +781,27 @@ public class Editor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
-        int resp = JOptionPane.showConfirmDialog(null,
+        if(txtEditor.getText() == null){
+            limpiar();
+            abrirArchivo();
+        }
+        else if(txtEditor.getText() != null){
+                              int resp = JOptionPane.showConfirmDialog(null,
                 "¿Desea guardar el Archivo?", "Advertencia", JOptionPane.YES_NO_CANCEL_OPTION,
                 JOptionPane.INFORMATION_MESSAGE);
-        if (resp == 0) {
-            jmi_guardar.doClick();
-            limpiar();
-            abrirArchivo();
-            reacomodar();
-            txt_notificaciones.setText("Se ha abierto un archivo");
-        }
-        if (resp == 1) {
-            limpiar();
-            abrirArchivo();
-            reacomodar();
-            txt_notificaciones.setText("Se ha abierto un archivo");
+            if (resp == 0) {
+                jmi_guardar.doClick();
+                limpiar();
+                abrirArchivo();
+                reacomodar();
+                txt_notificaciones.setText("Se ha abierto un archivo");
+            }
+            if (resp == 1) {
+                limpiar();
+                abrirArchivo();
+                reacomodar();
+                txt_notificaciones.setText("Se ha abierto un archivo");
+            }
         }
     }//GEN-LAST:event_jmi_abrirActionPerformed
 
@@ -1023,9 +1019,8 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jsp_editor;
     private javax.swing.JScrollPane jsp_log;
     private javax.swing.JScrollPane jsp_notificaciones;
-    private javax.swing.JLabel lbl_CodigoCursor;
-    private javax.swing.JTextArea txtEditor;
-    private javax.swing.JTextArea txtLog;
-    private javax.swing.JTextArea txt_notificaciones;
+    public javax.swing.JTextArea txtEditor;
+    public javax.swing.JTextArea txtLog;
+    public javax.swing.JTextArea txt_notificaciones;
     // End of variables declaration//GEN-END:variables
 }
