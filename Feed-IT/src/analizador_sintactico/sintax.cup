@@ -1,0 +1,32 @@
+package analizador_sintactico
+
+import java.runtime.Symbol;
+
+parser code
+{:
+    private Symbol s;
+
+    public void syntax_error(Symbol s)
+    {
+        this.s = s;
+    }
+
+    public Symbol getS()
+    {
+        return this.s;
+    }
+:};
+
+terminal    Main, Class,
+            Int, Float, String, Double, Null, Boolean,
+            When, If, Else, ForEach, For, Do, Const, GoBack, Loop,
+            And, Or, Not, True, False,
+            
+
+              ;
+
+non terminal INICIO, SENTENCIA, DECLARACIÓN;
+
+start with INICIO;
+
+INICIO ::=

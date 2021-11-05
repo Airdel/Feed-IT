@@ -1,16 +1,45 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    Lista de Tokens para el analizador lexico
  */
 package analizador_lexico;
 
 /**
  *
- * @author Equipo 5 FEEDIT
+ * @author Equipo 5 FEED-IT
  */
 public enum Tokens {
-    Reservada,
+    Int,
+    Float,
+    String,
+    Double,
+    Null,
+    Boolean,
+    Humedad,
+    Fagua,
+    Peso,
+    Fcomer,
+    Premio,
+    Fmasaje,
+    Fluz,
+    Fjuguete,
+    Candil,
+    Class,
+    When,
+    If,
+    Else,
+    ForEach,
+    For, 
+    Do,
+    Const,
+    GoBack, 
+    Fun,
+    Loop,
+    And,
+    Or,
+    Not,
+    True,
+    False,
+    While,
     Asignacion,
     Igual,
     ExactamenteIgual,
@@ -28,16 +57,15 @@ public enum Tokens {
     operadorLogicoAND,
     operadorLogicoOR,
     operadorLogicoNOT,
-    Parentesis_I,
-    Parentesis_D,
-    Llave_I,
-    Llave_D,
+    Parentesis_A,
+    Parentesis_C,
+    Llave_A,
+    Llave_C,
     Salto_Linea,
     fin_sentencia,
     Identificador,
     Numero,
     Flotante,
-    True,
-    False,
+    Main,
     ERROR
-}//Tokens
+}//Fin de lista de Tokens
