@@ -5,7 +5,7 @@ package analizador_lexico;
 
 /**
  *
- * @author Equipo 5 FEED-IT
+ * @author Equipo 5 FEED-IT 
  */
 public enum Tokens {
     Int,

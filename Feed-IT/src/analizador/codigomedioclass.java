@@ -1,5 +1,9 @@
-//Actividad 5. Desarrollar el programa del código intermedio
 
+
+
+
+public class codigomedioclass {
+  
 String cadenaLimpia = Depurador.getText();
 char[] msj = cadenaLimpia.toCharArray();
 boolean correcto = false;
@@ -185,4 +189,3 @@ public class PruebaTiempo{
         }
     }
 }
-    

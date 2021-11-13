@@ -12,7 +12,7 @@ action code
     :};
 parser code
 {:
-    static TablaSimbolos tablaSimbolos = new TablaSimbolos();
+    static TablaSymbolos tablaSymbolos = new TablaSymbolos();
     static int verificarTipo = 0;
     static Stack <String> listaIdentificadores = new Stack <String>();
 	public static void main(String args[]) throws Exception{
@@ -87,15 +87,15 @@ inicio ::=
     RESERVADA_FIN 
     {:
         try{
-            TablaSimbolos.crear(nombre, "--","Nombre");
-            TablaSimbolos.insertar(nombre, String.valueOf("--"));
+            TablaSymbolos.crear(nombre, "--","Nombre");
+            TablaSymbolos.insertar(nombre, String.valueOf("--"));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);          
+            TablaSymbolos.lista.push(nombre);          
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
@@ -118,15 +118,15 @@ declaracion ::=
     RESERVADA_BOOLEANO:tipo IDENTIFICADOR:nombre ASIGNACION RESERVADA_FALSO:valor PUNTO_COMA:coma 
    {:
        try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);        
+            TablaSymbolos.lista.push(nombre);        
        
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
@@ -134,111 +134,111 @@ declaracion ::=
     {:
         try{
             if(String.valueOf(valor).equals("verdadero")){
-                TablaSimbolos.crear(nombre, tipo,"variable");
+                TablaSymbolos.crear(nombre, tipo,"variable");
                 String cad = String.valueOf(valor);
-                TablaSimbolos.insertar(nombre, cad);
+                TablaSymbolos.insertar(nombre, cad);
                 //Crear relacion ciclo PARA con su variable asociada
-                TablaSimbolos.lista.push(nombre);
+                TablaSymbolos.lista.push(nombre);
             }
             else{                
-                TablaSimbolos.logErrores("Valor incompatible con variable 'booleana', linea:"+tipoleft);
+                TablaSymbolos.logErrores("Valor incompatible con variable 'booleana', linea:"+tipoleft);
             }
 
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :} 
     | 
     RESERVADA_CADENA:tipo   IDENTIFICADOR:nombre ASIGNACION CADENA_TEXTO:valor        PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.crear(nombre, tipo,"Variable");
             String cad = String.valueOf(valor);
             String s = cad.replace("'","");
-            TablaSimbolos.insertar(nombre, s);
+            TablaSymbolos.insertar(nombre, s);
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);           
+            TablaSymbolos.lista.push(nombre);           
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_CORTO:tipo    IDENTIFICADOR:nombre ASIGNACION NUMERO:valor              PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);           
+            TablaSymbolos.lista.push(nombre);           
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_DECIMAL:tipo  IDENTIFICADOR:nombre ASIGNACION NUMERO:valor              PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);         
+            TablaSymbolos.lista.push(nombre);         
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_DECIMAL:tipo  IDENTIFICADOR:nombre ASIGNACION NUMERO_DECIMAL:valor      PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);        
+            TablaSymbolos.lista.push(nombre);        
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_DECIMAL:tipo  IDENTIFICADOR:nombre ASIGNACION NUMERO_EXPONENTE:valor    PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"variable");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"variable");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);          
+            TablaSymbolos.lista.push(nombre);          
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_ENTERO:tipo IDENTIFICADOR:nombre ASIGNACION NUMERO:valor PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable");
-            TablaSimbolos.insertar(nombre, valor);
+            TablaSymbolos.crear(nombre, tipo,"Variable");
+            TablaSymbolos.insertar(nombre, valor);
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);            
+            TablaSymbolos.lista.push(nombre);            
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     | error PUNTO_COMA
@@ -250,30 +250,30 @@ declaracion_ciclo ::=
     RESERVADA_CORTO:tipo    IDENTIFICADOR:nombre ASIGNACION NUMERO:valor              PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable en ciclo");
-            TablaSimbolos.insertar(nombre, String.valueOf(valor));
+            TablaSymbolos.crear(nombre, tipo,"Variable en ciclo");
+            TablaSymbolos.insertar(nombre, String.valueOf(valor));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);         
+            TablaSymbolos.lista.push(nombre);         
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
     RESERVADA_ENTERO:tipo   IDENTIFICADOR:nombre ASIGNACION NUMERO:valor              PUNTO_COMA 
     {:
         try{
-            TablaSimbolos.crear(nombre, tipo,"Variable en ciclo");
-            TablaSimbolos.insertar(nombre, valor);
+            TablaSymbolos.crear(nombre, tipo,"Variable en ciclo");
+            TablaSymbolos.insertar(nombre, valor);
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(nombre);        
+            TablaSymbolos.lista.push(nombre);        
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     | error PUNTO_COMA
@@ -309,15 +309,15 @@ parte_funciones ::=
     RESERVADA_FIN   
     {:
         try{
-            TablaSimbolos.crear(id, (String) tr,"Función");
-            TablaSimbolos.insertar(id, String.valueOf(r));
+            TablaSymbolos.crear(id, (String) tr,"Función");
+            TablaSymbolos.insertar(id, String.valueOf(r));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(id);       
+            TablaSymbolos.lista.push(id);       
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
     |
@@ -327,15 +327,15 @@ parte_funciones ::=
     RESERVADA_FIN   
     {:
         try{
-            TablaSimbolos.crear(id, (String) tr,"funcion");
-            TablaSimbolos.insertar(id, String.valueOf(r));
+            TablaSymbolos.crear(id, (String) tr,"funcion");
+            TablaSymbolos.insertar(id, String.valueOf(r));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(id);       
+            TablaSymbolos.lista.push(id);       
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}|
     RESERVADA_FUNCION IDENTIFICADOR:id PARENTESIS_IZQ  PARENTESIS_DER tipo_retorno:tr DOS_PUNTOS  
@@ -344,48 +344,48 @@ parte_funciones ::=
     RESERVADA_FIN   
     {:
         try{
-            TablaSimbolos.crear(id, (String) tr,"Función");
-            TablaSimbolos.insertar(id, String.valueOf(r));
+            TablaSymbolos.crear(id, (String) tr,"Función");
+            TablaSymbolos.insertar(id, String.valueOf(r));
 
             //Crear relacion ciclo PARA con su variable asociada
-            TablaSimbolos.lista.push(id);           
+            TablaSymbolos.lista.push(id);           
         }
         catch(Exception e){                                    
             e.printStackTrace();
-            TablaSimbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
+            TablaSymbolos.log.log(Level.SEVERE, "Error al agregar la variable::: " + e.getMessage());
         }                           
     :}
 ;
 parametros ::=
     parametros RESERVADA_ENTERO:td IDENTIFICADOR:id COMA {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     RESERVADA_ENTERO:td IDENTIFICADOR:id {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     parametros RESERVADA_BOOLEANO:td IDENTIFICADOR:id COMA {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     RESERVADA_BOOLEANO:td IDENTIFICADOR:id {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     parametros RESERVADA_CADENA:td IDENTIFICADOR:id COMA {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     RESERVADA_CADENA:td IDENTIFICADOR:id {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     parametros RESERVADA_DECIMAL:td IDENTIFICADOR:id COMA {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     RESERVADA_DECIMAL:td IDENTIFICADOR:id {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     parametros RESERVADA_CORTO:td IDENTIFICADOR:id COMA {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} |
     RESERVADA_CORTO:td IDENTIFICADOR:id {:
-        TablaSimbolos.crear(id, (String) td,"Variabe en función");
+        TablaSymbolos.crear(id, (String) td,"Variabe en función");
         :} 
 ;
 tipo_retorno ::=
@@ -399,15 +399,15 @@ retorno ::=
    
     IDENTIFICADOR:identificador
     {:
-        //Buscar variable en la tabla de simbolos
-        Simbolo sim = TablaSimbolos.buscar(identificador);
+        //Buscar variable en la tabla de symbolos
+        Symbolo sym = TablaSymbolos.buscar(identificador);
         //Si es nulo, devuelvo un error
-        if (sim == null){
+        if (sym == null){
             Editor.erroresSintacticos += "Error de sintaxis. Identificador: '"+identificador 
             +"' no existe.\n";
         }
         else{                    
-            RESULT = sim.valor;
+            RESULT = sym.valor;
         }
     :} |
     CADENA_TEXTO:r {:RESULT = r;:} | 
@@ -427,15 +427,15 @@ reservada_esp ::=
     ESPECIALES_CT CADENA_TEXTO PUNTO_COMA |
     ESPECIALES_CT IDENTIFICADOR: identificador PUNTO_COMA
     {:
-        //Buscar variable en la tabla de simbolos
-        Simbolo sim = TablaSimbolos.buscar(identificador);
+        //Buscar variable en la tabla de symbolos
+        Symbolo sym = TablaSymbolos.buscar(identificador);
         //Si es nulo, devuelvo un error
-        if (sim == null){
+        if (sym == null){
             Editor.erroresSintacticos += "Error de sintaxis. Identificador: '"+identificador 
             +"' no existe.\n";
         }
         else{                    
-            RESULT = sim.valor;
+            RESULT = sym.valor;
         }
     :}   |
     ESPECIALES_ID IDENTIFICADOR PUNTO_COMA |
@@ -479,15 +479,15 @@ ciclo ::=
 asignacion ::= /* Epsilon */
    // asignacion IDENTIFICADOR ASIGNACION expresion PUNTO_COMA   |
     IDENTIFICADOR:id ASIGNACION expresion:exp PUNTO_COMA    {:
-        Simbolo sim = TablaSimbolos.buscar(id);
+        Symbolo sym = TablaSymbolos.buscar(id);
         String s;
         //Si es nulo, devuelvo un error
-        if (sim == null){
+        if (sym == null){
             Editor.erroresSintacticos += "Error de sintaxis. Identificador: '"+id +"' no existe.\n";
             RESULT = 0;
         }else{
             s = exp.toString().replace("'","");
-            TablaSimbolos.insertar(id, s); 
+            TablaSymbolos.insertar(id, s); 
         }
     :}
 ;
@@ -665,15 +665,15 @@ factor ::=
     IDENTIFICADOR:identificador
             {:
                 //Buscar variable en la tabla de simbolos
-                Simbolo sim = TablaSimbolos.buscar(identificador);
+                Simbolo sym = TablaSimbolos.buscar(identificador);
                 //Si es nulo, devuelvo un error
-                if (sim == null){
+                if (sym == null){
                     Editor.erroresSintacticos += "Error de sintaxis. Identificador: '"+identificador 
                     +"' no existe.\n";
                     RESULT = 0;
                 }
                 else{                    
-                    RESULT = sim.valor;
+                    RESULT = sym.valor;
                 }
             :} | 
     NUMERO:num  {:RESULT = num; :}  |
@@ -695,15 +695,15 @@ exp_bol::=
 termino_bool::=
     IDENTIFICADOR:identificador
     {:
-        //Buscar variable en la tabla de simbolos
-        Simbolo sim = TablaSimbolos.buscar(identificador);
+        //Buscar variable en la tabla de symbolos
+        Symbolo sym = TablaSymbolos.buscar(identificador);
         //Si es nulo, devuelvo un error
-        if (sim == null) {
+        if (sym == null) {
             Editor.erroresSintacticos += "Error de sintaxis. Identificador: '"+identificador +"' no existe.\n";
             RESULT = 0;
         }
         else{
-            RESULT = sim.valor;
+            RESULT = sym.valor;
         }
     :}  |
     NUMERO |
