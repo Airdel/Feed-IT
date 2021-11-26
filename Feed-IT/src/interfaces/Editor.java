@@ -6,27 +6,25 @@
  */
 package interfaces;
 
-import analizador.*;
+import analizador_lexico.Tokens.*;
 import analizador_lexico.analizador_lexico;
 import controladores.*;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.io.FileWriter;
+import java.util.ArrayList;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.Reader;
-import java.io.StringReader;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java_cup.Lexer;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -280,49 +278,6 @@ public class Editor extends javax.swing.JFrame {
     
     
     //-------------------------------------------------------------------------------------------------------------------------
-    
-    
-    //----------------------------ANALISIS LÉXICO---------------------------------
-    
-    public String lexico(String path){
-       String r = "";
-       File file = new File(path);
-       try{
-           PrintWriter write = new PrintWriter(file);
-           write.print(txtEditor.getText());
-           System.out.println("Obtencion de datos del editor");
-           write.close();
-           Reader read = new BufferedReader(new FileReader(file));
-           Lexer lexer = new Lexer(read);
-           
-           while(true){
-               Tokens tokens = lexer.yylex();
-               if(tokens == null){
-                 System.out.println("Escritura en el Log"+ r );
-                 return r;
-               }//if
-               
-               switch(tokens){
-                   case ERROR: 
-                       r += "simbolo no definido \n";
-                       break;
-                   case Reservada: 
-                   case Identificador: 
-                   case Numero: 
-                       r += lexer.lexeme + " Es un: " + tokens + "\n"; 
-                       break;
-                   default:
-                       r += "Token: " + tokens + "\n";
-                       break;
-               }//switch
-               return r;
-           }
-       }catch(FileNotFoundException e){} catch (IOException ex) {
-            Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
-        }//catch
-       return r;
-    }
-    
     //----------------------------------------------------------------------------
     
     /**
