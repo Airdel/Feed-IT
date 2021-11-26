@@ -12,20 +12,19 @@ SPACE = [ ,\t,\r]+
 %}
 
 %%
-"\n" {return Linea;}
 main {lexeme = yytext(); return Main;}
 int {lexeme = yytext(); return Int;}
 float {lexeme = yytext(); return Float;}
 string {lexeme = yytext(); return String;} 
 double {lexeme = yytext(); return Double;}
 null {lexeme = yytext(); return Null;}
-boolean {lexeme = yytext(); return boolean;}
+boolean {lexeme = yytext(); return Boolean;}
 humedad {lexeme = yytext(); return Humedad;}
 fagua {lexeme = yytext(); return Fagua;}
 peso {lexeme = yytext(); return Peso;}
 fcomer {lexeme = yytext(); return Fcomer;}
 premio {lexeme = yytext(); return Premio;}
-masaje {lexeme = yytext(); return Fmasaje;}
+fmasaje {lexeme = yytext(); return Fmasaje;}
 fluz {lexeme = yytext(); return Fluz;}
 fjuguete {lexeme = yytext(); return Fjuguete;}
 candil {lexeme = yytext(); return Candil;}
@@ -64,16 +63,7 @@ while {lexeme = yytext(); return While;}
 "<" {lexeme = yytext(); return MenorQue;}
 ">=" {lexeme = yytext(); return MayorIgualQue;}
 "<=" {lexeme = yytext(); return MenorIgualQue;}
-"=>" {lexeme = yytext(); return MayorIgualQue;}
-"=<" {lexeme = yytext(); return MenorIgualQue;}
-"<>" {lexeme = yytext(); return DiferenteDe;}
 "!=" {lexeme = yytext(); return DiferenteDe;}
-"and" {lexeme = yytext(); return operadorLogicoAND;}
-"or" {lexeme = yytext(); return operadorLogicoOR;}
-"not" {lexeme = yytext(); return operadorLogicoNOT;}
-"true" {lexeme = yytext(); return true;}
-"false" {lexeme = yytext(); return false;}
-"main" {lexeme = yytext(); return Main;}
 "(" {lexeme = yytext();return Parentesis_A;}
 ")" {lexeme = yytext();return Parentesis_C;}
 "{" {lexeme = yytext();return Llave_A;}
@@ -82,5 +72,5 @@ while {lexeme = yytext(); return While;}
 ";" {return P_coma;}
 {L}({L} | {D})* {lexeme = yytext(); return Identificador;}
 ("-"{D}+) | {D}+ {lexeme = yytext(); return Numero;}
-[-+]?[0-9]*[.][0-9]+ {lexeme = yytext(); return Flotante}
+("-"{D}+"."{D}+) | {D}+"."{D}+ {lexeme = yytext(); return Flotante;}
  . {return ERROR;}

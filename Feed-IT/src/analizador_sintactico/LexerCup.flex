@@ -1,9 +1,9 @@
-package analizador_lexico;
+package analizador_sintactico;
 import java_cup.runtime.Symbol;
 
 %%
 %class LexerCup
-%type java_cup.runtime.Symbol;
+%type java_cup.runtime.Symbol
 %cup
 %full
 %line
@@ -21,20 +21,19 @@ SPACE = [ ,\t,\r]+
 %}
 
 %%
-"\n" {return new Symbol(sym.Linea, yychar, yyline, yytext());;}
-main {return new Symbol(sym.Main, yychar, yyline, yytext());;}
+main {return new Symbol(sym.Main, yychar, yyline, yytext());}
 int {return new Symbol(sym.Int, yychar, yyline, yytext());}
 float {return new Symbol(sym.Float, yychar, yyline, yytext());}
 string {return new Symbol(sym.String, yychar, yyline, yytext());} 
 double {return new Symbol(sym.Double, yychar, yyline, yytext());}
 null {return new Symbol(sym.Null, yychar, yyline, yytext());}
-boolean {return new Symbol(sym.boolean, yychar, yyline, yytext());}
+boolean {return new Symbol(sym.Boolean, yychar, yyline, yytext());}
 humedad {return new Symbol(sym.Humedad, yychar, yyline, yytext());}
 fagua {return new Symbol(sym.Fagua, yychar, yyline, yytext());}
 peso {return new Symbol(sym.Peso, yychar, yyline, yytext());}
 fcomer {return new Symbol(sym.Fcomer, yychar, yyline, yytext());}
 premio {return new Symbol(sym.Premio, yychar, yyline, yytext());}
-masaje {return new Symbol(sym.Fmasaje, yychar, yyline, yytext());}
+fmasaje {return new Symbol(sym.Fmasaje, yychar, yyline, yytext());}
 fluz {return new Symbol(sym.Fluz, yychar, yyline, yytext());}
 fjuguete {return new Symbol(sym.Fjuguete, yychar, yyline, yytext());}
 candil {return new Symbol(sym.Candil, yychar, yyline, yytext());}
@@ -73,23 +72,14 @@ while {return new Symbol(sym.While, yychar, yyline, yytext());}
 "<" {return new Symbol(sym.MenorQue, yychar, yyline, yytext());}
 ">=" {return new Symbol(sym.MayorIgualQue, yychar, yyline, yytext());}
 "<=" {return new Symbol(sym.MenorIgualQue, yychar, yyline, yytext());}
-"=>" {return new Symbol(sym.MayorIgualQue, yychar, yyline, yytext());}
-"=<" {return new Symbol(sym.MenorIgualQue, yychar, yyline, yytext());}
-"<>" {return new Symbol(sym.DiferenteDe, yychar, yyline, yytext());}
 "!=" {return new Symbol(sym.DiferenteDe, yychar, yyline, yytext());}
-"and" {return new Symbol(sym.operadorLogicoAND, yychar, yyline, yytext());}
-"or" {return new Symbol(sym.operadorLogicoOR, yychar, yyline, yytext());}
-"not" {return new Symbol(sym.operadorLogicoNOT, yychar, yyline, yytext());}
-"true" {return new Symbol(sym.true, yychar, yyline, yytext());}
-"false" {return new Symbol(sym.false, yychar, yyline, yytext());}
-"main" {return new Symbol(sym.Main, yychar, yyline, yytext());}
 "(" {return new Symbol(sym.Parentesis_A, yychar, yyline, yytext());}
 ")" {return new Symbol(sym.Parentesis_C, yychar, yyline, yytext());}
 "{" {return new Symbol(sym.Llave_A, yychar, yyline, yytext());}
 "}" {return new Symbol(sym.Llave_C, yychar, yyline, yytext());}
-"\n" {return Salto_Linea;}
-";" {return P_coma;}
+"\n" {return new Symbol(sym.Salto_Linea,  yychar, yyline, yytext());}
+";" {return new Symbol(sym.P_coma,  yychar, yyline, yytext());}
 {L}({L} | {D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
 ("-"{D}+) | {D}+ {return new Symbol(sym.Numero,  yychar, yyline, yytext());}
 [-+]?[0-9]*[.][0-9]+ {return new Symbol(sym.Flotante,  yychar, yyline, yytext());}
- . {return ERROR;}
+ . {return new Symbol(sym.ERROR,  yychar, yyline, yytext());}
