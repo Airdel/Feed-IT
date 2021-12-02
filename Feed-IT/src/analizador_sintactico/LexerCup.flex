@@ -11,6 +11,7 @@ import java_cup.runtime.Symbol;
 L = [a-zA-Z_]+
 D = [0-9]+
 SPACE = [ ,\t,\r]+
+CADENA = [a-ZA-Z0-9]*
 %{
     private Symbol symbol(int type, Object value){
         return new Symbol(type, yyline, yycolumn, value);
@@ -60,19 +61,14 @@ while {return new Symbol(sym.While, yychar, yyline, yytext());}
 //---------------------------------------------
 
 "=" {return new Symbol(sym.Asignacion, yychar, yyline, yytext());}
-"==" {return new Symbol(sym.Igual, yychar, yyline, yytext());}
-"===" {return new Symbol(sym.ExactamenteIgual, yychar, yyline, yytext());}
 "+" {return new Symbol(sym.Suma, yychar, yyline, yytext());}
 "-" {return new Symbol(sym.Resta, yychar, yyline, yytext());}
 "*" {return new Symbol(sym.Multiplicacion, yychar, yyline, yytext());}
 "/" {return new Symbol(sym.Division, yychar, yyline, yytext());}
 "**" {return new Symbol(sym.Potencia, yychar, yyline, yytext());}
 "%" {return new Symbol(sym.Modulo, yychar, yyline, yytext());}
-">" {return new Symbol(sym.MayorQue, yychar, yyline, yytext());}
-"<" {return new Symbol(sym.MenorQue, yychar, yyline, yytext());}
-">=" {return new Symbol(sym.MayorIgualQue, yychar, yyline, yytext());}
-"<=" {return new Symbol(sym.MenorIgualQue, yychar, yyline, yytext());}
-"!=" {return new Symbol(sym.DiferenteDe, yychar, yyline, yytext());}
+// Operadores Relacionales
+(">"| "<" | ">=" | "<=", "==", "!="){return new Symbol(sym.OpR, yychar, yyline, yytext());}
 "(" {return new Symbol(sym.Parentesis_A, yychar, yyline, yytext());}
 ")" {return new Symbol(sym.Parentesis_C, yychar, yyline, yytext());}
 "{" {return new Symbol(sym.Llave_A, yychar, yyline, yytext());}
@@ -82,4 +78,5 @@ while {return new Symbol(sym.While, yychar, yyline, yytext());}
 {L}({L} | {D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
 ("-"{D}+) | {D}+ {return new Symbol(sym.Numero,  yychar, yyline, yytext());}
 [-+]?[0-9]*[.][0-9]+ {return new Symbol(sym.Flotante,  yychar, yyline, yytext());}
- . {return new Symbol(sym.ERROR,  yychar, yyline, yytext());}
+("\""({CADENA}|{SPACE})* "\""){return new Symbol(sym.Texto,  yychar, yyline, yytext());}
+. {return new Symbol(sym.ERROR,  yychar, yyline, yytext());}

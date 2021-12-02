@@ -17,32 +17,93 @@ parser code
     }
 :};
 
-terminal    Main,Int,Float,String,
-            Double,Null,Boolean,Humedad,
-            Fagua,Peso,Fcomer,Premio,
-            Fmasaje,Fluz,Fjuguete,Candil,
-            Class,When,If,Else,
-            ForEach,For,Do,Const,
-            GoBack,Fun,Loop,And,
-            Or,Not,True,False,While,
-            Asignacion,Igual,ExactamenteIgual,
-            Suma,Resta,Multiplicacion,Division,Potencia,
-            Modulo,MayorQue,MenorQue,MayorIgualQue,MenorIgualQue,
-            DiferenteDe,Parentesis_A,Parentesis_C,Llave_A,Llave_C,
-            Salto_Linea,P_coma,Identificador,Numero,Flotante,ERROR
 
-;
+//Estructurales
+terminal String Main,Class,Fun;
 
-non terminal INICIO, SENTENCIA, DECLARACIÓN;
+//Puntuación
+terminal String P_coma,Parentesis_A,Parentesis_C,Llave_A,Llave_C;
+
+//OPERADORES
+terminal String Suma,Resta,Multiplicacion,Division,Potencia,
+                Modulo,And,Or,Not,Asignacion,Igual,OpR;
+
+//Tipos de datos
+terminal String Int,Float,String,
+                Double,Null,Boolean,
+                Numero,Flotante,Texto,Identificador,Const;
+
+//Condicionales, Bucles, ciclos y cosas así
+terminal String When,If,Else,
+                ForEach,For,Do,
+                GoBack,Loop,
+                True,False,While;
+
+//Palabras reservadas
+terminal String Humedad,Fagua,Peso,
+                Fcomer,Premio,Fmasaje,
+                Fluz,Fjuguete,Candil;
+
+non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,ELSE,
+             FUNCION, CICLO, WHEN, WHILE,DO,OPERACION,
+             ASIGNACION,SENTENCIABOOLEAN, EPSILON;
 
 start with INICIO;
 
-INICIO ::= Class Identificador Llave_A  Fun Main Parentesis_A Parentesis_C Llave_A  
-                SENTENCIA
-            Llave_C  
-            Llave_C
+INICIO ::= Class Identificador  Llave_A SENTENCIA Llave_C | 
+           Class Identificador  Llave_A SENTENCIA Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
 ;
-SENTENCIA ::=   Int Identificador P_coma | 
-                Int Identificador Igual Numero P_coma |
-                Float Identificador Igual Numero P_coma
+SENTENCIA ::= DECLARACION |
+              IF    |
+              WHEN  | 
+              CICLO |
+              WHILE |
+              DO    |
+              FUNCION   | 
+              OPERACION |
+              FOREACH   |
+              EPSILON
 ;
+
+DECLARACION ::= 
+    Int Identificador P_coma SENTENCIA|
+    Int Identificador Asignacion Numero P_coma SENTENCIA |
+    Int Identificador Asignacion Identificador P_coma SENTENCIA |
+    Float Identificador P_coma SENTENCIA |
+    Float Identificador Asignacion Flotante P_coma SENTENCIA |
+    Float Identificador Asignacion Identificador P_coma SENTENCIA | 
+    String Identificador P_coma SENTENCIA |
+    String Identificador Asignacion Texto P_coma SENTENCIA |
+    String Identificador Asignacion Identificador P_coma SENTENCIA |
+    Const  Identificador Asignacion Numero P_coma SENTENCIA |
+    Const  Identificador Asignacion Texto P_coma  SENTENCIA |
+    Const  Identificador Asignacion Flotante P_coma SENTENCIA |
+;
+
+
+SENTENCIABOOLEAN :: = 
+       True  |
+       False |
+       Identificador OpR Identificador | 
+       Identificador OpR Numero | 
+       Identificador OpR Flotante |
+       Numero OpR Identificador | 
+       Flotante OpR Identificador |
+       Identificador Igual Texto |
+       Texto Igual Identificador | 
+       Identificador Igual Identificador |
+       Identificador Igual Numero |
+       Numero Igual Identificador | 
+       Identificador Igual True | 
+       Identificador Igual False | 
+       True Igual Identificador  |
+       False Igual Identificador 
+
+IF ::=
+    If Parentesis_A  SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA|
+    If Parentesis_A  SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA
+;
+
+EPSILON :: = 
+;
+
