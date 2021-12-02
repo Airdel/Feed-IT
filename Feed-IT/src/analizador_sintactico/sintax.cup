@@ -22,11 +22,11 @@ parser code
 terminal String Main,Class,Fun;
 
 //Puntuación
-terminal String P_coma,Parentesis_A,Parentesis_C,Llave_A,Llave_C;
+terminal String P_coma,Coma,Parentesis_A,Parentesis_C,Llave_A,Llave_C;
 
 //OPERADORES
 terminal String Suma,Resta,Multiplicacion,Division,Potencia,
-                Modulo,And,Or,Not,Asignacion,Igual,OpR;
+                Modulo,And,Or,Not,Asignacion,Igual,OpR,Inc,Dec;
 
 //Tipos de datos
 terminal String Int,Float,String,
@@ -34,34 +34,32 @@ terminal String Int,Float,String,
                 Numero,Flotante,Texto,Identificador,Const;
 
 //Condicionales, Bucles, ciclos y cosas así
-terminal String When,If,Else,
-                ForEach,For,Do,
-                GoBack,Loop,
+terminal String  If,Else,
+                 For,Do,
+                GoBack,
                 True,False,While;
 
 //Palabras reservadas
 terminal String Humedad,Fagua,Peso,
-                Fcomer,Premio,Fmasaje,
+                Fcomer,Fpremio,Fmasaje,
                 Fluz,Fjuguete,Candil;
 
-non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,ELSE,
-             FUNCION, CICLO, WHEN, WHILE,DO,OPERACION,
-             ASIGNACION,SENTENCIABOOLEAN, EPSILON;
+non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,
+             FUNCION, FUNCIONES,FOR,WHILE,OPERACION,
+             ASIGNACION,SENTENCIABOOLEAN, PARAMETROS,TIPODATO,ENVIOPARAMETROS,EPSILON;
 
 start with INICIO;
 
-INICIO ::= Class Identificador  Llave_A SENTENCIA Llave_C | 
-           Class Identificador  Llave_A SENTENCIA Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
+INICIO ::= Class Identificador  Llave_A DECLARACION  FUNCIONES  Llave_C | 
+           Class Identificador  Llave_A DECLARACION  FUNCIONES  Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
 ;
 SENTENCIA ::= DECLARACION |
               IF    |
-              WHEN  | 
-              CICLO |
+              FOR|
+              FUNCION|
               WHILE |
-              DO    |
-              FUNCION   | 
+              ASIGNACION |
               OPERACION |
-              FOREACH   |
               EPSILON
 ;
 
@@ -78,6 +76,7 @@ DECLARACION ::=
     Const  Identificador Asignacion Numero P_coma SENTENCIA |
     Const  Identificador Asignacion Texto P_coma  SENTENCIA |
     Const  Identificador Asignacion Flotante P_coma SENTENCIA |
+    EPSILON
 ;
 
 
@@ -97,11 +96,85 @@ SENTENCIABOOLEAN :: =
        Identificador Igual True | 
        Identificador Igual False | 
        True Igual Identificador  |
-       False Igual Identificador 
+       False Igual Identificador  
+;
 
 IF ::=
     If Parentesis_A  SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA|
     If Parentesis_A  SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA
+;
+
+FOR:: = 
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C 
+    Llave_A   SENTENCIA  Llave_C SENTENCIA |
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador P_coma  Identificador Inc Parentesis_C 
+    Llave_A   SENTENCIA  Llave_C SENTENCIA 
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
+    Llave_A   SENTENCIA  Llave_C SENTENCIA |
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador P_coma  Identificador Dec Parentesis_C 
+    Llave_A   SENTENCIA  Llave_C SENTENCIA 
+;
+
+
+WHILE ::= 
+    While Parentesis_A SENTENCIABOOLEAN Parentesis_C  Llave_A   SENTENCIA  Llave_C SENTENCIA 
+;
+
+
+PARAMETROS :: = 
+    Int Identificador |
+    Float Identificador |
+    String Identificador  |
+    Int Identificador Coma PARAMETROS|
+    Float Identificador Coma PARAMETROS |
+    String Identificador Coma PARAMETROS |
+;
+
+TIPODATO :: = 
+    Int |
+    Float |
+    String |
+    Boolean
+;
+
+FUNCIONES ::=
+    Fun Identificador Parentesis_A Parentesis_C  Llave_A SENTENCIA Llave_C SENTENCIA |
+    Fun Identificador Parentesis_A PARAMETROS Parentesis_C  Llave_A SENTENCIA Llave_C SENTENCIA |
+    Fun TIPODATO Identificador Parentesis_A Parentesis_C  Llave_A SENTENCIA GoBack Identificador Llave_C SENTENCIA |
+    Fun TIPODATO Identificador Parentesis_A PARAMETROS Parentesis_C  Llave_A SENTENCIA GoBack Identificador Llave_C SENTENCIA |
+    Fun Identificador Parentesis_A Parentesis_C  Llave_A SENTENCIA Llave_C FUNCIONES |
+    Fun Identificador Parentesis_A PARAMETROS Parentesis_C  Llave_A SENTENCIA Llave_C FUNCIONES |
+    Fun TIPODATO Identificador Parentesis_A Parentesis_C  Llave_A SENTENCIA GoBack Identificador Llave_C FUNCIONES |
+    Fun TIPODATO Identificador Parentesis_A PARAMETROS Parentesis_C  Llave_A SENTENCIA GoBack Identificador Llave_C FUNCIONES 
+;
+
+
+ENVIOPARAMETROS :: = 
+        Identificador |
+        Identificador Coma ENVIOPARAMETROS |
+        Numero |
+        Numero Coma ENVIOPARAMETROS |
+        Texto  |
+        Texto Coma ENVIOPARAMETROS |
+        Flotante | 
+        Flotante Coma ENVIOPARAMETROS
+;
+
+FUNCION ::=
+    Identificador Parentesis_A  Parentesis_C P_coma  SENTENCIA|
+    Identificador Parentesis_A  ENVIOPARAMETROS Parentesis_C P_coma SENTENCIA |
+    Fagua Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fagua Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
+    Fcomer Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fcomer Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
+    Fluz Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fluz Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
+    Fjuguete Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fjuguete Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
+    Fmasaje Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fmasaje Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
+    Fpremio Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
+    Fpremio Parentesis_A  False Parentesis_C P_Coma SENTENCIA 
 ;
 
 EPSILON :: = 

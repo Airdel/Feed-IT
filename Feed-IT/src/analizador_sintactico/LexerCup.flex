@@ -33,13 +33,12 @@ humedad {return new Symbol(sym.Humedad, yychar, yyline, yytext());}
 fagua {return new Symbol(sym.Fagua, yychar, yyline, yytext());}
 peso {return new Symbol(sym.Peso, yychar, yyline, yytext());}
 fcomer {return new Symbol(sym.Fcomer, yychar, yyline, yytext());}
-premio {return new Symbol(sym.Premio, yychar, yyline, yytext());}
+fpremio {return new Symbol(sym.Fpremio, yychar, yyline, yytext());}
 fmasaje {return new Symbol(sym.Fmasaje, yychar, yyline, yytext());}
 fluz {return new Symbol(sym.Fluz, yychar, yyline, yytext());}
 fjuguete {return new Symbol(sym.Fjuguete, yychar, yyline, yytext());}
 candil {return new Symbol(sym.Candil, yychar, yyline, yytext());}
 class {return new Symbol(sym.Class, yychar, yyline, yytext());}
-when {return new Symbol(sym.When, yychar, yyline, yytext());}
 if {return new Symbol(sym.If, yychar, yyline, yytext());}
 else {return new Symbol(sym.Else, yychar, yyline, yytext());}
 forEach {return new Symbol(sym.ForEach, yychar, yyline, yytext());}
@@ -62,6 +61,8 @@ while {return new Symbol(sym.While, yychar, yyline, yytext());}
 
 "=" {return new Symbol(sym.Asignacion, yychar, yyline, yytext());}
 "+" {return new Symbol(sym.Suma, yychar, yyline, yytext());}
+"++" {return new Symbol(sym.Inc, yychar, yyline, yytext());}
+"--" {return new Symbol(sym.Dec, yychar, yyline, yytext());}
 "-" {return new Symbol(sym.Resta, yychar, yyline, yytext());}
 "*" {return new Symbol(sym.Multiplicacion, yychar, yyline, yytext());}
 "/" {return new Symbol(sym.Division, yychar, yyline, yytext());}
@@ -75,6 +76,7 @@ while {return new Symbol(sym.While, yychar, yyline, yytext());}
 "}" {return new Symbol(sym.Llave_C, yychar, yyline, yytext());}
 "\n" {return new Symbol(sym.Salto_Linea,  yychar, yyline, yytext());}
 ";" {return new Symbol(sym.P_coma,  yychar, yyline, yytext());}
+"," {return new Symbol(sym.Coma,  yychar, yyline, yytext());}
 {L}({L} | {D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
 ("-"{D}+) | {D}+ {return new Symbol(sym.Numero,  yychar, yyline, yytext());}
 [-+]?[0-9]*[.][0-9]+ {return new Symbol(sym.Flotante,  yychar, yyline, yytext());}
