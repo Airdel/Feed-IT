@@ -6,7 +6,8 @@ import static analizador_lexico.Tokens.*;
 %type Tokens
 L = [a-zA-Z_]+
 D = [0-9]+
-SPACE = [ ,\t,\r]+
+SPACE = [ ,\t,\r]+\
+CADENA = [a-ZA-Z0-9]*
 %{
     public String lexeme;
 %}
@@ -23,7 +24,7 @@ humedad {lexeme = yytext(); return Humedad;}
 fagua {lexeme = yytext(); return Fagua;}
 peso {lexeme = yytext(); return Peso;}
 fcomer {lexeme = yytext(); return Fcomer;}
-premio {lexeme = yytext(); return Premio;}
+fpremio {lexeme = yytext(); return FPremio;}
 fmasaje {lexeme = yytext(); return Fmasaje;}
 fluz {lexeme = yytext(); return Fluz;}
 fjuguete {lexeme = yytext(); return Fjuguete;}
@@ -52,8 +53,9 @@ while {lexeme = yytext(); return While;}
 
 "=" {lexeme = yytext(); return Asignacion;}
 "==" {lexeme = yytext(); return Igual;}
-"===" {lexeme = yytext(); return ExactamenteIgual;}
 "+" {lexeme = yytext(); return Suma;}
+"++"{lexeme = yytext(); return Incremento;}
+"--"{lexeme = yytext(); return Decremento;}
 "-" {lexeme = yytext(); return Resta;}
 "*" {lexeme = yytext(); return Multiplicacion;}
 "/" {lexeme = yytext(); return Division;}
@@ -70,7 +72,9 @@ while {lexeme = yytext(); return While;}
 "}" {lexeme = yytext();return Llave_C;}
 "\n" {return Salto_Linea;}
 ";" {return P_coma;}
+"," {Return Coma;}
 {L}({L} | {D})* {lexeme = yytext(); return Identificador;}
 ("-"{D}+) | {D}+ {lexeme = yytext(); return Numero;}
 ("-"{D}+"."{D}+) | {D}+"."{D}+ {lexeme = yytext(); return Flotante;}
+("\""({CADENA}|{SPACE})* "\""){lexeme = yytext(); return Texto;}
  . {return ERROR;}
