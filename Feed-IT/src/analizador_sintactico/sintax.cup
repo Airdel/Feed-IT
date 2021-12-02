@@ -1,15 +1,26 @@
 package analizador_sintactico;
 
+import analizador_sintactico.C_Errores;
+import interfaces.Editor;
 import java.runtime.Symbol;
 
 parser code
 {:
     private Symbol s;
 
-    public void syntax_error(Symbol s)
-    {
-        this.s = s;
+    public void syntax_error(Symbol s){
+        Errores e = new Errores("Error sintactico en Linea " + (s.right+1) + "\n\tSintaxis invalida [ " + s.value +" ]");
+        Feel.notificar(e);
+        report_error("Error de sintaxis",null);
     }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
+        Errores e = new Errores("Error sintactico irrecuperable en Linea " + (s.right+1) + "\n\tSintaxis invalida [ " + s.value +" ]");
+        Feel.notificar(e);
+    }
+
+    public void report_error(String message, Object info){ }    
+    public void report_fatal_error(String message, Object info){ }
 
     public Symbol getS()
     {
