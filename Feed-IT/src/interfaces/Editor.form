@@ -344,6 +344,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="1"/>
@@ -369,6 +370,7 @@
                   <Properties>
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
+                    <Property name="enabled" type="boolean" value="false"/>
                   </Properties>
                 </Component>
               </SubComponents>
@@ -389,12 +391,11 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btnSalir" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="btnCompilar" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCompilar1" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCompilar2" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCompilar3" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCompilar4" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnCodigoMedio" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnCodigoObjeto" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnAnalisisSintactico" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                       <Component id="btnGuardar" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
-                      <Component id="btnCompilar6" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
+                      <Component id="btnAnalisisLexico" alignment="0" min="-2" pref="38" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -403,18 +404,16 @@
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
                   <Component id="btnGuardar" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCompilar6" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnAnalisisLexico" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCompilar3" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnAnalisisSintactico" min="-2" pref="38" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                  <Component id="btnCodigoMedio" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCompilar4" min="-2" pref="38" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCompilar1" min="-2" pref="38" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Component id="btnCompilar2" min="-2" pref="38" max="-2" attributes="0"/>
+                  <Component id="btnCodigoObjeto" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btnCompilar" min="-2" pref="38" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
@@ -461,7 +460,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSalirActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCompilar1">
+        <Component class="javax.swing.JButton" name="btnCodigoMedio">
           <Properties>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -470,11 +469,11 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCompilar1MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilar1ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCodigoMedioMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCodigoMedioActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCompilar2">
+        <Component class="javax.swing.JButton" name="btnCodigoObjeto">
           <Properties>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -483,11 +482,11 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCompilar2MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilar2ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCodigoObjetoMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCodigoObjetoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCompilar3">
+        <Component class="javax.swing.JButton" name="btnAnalisisSintactico">
           <Properties>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -496,27 +495,14 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCompilar3MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilar3ActionPerformed"/>
-          </Events>
-        </Component>
-        <Component class="javax.swing.JButton" name="btnCompilar4">
-          <Properties>
-            <Property name="horizontalTextPosition" type="int" value="0"/>
-            <Property name="inheritsPopupMenu" type="boolean" value="true"/>
-            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[50, 50]"/>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCompilar4MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilar4ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAnalisisSintacticoMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnalisisSintacticoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnGuardar">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/Imagenes/analizar_claro.png"/>
+              <Image iconType="3" name="/Imagenes/iconos_claro/guardar_claro.png"/>
             </Property>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -529,7 +515,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnCompilar6">
+        <Component class="javax.swing.JButton" name="btnAnalisisLexico">
           <Properties>
             <Property name="horizontalTextPosition" type="int" value="0"/>
             <Property name="inheritsPopupMenu" type="boolean" value="true"/>
@@ -538,8 +524,8 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnCompilar6MouseClicked"/>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCompilar6ActionPerformed"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btnAnalisisLexicoMouseClicked"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnAnalisisLexicoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

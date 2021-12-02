@@ -191,3 +191,27 @@ FUNCION ::=
 EPSILON :: = 
 ;
 
+/*--------------------------------------------Errores posibles-----------------------------------------------------------------*/
+
+ERRORES_INIT ::=
+    Identificador Llave_A Llave_C   |   //Se esperaba la palabra Class
+    Class Llave_A Llave_C           |   //Se esperaba un identificador
+    Class Llave_C                   |   //Se esperaba una llave de apertura
+    Class Llave_A                   |   //Se esperaba una llave de cierre
+
+
+//----------------------------------
+ERRORES_DEC ::=
+    Identificador P_Coma            |   //Se esperaba un tipo de dato
+    Identificador SENTENCIA         |   //Se esperaba un tipo de dato
+    Identificador SENTENCIABOOLEAN  |   //Se esperaba un tipo de dato
+    Int P_Coma                      |   //Se esperaba un identificador
+    Int P_Coma SENTENCIA            |   //Se esperaba un identificador
+    Int Identificador               |   //Se esperaba un delimitador[;]
+    Int Identificador SENTENCIA     |   //Se esperaba un delimitador[;]
+    Int Asignacion Numero P_Coma    |   //Se esperaba un identificador
+    Int Asignacion Numero P_Coma SENTENCIA    |   //Se esperaba un identificador
+    Int Numero P_Coma               |   //Se esperaba un operador [=]
+    Int Numero P_Coma SENTENCIA     |   //Se esperaba un operador [=]
+    Int Asignacion P_Coma           |   //Se esperaba un valor
+    

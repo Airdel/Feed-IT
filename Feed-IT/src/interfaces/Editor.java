@@ -1,8 +1,6 @@
 /*
-//hola soy brayan
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+    FEED-IT
+    INTERFAZ PRINCIPAL Y DE ENLACE.
  */
 package interfaces;
 
@@ -305,12 +303,11 @@ public class Editor extends javax.swing.JFrame {
         jpanel_botonera = new javax.swing.JPanel();
         btnCompilar = new javax.swing.JButton();
         btnSalir = new javax.swing.JButton();
-        btnCompilar1 = new javax.swing.JButton();
-        btnCompilar2 = new javax.swing.JButton();
-        btnCompilar3 = new javax.swing.JButton();
-        btnCompilar4 = new javax.swing.JButton();
+        btnCodigoMedio = new javax.swing.JButton();
+        btnCodigoObjeto = new javax.swing.JButton();
+        btnAnalisisSintactico = new javax.swing.JButton();
         btnGuardar = new javax.swing.JButton();
-        btnCompilar6 = new javax.swing.JButton();
+        btnAnalisisLexico = new javax.swing.JButton();
         jmenu_superior = new javax.swing.JMenuBar();
         jmenu_Archivo = new javax.swing.JMenu();
         jmi_nuevo = new javax.swing.JMenuItem();
@@ -347,12 +344,14 @@ public class Editor extends javax.swing.JFrame {
 
         txt_notificaciones.setColumns(20);
         txt_notificaciones.setRows(5);
+        txt_notificaciones.setEnabled(false);
         jsp_notificaciones.setViewportView(txt_notificaciones);
 
         Fecha1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
 
         txtResultado.setColumns(20);
         txtResultado.setRows(5);
+        txtResultado.setEnabled(false);
         jScrollPane1.setViewportView(txtResultado);
 
         jdp_workspace.setLayer(jsp_editor, javax.swing.JLayeredPane.DEFAULT_LAYER);
@@ -448,63 +447,49 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        btnCompilar1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCompilar1.setInheritsPopupMenu(true);
-        btnCompilar1.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnCompilar1.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCodigoMedio.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCodigoMedio.setInheritsPopupMenu(true);
+        btnCodigoMedio.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnCodigoMedio.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCompilar1MouseClicked(evt);
+                btnCodigoMedioMouseClicked(evt);
             }
         });
-        btnCompilar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCodigoMedio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilar1ActionPerformed(evt);
+                btnCodigoMedioActionPerformed(evt);
             }
         });
 
-        btnCompilar2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCompilar2.setInheritsPopupMenu(true);
-        btnCompilar2.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnCompilar2.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnCodigoObjeto.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnCodigoObjeto.setInheritsPopupMenu(true);
+        btnCodigoObjeto.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnCodigoObjeto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCompilar2MouseClicked(evt);
+                btnCodigoObjetoMouseClicked(evt);
             }
         });
-        btnCompilar2.addActionListener(new java.awt.event.ActionListener() {
+        btnCodigoObjeto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilar2ActionPerformed(evt);
+                btnCodigoObjetoActionPerformed(evt);
             }
         });
 
-        btnCompilar3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCompilar3.setInheritsPopupMenu(true);
-        btnCompilar3.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnCompilar3.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAnalisisSintactico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAnalisisSintactico.setInheritsPopupMenu(true);
+        btnAnalisisSintactico.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnAnalisisSintactico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCompilar3MouseClicked(evt);
+                btnAnalisisSintacticoMouseClicked(evt);
             }
         });
-        btnCompilar3.addActionListener(new java.awt.event.ActionListener() {
+        btnAnalisisSintactico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilar3ActionPerformed(evt);
+                btnAnalisisSintacticoActionPerformed(evt);
             }
         });
 
-        btnCompilar4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCompilar4.setInheritsPopupMenu(true);
-        btnCompilar4.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnCompilar4.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCompilar4MouseClicked(evt);
-            }
-        });
-        btnCompilar4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilar4ActionPerformed(evt);
-            }
-        });
-
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/analizar_claro.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/guardar_claro.png"))); // NOI18N
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setInheritsPopupMenu(true);
         btnGuardar.setPreferredSize(new java.awt.Dimension(50, 50));
@@ -519,17 +504,17 @@ public class Editor extends javax.swing.JFrame {
             }
         });
 
-        btnCompilar6.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnCompilar6.setInheritsPopupMenu(true);
-        btnCompilar6.setPreferredSize(new java.awt.Dimension(50, 50));
-        btnCompilar6.addMouseListener(new java.awt.event.MouseAdapter() {
+        btnAnalisisLexico.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnAnalisisLexico.setInheritsPopupMenu(true);
+        btnAnalisisLexico.setPreferredSize(new java.awt.Dimension(50, 50));
+        btnAnalisisLexico.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                btnCompilar6MouseClicked(evt);
+                btnAnalisisLexicoMouseClicked(evt);
             }
         });
-        btnCompilar6.addActionListener(new java.awt.event.ActionListener() {
+        btnAnalisisLexico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCompilar6ActionPerformed(evt);
+                btnAnalisisLexicoActionPerformed(evt);
             }
         });
 
@@ -542,29 +527,26 @@ public class Editor extends javax.swing.JFrame {
                 .addGroup(jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAnalisisSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnCompilar6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnAnalisisLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jpanel_botoneraLayout.setVerticalGroup(
             jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanel_botoneraLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(10, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCompilar6, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAnalisisLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCompilar3, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAnalisisSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
+                .addComponent(btnCodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCompilar4, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCompilar1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnCompilar2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnCompilar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(84, 84, 84)
@@ -835,37 +817,29 @@ public class Editor extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnCompilar1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar1MouseClicked
+    private void btnCodigoMedioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCodigoMedioMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar1MouseClicked
+    }//GEN-LAST:event_btnCodigoMedioMouseClicked
 
-    private void btnCompilar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar1ActionPerformed
+    private void btnCodigoMedioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCodigoMedioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar1ActionPerformed
+    }//GEN-LAST:event_btnCodigoMedioActionPerformed
 
-    private void btnCompilar2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar2MouseClicked
+    private void btnCodigoObjetoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCodigoObjetoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar2MouseClicked
+    }//GEN-LAST:event_btnCodigoObjetoMouseClicked
 
-    private void btnCompilar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar2ActionPerformed
+    private void btnCodigoObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCodigoObjetoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar2ActionPerformed
+    }//GEN-LAST:event_btnCodigoObjetoActionPerformed
 
-    private void btnCompilar3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar3MouseClicked
+    private void btnAnalisisSintacticoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnalisisSintacticoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar3MouseClicked
+    }//GEN-LAST:event_btnAnalisisSintacticoMouseClicked
 
-    private void btnCompilar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar3ActionPerformed
+    private void btnAnalisisSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalisisSintacticoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar3ActionPerformed
-
-    private void btnCompilar4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar4MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar4MouseClicked
-
-    private void btnCompilar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar4ActionPerformed
+    }//GEN-LAST:event_btnAnalisisSintacticoActionPerformed
 
     private void btnGuardarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnGuardarMouseClicked
         // TODO add your handling code here:
@@ -875,13 +849,13 @@ public class Editor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnGuardarActionPerformed
 
-    private void btnCompilar6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnCompilar6MouseClicked
+    private void btnAnalisisLexicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnAnalisisLexicoMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar6MouseClicked
+    }//GEN-LAST:event_btnAnalisisLexicoMouseClicked
 
-    private void btnCompilar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCompilar6ActionPerformed
+    private void btnAnalisisLexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAnalisisLexicoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnCompilar6ActionPerformed
+    }//GEN-LAST:event_btnAnalisisLexicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -935,12 +909,11 @@ public class Editor extends javax.swing.JFrame {
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fecha1;
+    private javax.swing.JButton btnAnalisisLexico;
+    private javax.swing.JButton btnAnalisisSintactico;
+    private javax.swing.JButton btnCodigoMedio;
+    private javax.swing.JButton btnCodigoObjeto;
     private javax.swing.JButton btnCompilar;
-    private javax.swing.JButton btnCompilar1;
-    private javax.swing.JButton btnCompilar2;
-    private javax.swing.JButton btnCompilar3;
-    private javax.swing.JButton btnCompilar4;
-    private javax.swing.JButton btnCompilar6;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnSalir;
     private javax.swing.JMenuItem btntemaclaro;
