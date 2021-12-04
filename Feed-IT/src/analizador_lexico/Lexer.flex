@@ -54,8 +54,8 @@ while {lexeme = yytext(); return While;}
 "=" {lexeme = yytext(); return Asignacion;}
 "==" {lexeme = yytext(); return Igual;}
 "+" {lexeme = yytext(); return Suma;}
-"++"{lexeme = yytext(); return Incremento;}
-"--"{lexeme = yytext(); return Decremento;}
+"++" {lexeme = yytext(); return Incremento;}
+"--" {lexeme = yytext(); return Decremento;}
 "-" {lexeme = yytext(); return Resta;}
 "*" {lexeme = yytext(); return Multiplicacion;}
 "/" {lexeme = yytext(); return Division;}
@@ -72,9 +72,9 @@ while {lexeme = yytext(); return While;}
 "}" {lexeme = yytext();return Llave_C;}
 "\n" {return Salto_Linea;}
 ";" {return P_coma;}
-"," {Return Coma;}
+"," {return Coma;}
 {L}({L} | {D})* {lexeme = yytext(); return Identificador;}
 ("-"{D}+) | {D}+ {lexeme = yytext(); return Numero;}
 ("-"{D}+"."{D}+) | {D}+"."{D}+ {lexeme = yytext(); return Flotante;}
-("\""({CADENA}|{SPACE})* "\""){lexeme = yytext(); return Texto;}
+("\""({CADENA}|{SPACE})* "\"") {lexeme = yytext(); return Texto;}
  . {return ERROR;}

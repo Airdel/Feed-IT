@@ -16,13 +16,16 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
 
 /**
  *
@@ -35,7 +38,7 @@ public class Editor extends javax.swing.JFrame {
      */
     public Editor() {
         initComponents();
-        setIconImage(new ImageIcon(getClass().getResource("src/Imagenes/icon.png")).getImage());
+       // setIconImage(new ImageIcon(getClass().getResource("src/Imagenes/icon.png")).getImage());
         this.setExtendedState(MAXIMIZED_BOTH);
         btntemaclaro.setEnabled(false);
         pintarclaro();
@@ -46,7 +49,7 @@ public class Editor extends javax.swing.JFrame {
         //pintar jframe
         this.getContentPane().setBackground(Color.darkGray);
 
-        //pintar botones        
+        //pintar botones
         btnCompilar.setBackground(Color.black);
         btnGuardar.setBackground(Color.black);
 
@@ -60,7 +63,7 @@ public class Editor extends javax.swing.JFrame {
         jpanel_principal.setForeground(Color.black);
         jpanel_principal.setBackground(Color.black);
         jmenu_superior.setBackground(Color.black);
-        
+
         //letra menus
         jmenu_Ver.setForeground(Color.white);
         jmenu_opciones.setForeground(Color.white);
@@ -77,7 +80,7 @@ public class Editor extends javax.swing.JFrame {
         jmi_analisis_lexico.setForeground(Color.white);
         btntemaclaro.setForeground(Color.white);
         btntemaoscuro.setForeground(Color.white);
-        
+
         //fondo menus
         jmenu_opciones.setBackground(Color.black);
         jmenu_superior.setBackground(Color.black);
@@ -95,16 +98,16 @@ public class Editor extends javax.swing.JFrame {
         btntemaclaro.setBackground(Color.black);
         btntemaoscuro.setBackground(Color.black);
         jdp_workspace.setBackground(Color.darkGray);
-        
+
         //BOTONES IMAGENES
-       
+
         btnCompilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perrooscuro.png")));
     }
 
     public void pintarclaro() {
         // pintar jframe
         this.getContentPane().setBackground(Color.white);
-        //pintar botones        
+        //pintar botones
         btnCompilar.setBackground(Color.white);
         btnGuardar.setBackground(Color.white);
         //pintar interfaz
@@ -113,7 +116,7 @@ public class Editor extends javax.swing.JFrame {
         txtLog.setBackground(Color.white);
         txtLog.setForeground(Color.black);
         txt_notificaciones.setBackground(Color.white);
-        txt_notificaciones.setForeground(Color.black);        
+        txt_notificaciones.setForeground(Color.black);
         jpanel_principal.setForeground(Color.white);
         jpanel_principal.setBackground(Color.white);
         jmenu_superior.setBackground(Color.white);
@@ -150,34 +153,34 @@ public class Editor extends javax.swing.JFrame {
         btntemaclaro.setBackground(Color.white);
         btntemaoscuro.setBackground(Color.white);
         jdp_workspace.setBackground(Color.white);
-        
+
         //BOTONES IMAGENES
-       
+
         btnCompilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/perro_2.png")));
     }
 
-    
+
     public void limpiar(){
         txtEditor.setText("");
         txtLog.setText("");
     }
-    
+
     private void reacomodar() {
-        jsp_editor.setBounds(jsp_editor.getX(), jsp_editor.getY(), 570, 350);
+      //  jsp_editor.setBounds(jsp_editor.getX(), jsp_editor.getY(), 570, 350);
         txtEditor.setBounds(txtEditor.getX(), txtEditor.getY(), 570, 350);
     }
 
     /*-------------------------------------SECCION DE MANEJO DE ARCHIVOS (GUARDAR, GUARDARCOMO, ABRIR)-----------------------*/
-    
+
     private File archivo;
     private boolean guardar = false;
     private boolean guardarComo = true;
     private boolean mostrar = true;
-    
+
     private void guardarComo(){
         Editor manejador_txt = new Editor();
         Editor manejador_popup = new Editor();
-        
+
         try {
             JFileChooser file = new JFileChooser();
             if (file.showSaveDialog(manejador_popup) == JFileChooser.APPROVE_OPTION) {
@@ -199,7 +202,7 @@ public class Editor extends javax.swing.JFrame {
                     "Advertencia", JOptionPane.WARNING_MESSAGE);
         }
     }
-    
+
     private void guardar() {
         FileWriter save = null;
         try {
@@ -218,8 +221,8 @@ public class Editor extends javax.swing.JFrame {
             }
         }
     }
-    
-    
+
+
     private ArrayList<String> leerArchivo(String file) {
         ArrayList<String> texto = null;
         FileReader fr = null;
@@ -248,7 +251,7 @@ public class Editor extends javax.swing.JFrame {
         }
         return texto;
     }
-    
+/*
     public void abrirArchivo() {
         ArrayList<String> linea = null;
         int resp = 0;
@@ -272,12 +275,12 @@ public class Editor extends javax.swing.JFrame {
             txt_notificaciones.setText("Se ha abierto un archivo");
             txt_notificaciones.setForeground(new java.awt.Color(15, 136, 232));
         }
-    }
-    
-    
+    }*/
+
+
     //-------------------------------------------------------------------------------------------------------------------------
     //----------------------------------------------------------------------------
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -289,8 +292,6 @@ public class Editor extends javax.swing.JFrame {
 
         jpanel_principal = new javax.swing.JPanel();
         jdp_workspace = new javax.swing.JDesktopPane();
-        jsp_editor = new javax.swing.JScrollPane();
-        txtEditor = new javax.swing.JTextArea();
         jsp_log = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
         jSeparator2 = new javax.swing.JSeparator();
@@ -299,6 +300,8 @@ public class Editor extends javax.swing.JFrame {
         Fecha1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtResultado = new javax.swing.JTextArea();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtEditor = new javax.swing.JTextPane();
         jFileChooser1 = new javax.swing.JFileChooser();
         jpanel_botonera = new javax.swing.JPanel();
         btnCompilar = new javax.swing.JButton();
@@ -333,10 +336,6 @@ public class Editor extends javax.swing.JFrame {
         setIconImages(getIconImages());
         setName("editor"); // NOI18N
 
-        txtEditor.setColumns(20);
-        txtEditor.setRows(5);
-        jsp_editor.setViewportView(txtEditor);
-
         txtLog.setEditable(false);
         txtLog.setColumns(20);
         txtLog.setRows(5);
@@ -354,12 +353,19 @@ public class Editor extends javax.swing.JFrame {
         txtResultado.setEnabled(false);
         jScrollPane1.setViewportView(txtResultado);
 
-        jdp_workspace.setLayer(jsp_editor, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        txtEditor.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtEditorKeyPressed(evt);
+            }
+        });
+        jScrollPane2.setViewportView(txtEditor);
+
         jdp_workspace.setLayer(jsp_log, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jSeparator2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jsp_notificaciones, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(Fecha1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdp_workspace.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdp_workspace.setLayer(jScrollPane2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdp_workspaceLayout = new javax.swing.GroupLayout(jdp_workspace);
         jdp_workspace.setLayout(jdp_workspaceLayout);
@@ -370,15 +376,15 @@ public class Editor extends javax.swing.JFrame {
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdp_workspaceLayout.createSequentialGroup()
-                        .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(jsp_log, javax.swing.GroupLayout.PREFERRED_SIZE, 544, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jsp_notificaciones, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jdp_workspaceLayout.createSequentialGroup()
-                                .addComponent(jsp_editor)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Fecha1)))
@@ -388,17 +394,17 @@ public class Editor extends javax.swing.JFrame {
             jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jdp_workspaceLayout.createSequentialGroup()
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsp_editor, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)
                     .addGroup(jdp_workspaceLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(Fecha1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jdp_workspaceLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jsp_log, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                    .addComponent(jsp_log)
                     .addComponent(jsp_notificaciones)))
         );
 
@@ -537,7 +543,7 @@ public class Editor extends javax.swing.JFrame {
         jpanel_botoneraLayout.setVerticalGroup(
             jpanel_botoneraLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpanel_botoneraLayout.createSequentialGroup()
-                .addContainerGap(10, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnAnalisisLexico, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -703,7 +709,7 @@ public class Editor extends javax.swing.JFrame {
     private void jmi_abrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_abrirActionPerformed
         if(txtEditor.getText() == null){
             limpiar();
-            abrirArchivo();
+            //abrirArchivo();
         }
         else if(txtEditor.getText() != null){
                               int resp = JOptionPane.showConfirmDialog(null,
@@ -712,13 +718,13 @@ public class Editor extends javax.swing.JFrame {
             if (resp == 0) {
                 jmi_guardar.doClick();
                 limpiar();
-                abrirArchivo();
+               // abrirArchivo();
                 reacomodar();
                 txt_notificaciones.setText("Se ha abierto un archivo");
             }
             if (resp == 1) {
                 limpiar();
-                abrirArchivo();
+               // abrirArchivo();
                 reacomodar();
                 txt_notificaciones.setText("Se ha abierto un archivo");
             }
@@ -767,7 +773,7 @@ public class Editor extends javax.swing.JFrame {
     private void jmi_nuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_nuevoActionPerformed
         archivos controlador = new archivos();
         if(controlador.nuevoArchivo() == true){
-            
+
             guardarComo();
             System.out.println("^^Se invocó: controlador.guardarComo()^^");
             limpiar();
@@ -777,7 +783,7 @@ public class Editor extends javax.swing.JFrame {
             System.out.println("^^if(guardarComo == false);");
             txt_notificaciones.setText("Se ha creado un nuevo archivo");
         }
-        
+
     }//GEN-LAST:event_jmi_nuevoActionPerformed
 
     private void jmi_guardar_comoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardar_comoActionPerformed
@@ -857,6 +863,14 @@ public class Editor extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAnalisisLexicoActionPerformed
 
+    private void txtEditorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEditorKeyPressed
+       switch (evt.getKeyCode()) {
+            default:
+                colors();
+                break;
+        }
+    }//GEN-LAST:event_txtEditorKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -864,7 +878,7 @@ public class Editor extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -899,14 +913,94 @@ public class Editor extends javax.swing.JFrame {
         //sintactico();
         //semantico();
     }
-    
+
     private void analisisSintactico(){
-        
+
         String ST = txtEditor.getText();
         //Sintax s = new Sintax(new analizador.LexerCup(new StringReader (ST)));
-        //erroresSintacticos = erroresLexicos; 
+        //erroresSintacticos = erroresLexicos;
     }
-    
+
+
+
+
+    //Metodo para encontrar las ultimas cadenas
+    private int findLastNonWordChar(String texto, int i){
+        while(--i >= 0 ){
+            if(String.valueOf(texto.charAt(i)).matches("\\W")){break;}
+        }//end whille
+        return i;
+    }//end metodo
+
+    //Metodo para encontrar las primeras cadenas
+    private int findfirstNonWordChar(String texto, int i){
+        while(i < texto.length()){
+            if(String.valueOf(texto.charAt(i)).matches("\\W")){break;}
+             i++;
+        }//end while
+
+        return i;
+    }//end metodo
+
+
+    //Metodo para dar color a las palabras reservadas
+
+    private void colors(){
+
+        final StyleContext  cont = StyleContext.getDefaultStyleContext();
+        //colores
+        final  AttributeSet atAzul = cont.addAttribute(cont.getEmptySet(),StyleConstants.Foreground, new Color(0,128,255)); //Azul para las palabras reservadas
+        final  AttributeSet atVerde = cont.addAttribute(cont.getEmptySet(),StyleConstants.Foreground, new Color(0,153,0)); // Verda para el texto cadena
+        final  AttributeSet atGris = cont.addAttribute(cont.getEmptySet(),StyleConstants.Foreground, new Color(128,128,128)); //Naranja para comentarios
+        final  AttributeSet atNegro = cont.addAttribute(cont.getEmptySet(),StyleConstants.Foreground, new Color(0,0,0));
+
+        //style
+            DefaultStyledDocument doc = new DefaultStyledDocument(){
+                public void insertarString(int offset, String str, AttributeSet a)throws BadLocationException {
+                    super.insertString(offset,str,a);
+
+                    String text = getText(0,getLength());
+                    int before =  findLastNonWordChar(text, offset);
+                    if(before < 0){before = 0;}
+                    int after = findfirstNonWordChar(text, offset + str.length());
+                    int wordL = before;
+                    int wordR = before;
+
+                    while(wordR <= after){
+                        if(wordR == after || String.valueOf(text.charAt(wordR)).matches("\\W")){
+                            if(text.substring(wordL,wordR).matches("(\\W)*(main|int|float|string|double|null|boolean)")){
+                                setCharacterAttributes(wordL, wordR - wordL, atAzul , false);}
+                            //}else if(text.substring(wordL,wordR).matches("\"(\\W)*\"")){
+                              //      setCharacterAttributes(wordL, wordR - wordL, atVerde , false);
+                                //   }//end segundo if
+                          //  else {
+                            //    setCharacterAttributes(wordL, wordR - wordL, atNegro , false);
+                            //}
+
+                            wordL = wordR;
+
+                        }//end first if
+
+                        wordR++;
+                    }///end while
+                } //public void insertarString
+
+                public void remove(int offs,int len)throws BadLocationException {
+                    super.remove(offs, len);
+                    String text = getText(0,getLength());
+                    int before = findLastNonWordChar(text, offs);
+                     if(before < 0){before = 0;}
+                }//end remove
+            };
+
+             JTextPane txt = new JTextPane(doc);
+             String temp =  txtEditor.getText();
+             txtEditor.setStyledDocument(txt.getStyledDocument());
+             txtEditor.setText(temp);
+             
+    }//end metodo
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Fecha1;
     private javax.swing.JButton btnAnalisisLexico;
@@ -922,6 +1016,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JDesktopPane jdp_workspace;
     private javax.swing.JMenu jmenu_Archivo;
@@ -940,10 +1035,9 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmi_tabla_reservadas;
     private javax.swing.JPanel jpanel_botonera;
     private javax.swing.JPanel jpanel_principal;
-    private javax.swing.JScrollPane jsp_editor;
     private javax.swing.JScrollPane jsp_log;
     private javax.swing.JScrollPane jsp_notificaciones;
-    public javax.swing.JTextArea txtEditor;
+    public javax.swing.JTextPane txtEditor;
     public javax.swing.JTextArea txtLog;
     private javax.swing.JTextArea txtResultado;
     public javax.swing.JTextArea txt_notificaciones;

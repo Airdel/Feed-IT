@@ -47,8 +47,8 @@ public class archivos {
                     FileWriter save = new FileWriter(archivo.getAbsolutePath() + ".fit");
                     String nombre = archivo.getName();
                     manejador_txt.setTitle(nombre);
-                    System.out.println(manejador_txt.txtEditor.getText());
-                    save.write(manejador_txt.txtEditor.getText());
+                   // System.out.println(manejador_txt.txtEditor.getText());
+                   // save.write(manejador_txt.txtEditor.getText());
                     save.close();
                     guardarComo = false;
                     manejador_txt.txt_notificaciones.setText("Se ha guardado un archivo");
