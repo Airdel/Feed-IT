@@ -5,13 +5,21 @@
  */
 package interfaces;
 
+import java.awt.Color;
+import javax.swing.JTextPane;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.StyleConstants;
+import javax.swing.text.StyleContext;
+
 /**
  *
  * @author Enrique Miramontes
  */
 public class FeedIT extends javax.swing.JFrame {
     //DEclaracion de variables globales
-     NumeroLinea numerolinea;
+    NumeroLinea numerolinea;
     /**
      * Creates new form FeedIT
      */
@@ -22,9 +30,10 @@ public class FeedIT extends javax.swing.JFrame {
     // Metodo para iniciar los componentes
     private void iniciarComponentes(){
         setTitle("Feed-IT");
+        setLocationRelativeTo(null);
         //Se agregan las Lineas
         numerolinea = new NumeroLinea(jtpCode);
-        scroll.setRowHeaderView(numerolinea);
+        scrollCode.setRowHeaderView(numerolinea);
     }//end iniciarComponentes
     
     /**
@@ -38,50 +47,45 @@ public class FeedIT extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jToolBar1 = new javax.swing.JToolBar();
-        scroll = new javax.swing.JScrollPane();
+        scrollCode = new javax.swing.JScrollPane();
         jtpCode = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
-        setPreferredSize(new java.awt.Dimension(1360, 690));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBar1.setBackground(new java.awt.Color(102, 102, 102));
-        jToolBar1.setFloatable(false);
         jToolBar1.setRollover(true);
-        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 45));
+        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 50));
 
-        jtpCode.setMinimumSize(new java.awt.Dimension(7, 23));
-        jtpCode.setPreferredSize(new java.awt.Dimension(7, 23));
+        jtpCode.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jtpCode.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                jtpCodeKeyReleased(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jtpCodeKeyPressed(evt);
             }
         });
-        scroll.setViewportView(jtpCode);
+        scrollCode.setViewportView(jtpCode);
 
-        jPanel1.add(scroll, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 760, 490));
-        scroll.getAccessibleContext().setAccessibleParent(jtpCode);
+        jPanel1.add(scrollCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 780, 440));
 
         txtLog.setColumns(20);
         txtLog.setRows(5);
         jScrollPane2.setViewportView(txtLog);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 546, 1130, 130));
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 1340, 170));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1150, 690));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 690));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtpCodeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtpCodeKeyReleased
-   
-    }//GEN-LAST:event_jtpCodeKeyReleased
+    private void jtpCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtpCodeKeyPressed
+        colors();
+    }//GEN-LAST:event_jtpCodeKeyPressed
 
     /**
      * @param args the command line arguments
@@ -117,20 +121,103 @@ public class FeedIT extends javax.swing.JFrame {
             }
         });
     }
+        
+    //---------------------------------------------------Metodos para pintar las palabras Reservadas-----------------------------------------------------------
+   
+    //Metodo para encontrar las ultimas cadenas
+    private int findLastNonWordChar(String texto, int i){
+        while(--i >= 0){
+            if(String.valueOf(texto.charAt(i)).matches("[\\s;=(){}]")){
+                break;
+            }//if
+        }//while
+        
+        return i;
+    }//end findLast
+    
+    
+    //Metodo para encontrar las primeras cadenas
+    private int findFirstNonWordChar(String texto, int i){
+        while(i < texto.length()){
+            if(String.valueOf(texto.charAt(i)).matches("[\\s;=(){}]")){
+                break;
+            }//if
+            i++;
+        }//while
+        return i;
+    }//end findFirst
+    
+    //Metodo para pintar las palabras reservadas
+    private void colors(){
+        final StyleContext cont = StyleContext.getDefaultStyleContext();
+        //Colores
+        final AttributeSet attAzul  =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(51,115,255));
+        final AttributeSet attNegro =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(0,0,0));
+        final AttributeSet attVerde =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(71,158,1));
+        final AttributeSet attGris  =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(121,125,133));
+         //Style
+         DefaultStyledDocument doc = new DefaultStyledDocument(){
+             public void insertString(int offset, String str, AttributeSet a)throws BadLocationException{
+                 super.insertString(offset, str,  a);
+                 String text = getText(0,getLength());
+                 int before = findLastNonWordChar(text, offset);
+                 if(before < 0){
+                     before = 0;
+                 }//if
+                 int after = findFirstNonWordChar(text, offset + str.length());
+                 int wordL = before;
+                 int wordR = before;
+                 while(wordR <= after){
+                     if(wordR == after || String.valueOf(text.charAt(wordR)).matches("[\\s;=(){}]")){
+                         if(text.substring(wordL,wordR).matches("[\\s]*(class|fun|main|int|float|string|double|null|boolean|"
+                                 + "humedad|fagua|peso|fcomer|fpremio|fmasaje|fluz|fjuguete|candil|when|if|else|true|false|"
+                                 + "for|forEach|do|const|goBack|loop|and|or|not|while)")){
+                             setCharacterAttributes(wordL,wordR - wordL,  attAzul,false);
+                         }//second if
+                         else if(text.substring(wordL,wordR).matches("[\\s=(]*(\"\\w*\")")){
+                             setCharacterAttributes(wordL,wordR - wordL,attVerde,false);
+                         }//tercer if
+                          else if(text.substring(wordL,wordR).matches("[ ]*([#]*\\w*)*")){
+                             setCharacterAttributes(wordL,wordR - wordL,attGris,false);
+                         }//tercer if
+                         else{
+                             setCharacterAttributes(wordL,wordR - wordL,attNegro,false);
+                         }//end else 
+                         
+                         wordL = wordR;
+                     }//first if
+                     wordR++;
+                 }//end while    
+             }//end insertString
 
-    
-    
-    public void clearAllCom(){
-      
-    }//end clearAllCom
+              
+             public void remove(int offs, int len)throws BadLocationException{
+                 super.remove(offs, len);
+                 String text = getText(0,getLength());
+                 int before = findLastNonWordChar(text, offs);
+                 if(before < 0){
+                     before = 0;
+                 }//end if
+                 
+             }//end remove
+             
+         };//end doc
+        
+         JTextPane txt = new JTextPane(doc);
+         String temp = jtpCode.getText();
+         jtpCode.setStyledDocument(txt.getStyledDocument());
+         jtpCode.setText(temp);
+         
+         
+    }//end colors
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JToolBar jToolBar1;
-    public javax.swing.JTextPane jtpCode;
-    private javax.swing.JScrollPane scroll;
+    private javax.swing.JTextPane jtpCode;
+    private javax.swing.JScrollPane scrollCode;
     private javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables
 }

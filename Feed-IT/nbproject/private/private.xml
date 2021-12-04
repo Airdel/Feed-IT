@@ -5,25 +5,14 @@
             <url>src/interfaces/Editor.java</url>
             <bookmark id="2">
                 <name/>
-<<<<<<< HEAD
                 <line>856</line>
-=======
-                <line>805</line>
->>>>>>> 2af99d54b702ea5f6697b58c1282324712eadec6
                 <key/>
             </bookmark>
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-<<<<<<< HEAD
             <file>file:/C:/Feed-IT/Feed-IT/src/interfaces/FeedIT.java</file>
-=======
-            <file>file:/C:/Feed-IT/Feed-IT/src/interfaces/Editor.java</file>
-            <file>file:/C:/Feed-IT/Feed-IT/src/analizador_sintactico/sintax.cup</file>
-            <file>file:/C:/Feed-IT/Feed-IT/src/analizador_sintactico/C_Errores.java</file>
-            <file>file:/C:/Feed-IT/Feed-IT/src/analizador_sintactico/LexerCup.flex</file>
->>>>>>> 2af99d54b702ea5f6697b58c1282324712eadec6
         </group>
     </open-files>
 </project-private>
