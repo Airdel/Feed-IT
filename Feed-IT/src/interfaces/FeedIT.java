@@ -4,12 +4,14 @@
  * and open the template in the editor.
  */
 package interfaces;
-
 import java.awt.Color;
+import java.awt.event.KeyEvent;
+import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultStyledDocument;
+import javax.swing.text.Element;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyleContext;
 
@@ -20,6 +22,7 @@ import javax.swing.text.StyleContext;
 public class FeedIT extends javax.swing.JFrame {
     //DEclaracion de variables globales
     NumeroLinea numerolinea;
+    DefaultStyledDocument doc;
     /**
      * Creates new form FeedIT
      */
@@ -84,7 +87,33 @@ public class FeedIT extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtpCodeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jtpCodeKeyPressed
-        colors();
+         switch (evt.getKeyCode()) {
+            case KeyEvent.VK_LEFT:
+                jtpCode.setCaretPosition(jtpCode.getCaretPosition());
+                break;
+            case KeyEvent.VK_RIGHT:
+                jtpCode.setCaretPosition(jtpCode.getCaretPosition());
+                break;
+            case KeyEvent.VK_DOWN:
+                jtpCode.setCaretPosition(jtpCode.getCaretPosition());
+                break;
+            case KeyEvent.VK_UP:
+                jtpCode.setCaretPosition(jtpCode.getCaretPosition());
+                break;
+              case KeyEvent.VK_TAB:
+                evt.consume();
+                String tab = "  ";
+                int posicion = jtpCode.getCaretPosition();
+                Element e = doc.getCharacterElement(posicion);
+                try {
+                    doc.insertString(posicion, tab, e.getAttributes());
+                } catch (BadLocationException ex) {
+                    showMessageDialog(this, "Error en la posicion del cursor");
+                }
+                break;
+            default:
+                   colors();
+         }//end swhitch
     }//GEN-LAST:event_jtpCodeKeyPressed
 
     /**
@@ -149,6 +178,7 @@ public class FeedIT extends javax.swing.JFrame {
     
     //Metodo para pintar las palabras reservadas
     private void colors(){
+        int p = jtpCode.getCaretPosition();
         final StyleContext cont = StyleContext.getDefaultStyleContext();
         //Colores
         final AttributeSet attAzul  =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(51,115,255));
@@ -156,7 +186,7 @@ public class FeedIT extends javax.swing.JFrame {
         final AttributeSet attVerde =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(71,158,1));
         final AttributeSet attGris  =  cont.addAttribute(cont.getEmptySet(), StyleConstants.Foreground, new Color(121,125,133));
          //Style
-         DefaultStyledDocument doc = new DefaultStyledDocument(){
+          doc = new DefaultStyledDocument(){
              public void insertString(int offset, String str, AttributeSet a)throws BadLocationException{
                  super.insertString(offset, str,  a);
                  String text = getText(0,getLength());
@@ -177,7 +207,7 @@ public class FeedIT extends javax.swing.JFrame {
                          else if(text.substring(wordL,wordR).matches("[\\s=(]*(\"\\w*\")")){
                              setCharacterAttributes(wordL,wordR - wordL,attVerde,false);
                          }//tercer if
-                          else if(text.substring(wordL,wordR).matches("[ ]*([#]*\\w*)*")){
+                          else if(text.substring(wordL,wordR).matches("\\s*[#]+\\w*" )){
                              setCharacterAttributes(wordL,wordR - wordL,attGris,false);
                          }//tercer if
                          else{
@@ -207,8 +237,7 @@ public class FeedIT extends javax.swing.JFrame {
          String temp = jtpCode.getText();
          jtpCode.setStyledDocument(txt.getStyledDocument());
          jtpCode.setText(temp);
-         
-         
+         jtpCode.setCaretPosition(p);     
     }//end colors
     
     
