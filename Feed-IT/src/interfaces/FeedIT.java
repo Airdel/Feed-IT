@@ -49,21 +49,42 @@ public class FeedIT extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jToolBar1 = new javax.swing.JToolBar();
+        jToolBar_Informacion = new javax.swing.JToolBar();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         scrollCode = new javax.swing.JScrollPane();
         jtpCode = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel_Funciones = new javax.swing.JPanel();
+        btnGuardar = new javax.swing.JButton();
+        btn_Sintactico = new javax.swing.JButton();
+        btn_Lexico = new javax.swing.JButton();
+        btn_CodigoMedio = new javax.swing.JButton();
+        btn_CodigoObjeto = new javax.swing.JButton();
+        btn_Compilar = new javax.swing.JButton();
+        btn_Salir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jToolBar1.setRollover(true);
-        jPanel1.add(jToolBar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 50));
+        jToolBar_Informacion.setRollover(true);
+
+        jButton1.setText("Palabras Reservadas");
+        jButton1.setFocusable(false);
+        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar_Informacion.add(jButton1);
+
+        jButton2.setText("Producciones Sintacticas");
+        jButton2.setFocusable(false);
+        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jToolBar_Informacion.add(jButton2);
 
         jtpCode.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jtpCode.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -73,15 +94,96 @@ public class FeedIT extends javax.swing.JFrame {
         });
         scrollCode.setViewportView(jtpCode);
 
-        jPanel1.add(scrollCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 780, 440));
-
         txtLog.setColumns(20);
         txtLog.setRows(5);
         jScrollPane2.setViewportView(txtLog);
 
-        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 510, 1340, 170));
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(scrollCode, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2))))
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addComponent(scrollCode, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 1360, 690));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 1250, 690));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 50));
+
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/guardar_claro.png"))); // NOI18N
+
+        btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/analisis_sintactico.png"))); // NOI18N
+
+        btn_Lexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/analisis_lexico.png"))); // NOI18N
+
+        btn_CodigoMedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/codigo_medio.png"))); // NOI18N
+
+        btn_CodigoObjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/codigo_objeto.png"))); // NOI18N
+
+        btn_Compilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/compilar_claro.png"))); // NOI18N
+
+        btn_Salir.setBackground(new java.awt.Color(255, 51, 51));
+        btn_Salir.setForeground(new java.awt.Color(255, 51, 51));
+        btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel_FuncionesLayout = new javax.swing.GroupLayout(jPanel_Funciones);
+        jPanel_Funciones.setLayout(jPanel_FuncionesLayout);
+        jPanel_FuncionesLayout.setHorizontalGroup(
+            jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23))
+            .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel_FuncionesLayout.setVerticalGroup(
+            jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
+                .addGap(5, 5, 5)
+                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(104, 104, 104)
+                .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        getContentPane().add(jPanel_Funciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, 640));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -242,9 +344,20 @@ public class FeedIT extends javax.swing.JFrame {
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btn_CodigoMedio;
+    private javax.swing.JButton btn_CodigoObjeto;
+    private javax.swing.JButton btn_Compilar;
+    private javax.swing.JButton btn_Lexico;
+    private javax.swing.JButton btn_Salir;
+    private javax.swing.JButton btn_Sintactico;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel_Funciones;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JToolBar jToolBar1;
+    private javax.swing.JToolBar jToolBar_Informacion;
     private javax.swing.JTextPane jtpCode;
     private javax.swing.JScrollPane scrollCode;
     private javax.swing.JTextArea txtLog;
