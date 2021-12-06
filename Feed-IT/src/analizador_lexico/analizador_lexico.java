@@ -37,11 +37,43 @@ public class analizador_lexico {
                
                switch(tokens){
                    case ERROR: 
-                       r += "simbolo no definido \n";
+                       r += "Error Lexico, Simbolo no definido \n";
                        break;
-                   case Main: 
-                   case Identificador: 
-                   case  Numero: 
+                   case Int:
+                   case Float:
+                   case String:
+                   case Double:
+                   case Null:
+                   case Humedad:
+                   case Fagua:
+                   case Fcomer:
+                   case Peso:
+                   case FPremio:
+                   case Fmasaje:
+                   case Fluz:
+                   case Fjuguete:
+                   case Candil:
+                   case Class:
+                   case When:
+                   case If:
+                   case Else:
+                   case ForEach:
+                   case Do:
+                   case Const:
+                   case  Fun:
+                   case  Loop:
+                   case  And:
+                   case  Or:
+                   case  Not:
+                   case  True:
+                   case  False:
+                   case  While:
+                       r += lexer.lexeme + " Palabra reservada FeedIt: " + tokens + "\n";
+                       break;
+                   case Identificador:
+                   case Numero:
+                   case Flotante:
+                   case Texto:    
                        r += lexer.lexeme + " Es un: " + tokens + "\n"; 
                        break;
                    default:
@@ -49,7 +81,7 @@ public class analizador_lexico {
                        break;
                }//switch
                
-           }
+           }//While
            
        }catch(FileNotFoundException e){} catch (IOException ex) {
             Logger.getLogger(Editor.class.getName()).log(Level.SEVERE, null, ex);
