@@ -330,7 +330,7 @@ ERRORES_FOR ::=
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR P_coma Identificador Dec Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA           |   //Se esperaba un valor
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero Identificador Dec Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA           |   //Se esperaba un Punto y coma
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma Dec Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                  |   //Se esperaba un Identificador
-        For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Llave_A SENTENCIA Llave_C SENTENCIA            |   //Se esperaba un parentesis de cierre
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Llave_A SENTENCIA Llave_C SENTENCIA                |   //Se esperaba un parentesis de cierre
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C SENTENCIA Llave_C SENTENCIA           |   //Se esperaba una llave de apertura
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C Llave_A SENTENCIA SENTENCIA           |   //Se esperaba una llave de cierre 
 ;
@@ -338,7 +338,95 @@ ERRORES_FOR ::=
 //ERRRORES FUNCION
 ERRORES_FUNCION ::=
   //Identificador Parentesis_A  Parentesis_C P_coma  SENTENCIA
+    Parentesis_A  Parentesis_C P_coma  SENTENCIA        |   //Se esperaba un identificador
+    Identificador Parentesis_C P_coma  SENTENCIA        |   //Se esperaba un parentesis de apertura
+    Identificador Parentesis_A P_coma  SENTENCIA        |   //Se esperaba un parentesis de cierre
+    Identificador Parentesis_A  Parentesis_C SENTENCIA  |   //Se esperaba un punto y coma
+  //Identificador Parentesis_A  ENVIOPARAMETROS Parentesis_C P_coma SENTENCIA   
+    Parentesis_A ENVIOPARAMETROS Parentesis_C P_coma  SENTENCIA        |   //Se esperaba un identificador
+    Identificador ENVIOPARAMETROS Parentesis_C P_coma  SENTENCIA        |   //Se esperaba un parentesis de apertura
+    Identificador Parentesis_A ENVIOPARAMETROS P_coma  SENTENCIA        |   //Se esperaba un parentesis de cierre
+    Identificador Parentesis_A ENVIOPARAMETROS Parentesis_C SENTENCIA  |   //Se esperaba un punto y coma
+  //Fagua Parentesis_A  True Parentesis_C P_Coma SENTENCIA
+    Parentesis_A True Parentesis_C P_Coma SENTENCIA        |   //Se esperaba un identificador
+    Fagua True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fagua Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fagua Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fagua Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fagua con False
+    Parentesis_A False Parentesis_C P_Coma SENTENCIA        |   //Se esperaba un identificador
+    Fagua False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fagua Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fagua Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fagua Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fcomer Parentesis_A  True Parentesis_C P_Coma SENTENCIA
     
+    Fcomer True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fcomer Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fcomer Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fcomer Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fcomer con False
+   
+    Fcomer False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fcomer Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fcomer Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fcomer Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma 
+  //Fluz Parentesis_A  True Parentesis_C P_Coma SENTENCIA
+    
+    Fluz True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fluz Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fluz Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fluz Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fluz con False
+    
+    Fluz False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fluz Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fluz Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fluz Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fjuguete Parentesis_A  True Parentesis_C P_Coma SENTENCIA
 
+    Fjuguete True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fjuguete Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fjuguete Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fjuguete Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fjuguete con False
+
+    Fjuguete False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fjuguete Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fjuguete Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fjuguete Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+
+  //Fmasaje Parentesis_A  True Parentesis_C P_Coma SENTENCIA
+
+    Fmasaje True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fmasaje Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fmasaje Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fmasaje Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fmasaje con False
+
+    Fmasaje False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fmasaje Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fmasaje Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fmasaje Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+
+  //Fpremio Parentesis_A  True Parentesis_C P_Coma SENTENCIA
+
+    Fpremio True Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fpremio Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fpremio Parentesis_A  True P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fpremio Parentesis_A  True Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+  //Fpremio con False
+
+    Fpremio False Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Fpremio Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Fpremio Parentesis_A  False P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Fpremio Parentesis_A  False Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+
+  //Time Parentesis_A  Numero Parentesis_C P_Coma SENTENCIA
+
+    Time Numero Parentesis_C P_Coma SENTENCIA               |   //Se esperaba un parentesis de apertura
+    Time Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
+    Time Parentesis_A  Numero P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
+    Time Parentesis_A  Numero Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
 ;
 
