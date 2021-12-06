@@ -335,7 +335,7 @@ ERRORES_FOR ::=
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C Llave_A SENTENCIA SENTENCIA           |   //Se esperaba una llave de cierre 
 ;
 
-//ERRRORES FUNCION
+//ERRRORES FUNCION----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ERRORES_FUNCION ::=
   //Identificador Parentesis_A  Parentesis_C P_coma  SENTENCIA
     Parentesis_A  Parentesis_C P_coma  SENTENCIA        |   //Se esperaba un identificador
@@ -428,5 +428,16 @@ ERRORES_FUNCION ::=
     Time Parentesis_A Parentesis_C P_Coma SENTENCIA       |   //Se esperaba un valor(Booleano)
     Time Parentesis_A  Numero P_Coma SENTENCIA              |   //Se esperaba un parentesis de cierre
     Time Parentesis_A  Numero Parentesis_C SENTENCIA        |   //Se esperaba un punto y coma
+;
+
+//ERRORES WHILE-----------------------------------------------------------------------------------------------------------------------------------------------------------
+  //While Parentesis_A SENTENCIABOOLEAN Parentesis_C  Llave_A   SENTENCIA  Llave_C SENTENCIA
+ERRORES_WHILE ::=
+    Parentesis_A SENTENCIABOOLEAN Parentesis_C  Llave_A   SENTENCIA  Llave_C SENTENCIA          |   //Se esperaba While
+    While SENTENCIABOOLEAN Parentesis_C  Llave_A   SENTENCIA  Llave_C SENTENCIA                 |   //Se esperaba un parentesis de apertura
+    While Parentesis_A  Parentesis_C  Llave_A   SENTENCIA  Llave_C SENTENCIA                    |   //Se esperaba una sentencia Booleana}
+    While Parentesis_A SENTENCIABOOLEAN   Llave_A   SENTENCIA  Llave_C SENTENCIA                |   //Se esperaba un parentesis de cierre
+    While Parentesis_A SENTENCIABOOLEAN Parentesis_C SENTENCIA  Llave_C SENTENCIA               |   //Se esperaba una llave de apertura
+    While Parentesis_A SENTENCIABOOLEAN Parentesis_C  Llave_A   SENTENCIA SENTENCIA             |   //Se esperaba una llave de cierre
 ;
 
