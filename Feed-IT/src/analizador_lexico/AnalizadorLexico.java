@@ -11,27 +11,35 @@ import java.io.Reader;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import interfaces.Editor;
+import java.io.FileWriter;
 /**
  * Enrique & Darien.
  * @author FEED-IT
  */
-public class analizador_lexico {
+public class AnalizadorLexico{
 
     public String lexico(String path, String text){
        String r = "";
+       if(path.equals("")){
+           path = "C:\\Feed-IT\\archivos\\sinGuardar.fic";
+           try{
+               FileWriter save = new FileWriter(path);
+               save.write(text);
+               save.close();
+           }catch (IOException ex){
+               System.out.print(ex.getMessage());
+           }
+           
+       }
        File file = new File(path);
        try{
-           PrintWriter write = new PrintWriter(file);
-           write.print(text);
-           System.out.println("Obtencion de datos del editor");
-           write.close();
+           
            Reader read = new BufferedReader(new FileReader(file));
            Lexer lexer = new Lexer(read);
            
            while(true){
                Tokens tokens = lexer.yylex();
                if(tokens == null){
-                 System.out.println("Escritura en el Log"+ r );
                  return r;
                }//if
                

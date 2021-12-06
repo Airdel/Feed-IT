@@ -4,8 +4,10 @@
  * and open the template in the editor.
  */
 package interfaces;
+import analizador_lexico.AnalizadorLexico;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
+import java.io.File;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
@@ -24,6 +26,9 @@ public class FeedIT extends javax.swing.JFrame {
     NumeroLinea numerolinea;
     DefaultStyledDocument doc;
     Directorio dir;
+    File archivo;
+    
+    
     /**
      * Creates new form FeedIT
      */
@@ -119,6 +124,11 @@ public class FeedIT extends javax.swing.JFrame {
 
         btn_Lexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lexico.png"))); // NOI18N
         btn_Lexico.setContentAreaFilled(false);
+        btn_Lexico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_LexicoActionPerformed(evt);
+            }
+        });
 
         btn_CodigoMedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/intermdialcode.png"))); // NOI18N
         btn_CodigoMedio.setContentAreaFilled(false);
@@ -318,6 +328,15 @@ public class FeedIT extends javax.swing.JFrame {
        clearAllComp();
     }//GEN-LAST:event_btnGuardarComoActionPerformed
 
+    private void btn_LexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LexicoActionPerformed
+        AnalizadorLexico lex = new AnalizadorLexico();
+        String r;
+        
+        if(archivo != null){ r = lex.lexico(archivo.getAbsolutePath(),jtpCode.getText());
+        }else{ r = lex.lexico("",jtpCode.getText());}
+        txtLog.setText(r);
+    }//GEN-LAST:event_btn_LexicoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -447,6 +466,7 @@ public class FeedIT extends javax.swing.JFrame {
     public void clearAllComp(){
         txtLog.setText("");
     }
+    
     
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

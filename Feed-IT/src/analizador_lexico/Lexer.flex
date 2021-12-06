@@ -6,7 +6,7 @@ import static analizador_lexico.Tokens.*;
 %type Tokens
 L = [a-zA-Z_]+
 D = [0-9]+
-SPACE = [ ,\t,\r]+\
+SPACE = [ ,\t,\r]+
 CADENA = [a-ZA-Z0-9]*
 %{
     public String lexeme;

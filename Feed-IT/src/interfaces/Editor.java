@@ -4,8 +4,8 @@
  */
 package interfaces;
 
+import analizador_lexico.AnalizadorLexico;
 import analizador_lexico.Tokens.*;
-import analizador_lexico.analizador_lexico;
 import controladores.*;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
@@ -174,7 +174,7 @@ public class Editor extends javax.swing.JFrame {
 
     private File archivo;
     private boolean guardar = false;
-    private boolean guardarComo = true;
+    private boolean guardarComo = false;
     private boolean mostrar = true;
 
     private void guardarComo(){
@@ -206,6 +206,7 @@ public class Editor extends javax.swing.JFrame {
     private void guardar() {
         FileWriter save = null;
         try {
+            System.out.println(archivo.getAbsolutePath() + "SA");
             save = new FileWriter(archivo.getAbsolutePath());
             save.write(txtEditor.getText());
             save.close();
@@ -798,21 +799,15 @@ public class Editor extends javax.swing.JFrame {
     }//GEN-LAST:event_jmi_guardar_comoActionPerformed
 
     private void jmenu_ArchivoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmenu_ArchivoActionPerformed
-        // TODO add your handling code here:
+        System.out.println(archivo.getAbsolutePath());
     }//GEN-LAST:event_jmenu_ArchivoActionPerformed
 
     private void jmi_guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_guardarActionPerformed
-        if (guardarComo) {
-            guardarComo();
-            txt_notificaciones.setText("Se ha guardado el archivo");
-        } else {
-            guardar();
-            txt_notificaciones.setText("Se ha guardado el archivo");
-        }
+        
     }//GEN-LAST:event_jmi_guardarActionPerformed
 
     private void jmi_analisis_lexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmi_analisis_lexicoActionPerformed
-        analizador_lexico lex = new analizador_lexico();
+        AnalizadorLexico lex = new AnalizadorLexico();
         String r = lex.lexico(archivo.getAbsolutePath(),txtEditor.getText());
         System.out.println("Lex: "+r);
         txtLog.setText(r.toString());
