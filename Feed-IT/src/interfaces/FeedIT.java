@@ -49,9 +49,6 @@ public class FeedIT extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jToolBar_Informacion = new javax.swing.JToolBar();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         scrollCode = new javax.swing.JScrollPane();
         jtpCode = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -65,26 +62,18 @@ public class FeedIT extends javax.swing.JFrame {
         btn_CodigoObjeto = new javax.swing.JButton();
         btn_Compilar = new javax.swing.JButton();
         btn_Salir = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jToolBar_Informacion = new javax.swing.JToolBar();
+        jSeparator2 = new javax.swing.JToolBar.Separator();
+        btn_Simbolos = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JToolBar.Separator();
+        btn_Gramaticas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-
-        jToolBar_Informacion.setRollover(true);
-
-        jButton1.setText("Palabras Reservadas");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Informacion.add(jButton1);
-
-        jButton2.setText("Producciones Sintacticas");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jToolBar_Informacion.add(jButton2);
 
         jtpCode.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jtpCode.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -103,27 +92,23 @@ public class FeedIT extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1244, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(scrollCode, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2))))
+                    .addComponent(scrollCode, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1238, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(scrollCode, javax.swing.GroupLayout.DEFAULT_SIZE, 444, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(scrollCode, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 1250, 690));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 1250, 600));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 50));
@@ -185,6 +170,45 @@ public class FeedIT extends javax.swing.JFrame {
 
         getContentPane().add(jPanel_Funciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, 640));
 
+        jToolBar_Informacion.setRollover(true);
+        jToolBar_Informacion.add(jSeparator2);
+
+        btn_Simbolos.setText("Tabla de Simbolos");
+        btn_Simbolos.setFocusable(false);
+        btn_Simbolos.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Simbolos.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Simbolos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SimbolosActionPerformed(evt);
+            }
+        });
+        jToolBar_Informacion.add(btn_Simbolos);
+        jToolBar_Informacion.add(jSeparator1);
+
+        btn_Gramaticas.setText("Gramáticas Generadas");
+        btn_Gramaticas.setFocusable(false);
+        btn_Gramaticas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btn_Gramaticas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btn_Gramaticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_GramaticasActionPerformed(evt);
+            }
+        });
+        jToolBar_Informacion.add(btn_Gramaticas);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, 1250, 60));
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
@@ -217,6 +241,16 @@ public class FeedIT extends javax.swing.JFrame {
                    colors();
          }//end swhitch
     }//GEN-LAST:event_jtpCodeKeyPressed
+
+    private void btn_SimbolosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SimbolosActionPerformed
+        TablaSimbolos ts = new TablaSimbolos();
+        ts.setVisible(true);
+    }//GEN-LAST:event_btn_SimbolosActionPerformed
+
+    private void btn_GramaticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GramaticasActionPerformed
+        TablaGramaticas tg = new TablaGramaticas();
+        tg.setVisible(true);
+    }//GEN-LAST:event_btn_GramaticasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -348,15 +382,18 @@ public class FeedIT extends javax.swing.JFrame {
     private javax.swing.JButton btn_CodigoMedio;
     private javax.swing.JButton btn_CodigoObjeto;
     private javax.swing.JButton btn_Compilar;
+    private javax.swing.JButton btn_Gramaticas;
     private javax.swing.JButton btn_Lexico;
     private javax.swing.JButton btn_Salir;
+    private javax.swing.JButton btn_Simbolos;
     private javax.swing.JButton btn_Sintactico;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel_Funciones;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JToolBar.Separator jSeparator1;
+    private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar_Informacion;
     private javax.swing.JTextPane jtpCode;
     private javax.swing.JScrollPane scrollCode;
