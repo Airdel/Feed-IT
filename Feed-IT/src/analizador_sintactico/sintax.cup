@@ -42,7 +42,7 @@ terminal Humedad,Fagua,Peso,
                 Fcomer,Fpremio,Fmasaje,
                 Fluz,Fjuguete,Candil,Time;
 
-non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES
+non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES,ASIGNACION
 ;
 
 start with INICIO;
@@ -61,7 +61,9 @@ SENTENCIA ::=
     IF  |
     FOR |
     WHILE |
-    ACCIONES
+    ACCIONES |
+    ASIGNACION
+
 ;
 
 DECLARACION ::=
@@ -83,10 +85,21 @@ DECLARACION ::=
     Float Identificador Asignacion  Flotante P_coma   |
     String Identificador Asignacion Texto P_coma   |
     Boolean Identificador Asignacion True P_coma   |
-    Boolean Identificador Asignacion False P_coma
+    Boolean Identificador Asignacion False P_coma  |
+
+
+    Int Identificador Asignacion Identificador P_coma SENTENCIA     |
+    Float Identificador Asignacion  Identificador P_coma SENTENCIA   |
+    String Identificador Asignacion Identificador P_coma SENTENCIA  |
+    Boolean Identificador Asignacion Identificador P_coma SENTENCIA |
+    Boolean Identificador Asignacion Identificador P_coma SENTENCIA |
+    Int Identificador Asignacion Identificador  P_coma       |
+    Float Identificador Asignacion Identificador  Flotante P_coma   |
+    String Identificador Asignacion Identificador P_coma   |
+    Boolean Identificador Asignacion Identificador P_coma   |
+    Boolean Identificador Asignacion Identificador P_coma
+
 ;
-
-
 SENTENCIABOOLEANA ::=
        True  |
        False |
@@ -190,7 +203,24 @@ VARIABLESGF ::=
     Boolean Identificador Asignacion True P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     Boolean Identificador Asignacion True P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
     Boolean Identificador Asignacion False P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
-    Boolean Identificador Asignacion False P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C 
+    Boolean Identificador Asignacion False P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+
+
+    Int Identificador Asignacion Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Int Identificador Asignacion Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Int Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Int Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A  SENTENCIA Llave_C  |
+    Float Identificador Asignacion Idenficador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Float Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+
+    String Identificador Asignacion Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    String Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+
+    Boolean Identificador Asignacion Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Boolean Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    Boolean Identificador Asignacion Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Boolean Identificador Asignacion Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C 
+
 ;
 
 VARIABLESG ::=
@@ -212,7 +242,18 @@ VARIABLESG ::=
     Float Identificador Asignacion Flotante P_coma     |
     String Identificador Asignacion Texto P_coma  |
     Boolean Identificador Asignacion True P_coma  |
-    Boolean Identificador Asignacion False P_coma
+    Boolean Identificador Asignacion False P_coma |
+
+    Int Identificador Asignacion Identificador P_coma     VARIABLESG  |
+    Float Identificador Asignacion Identificador P_coma   VARIABLESG  |
+    String Identificador Asignacion Identificador P_coma  VARIABLESG  |
+    Boolean Identificador Asignacion Identificador P_coma VARIABLESG  |
+    Boolean Identificador Asignacion Identificador P_coma VARIABLESG  |
+    Int Identificador Asignacion Identificador P_coma         |
+    Float Identificador Asignacion Identificador P_coma     |
+    String Identificador Asignacion Identificador P_coma  |
+    Boolean Identificador Asignacion Identificador P_coma  |
+    Boolean Identificador Asignacion Identificador P_coma
 ;
 
 ACCIONES ::=
@@ -242,4 +283,53 @@ ACCIONES ::=
     Fpremio Parentesis_A  True Parentesis_C P_coma  |
     Fpremio Parentesis_A  False Parentesis_C P_coma  |
     Time Parentesis_A Numero Parentesis_C P_coma 
+
+    Fagua Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Fagua Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA | 
+    Fcomer Parentesis_A Identificador Parentesis_C P_coma SENTENCIA |
+    Fcomer Parentesis_A Identificador Parentesis_C P_coma SENTENCIA | 
+    Fluz Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Fluz Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA | 
+    Fjuguete Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Fjuguete Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA | 
+    Fmasaje Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Fmasaje Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA | 
+    Fpremio Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Fpremio Parentesis_A  Identificador Parentesis_C P_coma SENTENCIA |
+    Time Parentesis_A Identificador Parentesis_C P_coma SENTENCIA |
+    Fagua Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fagua Parentesis_A  Identificador Parentesis_C P_coma | 
+    Fcomer Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fcomer Parentesis_A  Identificador Parentesis_C P_coma  | 
+    Fluz Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fluz Parentesis_A  Identificador Parentesis_C P_coma  | 
+    Fjuguete Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fjuguete Parentesis_A  Identificador Parentesis_C P_coma  | 
+    Fmasaje Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fmasaje Parentesis_A  Identificador Parentesis_C P_coma  | 
+    Fpremio Parentesis_A  Identificador Parentesis_C P_coma  |
+    Fpremio Parentesis_A  Identificador Parentesis_C P_coma  |
+    Time Parentesis_A Identificador Parentesis_C P_coma 
+
+    Peso Parentesis_A  Parentesis_C P_coma  |
+    Peso Parentesis_A  Parentesis_C P_coma SENTENCIA  |
+    Humedad Parentesis_A  Parentesis_C P_coma  |
+    Humedad Parentesis_A  Parentesis_C P_coma SENTENCIA  
+
+;
+
+
+ASIGNACION ::=
+    Identificador Asignacion Numero  P_coma SENTENCIA |
+    Identificador Asignacion Texto P_coma SENTENCIA |
+    Identificador Asignacion Flotante P_coma SENTENCIA  |
+    Identificador Asignacion True  P_coma SENTENCIA |
+    Identificador Asignacion False  P_coma SENTENCIA    |
+    Identificador Asignacion Identificador  P_coma SENTENCIA |
+    Identificador Asignacion Numero  P_coma  |
+    Identificador Asignacion Texto P_coma  |
+    Identificador Asignacion Flotante P_coma  |
+    Identificador Asignacion True  P_coma  |
+    Identificador Asignacion False  P_coma  |
+    Identificador Asignacion Identificador  P_coma
 ;
