@@ -16,3 +16,6 @@ Feed-IT/nbproject/project.xml
 /Feed-IT/nbproject/private/
 *.properties
 *.xml
+Feed-IT/nbproject/build-impl.xml
+Feed-IT/nbproject/genfiles.properties
+Feed-IT/nbproject/private/private.properties
