@@ -2,19 +2,45 @@ package analizador_sintactico;
 
 import interfaces.FeedIT;
 import java_cup.runtime.Symbol;
+import java.util.Stack;
 
 parser code
 {:    
     private Symbol s;        
 
     public void syntax_error(Symbol s){
-        this.s = s;
+        Errores e = new Errores("Error sintactico. Linea " + (s.right+1) + "\n\tSintaxis no valida [ " + s.value +" ]");
+        FeedIT.notificar(e);
+        report_error("Error de sintaxis",null);
     }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
+        Errores e = new Errores("Error sintactico no recuperable. Linea " + (s.right+1) + "\n\tSintaxis no valida [ " + s.value +" ]");
+        FeedIT.notificar(e);
+    }
+
+    public void report_error(String message, Object info){ }    
+    public void report_fatal_error(String message, Object info){ }
 
     public Symbol getS(){        
         return this.s;
     }
 :};
+
+action code
+{:   
+    String codObjeto = "";
+    Stack pilaInicio = new Stack();       
+    Stack pilaSent = new Stack();       
+    Stack pilaFin = new Stack();      
+    int i = 1, sentAux;
+    String incAux;
+
+    boolean statusDec, statusTipo, statusOp;
+    String auxObj = "";
+    String auxRec = "";
+:};
+
 
 //Estructurales
 terminal Main,Class,Fun;
@@ -48,11 +74,18 @@ non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIA
 start with INICIO;
           
 INICIO ::= 
-     Class Identificador Llave_A Llave_C | Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C |
+     Class:td Identificador:id Llave_A Llave_C :s{:      
+        FeedIT.Producciones.add("GRAMATICA CORRECTA:\n\tClase Identificador Llave_a Llave_c");
+        Objetos o = new Objetos(id,td,idright,idleft);        
+        FeedIT.objetos.add(o); :} |
+      Fun:td Main:id Parentesis_A  Parentesis_C Llave_A Llave_C :s{:      
+        FeedIT.Producciones.add("GRAMATICA CORRECTA:\n\tFun Main Parentesis_A Parentesis_C Llave_a Llave_c");
+        Objetos o = new Objetos(id,td,idright,idleft);        
+        FeedIT.objetos.add(o); :} |
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  |
      Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C | 
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C |
-     Class Identificador Llave_A VARIABLESGF Llave_C 
+     Class Identificador Llave_A VARIABLESGF Llave_C | ERRORES_INIT 
 
 SENTENCIA ::=
     DECLARACION |

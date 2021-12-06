@@ -31,12 +31,11 @@ public class FeedIT extends javax.swing.JFrame {
     DefaultStyledDocument doc;
     Directorio dir;
     File archivo;
-    
+    TablaGramaticas tG = new TablaGramaticas();
     public static ArrayList<Errores> errores = new ArrayList<>();//Almacena todos los errores que se van recuperando de los analisis sintactico y semantico.
     public static ArrayList<Objetos> objetos = new ArrayList<Objetos>(); //Cada una de las variables que se van creando
-    
-    
-    /**
+    public static ArrayList Producciones = new ArrayList();
+        /**
      * Creates new form FeedIT
      */
     public FeedIT() {
@@ -86,7 +85,7 @@ public class FeedIT extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JToolBar.Separator();
         btn_Simbolos = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
-        btn_Gramaticas = new javax.swing.JButton();
+        btnGramaticas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
@@ -247,16 +246,16 @@ public class FeedIT extends javax.swing.JFrame {
         jToolBar_Informacion.add(btn_Simbolos);
         jToolBar_Informacion.add(jSeparator1);
 
-        btn_Gramaticas.setText("Gramáticas Generadas");
-        btn_Gramaticas.setFocusable(false);
-        btn_Gramaticas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btn_Gramaticas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btn_Gramaticas.addActionListener(new java.awt.event.ActionListener() {
+        btnGramaticas.setText("Gramáticas Generadas");
+        btnGramaticas.setFocusable(false);
+        btnGramaticas.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnGramaticas.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnGramaticas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_GramaticasActionPerformed(evt);
+                btnGramaticasActionPerformed(evt);
             }
         });
-        jToolBar_Informacion.add(btn_Gramaticas);
+        jToolBar_Informacion.add(btnGramaticas);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -311,10 +310,9 @@ public class FeedIT extends javax.swing.JFrame {
         ts.setVisible(true);
     }//GEN-LAST:event_btn_SimbolosActionPerformed
 
-    private void btn_GramaticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_GramaticasActionPerformed
-        TablaGramaticas tg = new TablaGramaticas();
-        tg.setVisible(true);
-    }//GEN-LAST:event_btn_GramaticasActionPerformed
+    private void btnGramaticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGramaticasActionPerformed
+        llenarGramaticas();
+    }//GEN-LAST:event_btnGramaticasActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
        clearAllComp();
@@ -487,15 +485,26 @@ public class FeedIT extends javax.swing.JFrame {
         errores.add(error);
     }
     
+    
+    public void llenarGramaticas(){
+        String g = "";
+        for(int i = 0; i < Producciones.size(); i++){
+            g += Producciones.get(i).toString() + "\n";
+        }//for
+        tG.setVisible(true);
+        tG.jtGramaticas.setText(g);
+        
+    }//llenarGramaticas
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
+    private javax.swing.JButton btnGramaticas;
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarComo;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btn_CodigoMedio;
     private javax.swing.JButton btn_CodigoObjeto;
     private javax.swing.JButton btn_Compilar;
-    private javax.swing.JButton btn_Gramaticas;
     private javax.swing.JButton btn_Lexico;
     private javax.swing.JButton btn_Salir;
     private javax.swing.JButton btn_Simbolos;
