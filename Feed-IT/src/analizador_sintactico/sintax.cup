@@ -57,12 +57,15 @@ terminal Humedad,Fagua,Peso,
 
 non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,
              FUNCION, FUNCIONES,FOR,WHILE,OPERACION,
-             ASIGNACION,SENTENCIABOOLEAN, PARAMETROS,TIPODATO,ENVIOPARAMETROS,EPSILON;
+             ASIGNACION,SENTENCIABOOLEAN, PARAMETROS,TIPODATO,ENVIOPARAMETROS,EPSILON,
+             ERRORES_INIT,ERRORES_DEC
+;
 
 start with INICIO;
 
 INICIO ::= Class Identificador  Llave_A DECLARACION  FUNCIONES  Llave_C | 
            Class Identificador  Llave_A DECLARACION  FUNCIONES  Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
+           ERRORES_INIT
 ;
 SENTENCIA ::= DECLARACION |
               IF    |
@@ -87,6 +90,7 @@ DECLARACION ::=
     Const  Identificador Asignacion Numero P_coma SENTENCIA |
     Const  Identificador Asignacion Texto P_coma  SENTENCIA |
     Const  Identificador Asignacion Flotante P_coma SENTENCIA |
+    ERRORES_DEC |
     EPSILON
 ;
 
@@ -188,18 +192,40 @@ FUNCION ::=
     Fpremio Parentesis_A  False Parentesis_C P_Coma SENTENCIA 
 ;
 
-EPSILON :: = 
+ARITMETICA:: = 
+ 
+    Identificador Suma ARITMETICA |
+    Numero Suma ARITMETICA |
+  
+    Identificador Resta ARITMETICA  |
+    Numero Resta ARITMETICA  |
+
+    Identificador Multiplicacion ARITMETICA  |
+    Numero Multiplicacion ARITMETICA  |
+    
+    Identificador Division ARITMETICA  |
+    Numero Division ARITMETICA  |
+   
+
+    Identificador Potencia ARITMETICA  |
+    Numero Potencia ARITMETICA  |
+   
+    Numero |
+    Identificador
 ;
 
+EPSILON :: = 
+;
+//uma,Resta,Multiplicacion,Division,Potencia
 /*--------------------------------------------Errores posibles-----------------------------------------------------------------*/
 
 ERRORES_INIT ::=
     Identificador Llave_A Llave_C   |   //Se esperaba la palabra Class
     Class Llave_A Llave_C           |   //Se esperaba un identificador
-    Class Llave_C                   |   //Se esperaba una llave de apertura
-    Class Llave_A                   |   //Se esperaba una llave de cierre
-
-
+    Class Identificador Llave_C     |   //Se esperaba una llave de apertura
+    Class Identificador Llave_A     |   //Se esperaba una llave de cierre
+    Class Identificador             |   //Se esperaba llaves de apertura y cierra
+;
 //----------------------------------
 ERRORES_DEC ::=
     Identificador P_Coma            |   //Se esperaba un tipo de dato
@@ -208,69 +234,37 @@ ERRORES_DEC ::=
 
 //Errores para tipo de dato Int
 
-    Int P_Coma                      |   //Se esperaba un identificador
-    Int P_Coma SENTENCIA            |   //Se esperaba un identificador
-    Int P_Coma SENTENCIABOOLEAN     |   //Se esperaba un identificador
+    TIPODATO P_Coma                      |   //Se esperaba un identificador
+    TIPODATO P_Coma SENTENCIA            |   //Se esperaba un identificador
+    TIPODATO P_Coma SENTENCIABOOLEAN     |   //Se esperaba un identificador
 
-    Int Identificador               |   //Se esperaba un delimitador[;]
-    Int Identificador SENTENCIA     |   //Se esperaba un delimitador[;]
-    Int Identificador SENTENCIABOOLEAN              |   //Se esperaba un delimitador[;]
+    TIPODATO Identificador               |   //Se esperaba un delimitador[;]
+    TIPODATO Identificador SENTENCIA     |   //Se esperaba un delimitador[;]
+    TIPODATO Identificador SENTENCIABOOLEAN              |   //Se esperaba un delimitador[;]
 
-    Int Asignacion Numero P_Coma                    |   //Se esperaba un identificador
-    Int Asignacion Numero P_Coma SENTENCIA          |   //Se esperaba un identificador
-    Int Asignacion Numero P_Coma SENTENCIABOOLEAN   |   //Se esperaba un identificador
+    TIPODATO Asignacion Numero P_Coma                    |   //Se esperaba un identificador
+    TIPODATO Asignacion Numero P_Coma SENTENCIA          |   //Se esperaba un identificador
+    TIPODATO Asignacion Numero P_Coma SENTENCIABOOLEAN   |   //Se esperaba un identificador
 
-    Int Numero P_Coma               |   //Se esperaba un Identificador 
-    Int Numero P_Coma SENTENCIA     |   //Se esperaba un Identificador 
-    Int Numero P_Coma SENTENCIABOOLEAN              |   //Se esperaba un Identificador 
+    TIPODATO Numero P_Coma               |   //Se esperaba un Identificador 
+    TIPODATO Numero P_Coma SENTENCIA     |   //Se esperaba un Identificador 
+    TIPODATO Numero P_Coma SENTENCIABOOLEAN              |   //Se esperaba un Identificador 
 
-    Int Asignacion P_Coma           |   //Se esperaba un Identificador
-    Int Asignacion P_Coma SENTENCIA |   //Se esperaba un identificador
-    Int Asignacion P_Coma SENTENCIABOOLEAN  |   //Se esperaba un identificador
+    TIPODATO Asignacion P_Coma           |   //Se esperaba un Identificador
+    TIPODATO Asignacion P_Coma SENTENCIA |   //Se esperaba un identificador
+    TIPODATO Asignacion P_Coma SENTENCIABOOLEAN  |   //Se esperaba un identificador
 
-    Int Identificador Numero P_Coma                     |   //Se esperaba un operador de asignación
-    Int Identificador Numero P_Coma SENTENCIA           |   //Se esperaba un operador de asignación
-    Int Identificador Numero P_Coma SENTENCIABOOLEAN    |   //Se esperaba un operador de asignación
+    TIPODATO Identificador Numero P_Coma                     |   //Se esperaba un operador de asignación
+    TIPODATO Identificador Numero P_Coma SENTENCIA           |   //Se esperaba un operador de asignación
+    TIPODATO Identificador Numero P_Coma SENTENCIABOOLEAN    |   //Se esperaba un operador de asignación
 
-    Int Identificador Asignacion P_Coma                     |   //Se esperaba un valor
-    Int Identificador Asignacion P_Coma SENTENCIA           |   //Se esperaba un valor
-    Int Identificador Asignacion P_Coma SENTENCIABOOLEAN    |   //Se esperaba un valor
-
-//Errores para tipo de dato Float
-
-    Float P_Coma                      |   //Se esperaba un identificador
-    Float P_Coma SENTENCIA            |   //Se esperaba un identificador
-    Float P_Coma SENTENCIABOOLEAN     |   //Se esperaba un identificador
-
-    Float Identificador               |   //Se esperaba un delimitador[;]
-    Float Identificador SENTENCIA     |   //Se esperaba un delimitador[;]
-    Float Identificador SENTENCIABOOLEAN              |   //Se esperaba un delimitador[;]
-
-    Float Asignacion Numero P_Coma                    |   //Se esperaba un identificador
-    Float Asignacion Numero P_Coma SENTENCIA          |   //Se esperaba un identificador
-    Float Asignacion Numero P_Coma SENTENCIABOOLEAN   |   //Se esperaba un identificador
-
-    Float Numero P_Coma               |   //Se esperaba un Identificador 
-    Float Numero P_Coma SENTENCIA     |   //Se esperaba un Identificador 
-    Float Numero P_Coma SENTENCIABOOLEAN              |   //Se esperaba un Identificador
-    Float Flotante P_Coma               |   //Se esperaba un Identificador 
-    Float Flotante P_Coma SENTENCIA     |   //Se esperaba un Identificador 
-    Float Flotante P_Coma SENTENCIABOOLEAN              |   //Se esperaba un Identificador 
-
-    Float Asignacion P_Coma           |   //Se esperaba un Identificador
-    Float Asignacion P_Coma SENTENCIA |   //Se esperaba un identificador
-    Float Asignacion P_Coma SENTENCIABOOLEAN  |   //Se esperaba un identificador
-
-    Float Identificador Numero P_Coma                     |   //Se esperaba un operador de asignación
-    Float Identificador Numero P_Coma SENTENCIA           |   //Se esperaba un operador de asignación
-    Float Identificador Numero P_Coma SENTENCIABOOLEAN    |   //Se esperaba un operador de asignación
-
-    Float Identificador Asignacion P_Coma                     |   //Se esperaba un valor
-    Float Identificador Asignacion P_Coma SENTENCIA           |   //Se esperaba un valor
-    Float Identificador Asignacion P_Coma SENTENCIABOOLEAN    |   //Se esperaba un valor
-
-
+    TIPODATO Identificador Asignacion P_Coma                     |   //Se esperaba un valor
+    TIPODATO Identificador Asignacion P_Coma SENTENCIA           |   //Se esperaba un valor
+    TIPODATO Identificador Asignacion P_Coma SENTENCIABOOLEAN    |   //Se esperaba un valor
     //Asignación de valores erroneos a un tipo de dato en especifico 
-    
-    Int Identificador Asignacion Texto P_Coma SENTENCIA     |   //No se puede asignar Texto a un Int
-    Int Identificador Asignacion Texto P_Coma SENTENCIABOOLEAN     |   //No se puede asignar Texto a un Int
+
+    ------------------------------------------ ERRORES SEMANTICOS-----------------------------------------------------------------------------------------------
+    Int Identificador Asignacion Texto P_Coma SENTENCIA     |         //No se puede asignar Texto a un Int
+    Int Identificador Asignacion Texto P_Coma SENTENCIABOOLEAN        //No se puede asignar Texto a un Int
+
+;

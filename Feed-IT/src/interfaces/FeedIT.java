@@ -152,7 +152,7 @@ public class FeedIT extends javax.swing.JFrame {
     }
         
     //---------------------------------------------------Metodos para pintar las palabras Reservadas-----------------------------------------------------------
-   
+  
     //Metodo para encontrar las ultimas cadenas
     private int findLastNonWordChar(String texto, int i){
         while(--i >= 0){
