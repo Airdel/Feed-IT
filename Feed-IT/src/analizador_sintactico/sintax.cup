@@ -67,7 +67,8 @@ INICIO ::= Class Identificador  Llave_A DECLARACION FUNCIONES  Llave_C |
            Class Identificador  Llave_A DECLARACION  FUNCIONES  Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
            ERRORES_INIT
 ;
-SENTENCIA ::= DECLARACION |
+SENTENCIA ::= 
+              DECLARACION |
               IF    |
               FOR|
               FUNCION|
@@ -227,11 +228,14 @@ ERRORES_INIT ::=
     Class Identificador Llave_A     |   //Se esperaba una llave de cierre
     Class Identificador             |   //Se esperaba llaves de apertura y cierra
 ;
+
 //----------------------------------
 ERRORES_DEC ::=
     Identificador P_Coma            |   //Se esperaba un tipo de dato
     Identificador SENTENCIA         |   //Se esperaba un tipo de dato
     Identificador SENTENCIABOOLEAN  |   //Se esperaba un tipo de dato
+
+
 
 //Errores para tipo de dato Int
 
@@ -264,7 +268,20 @@ ERRORES_DEC ::=
     TIPODATO Identificador Asignacion P_Coma SENTENCIABOOLEAN    |   //Se esperaba un valor
     //Asignación de valores erroneos a un tipo de dato en especifico 
 
-    ------------------------------------------ ERRORES SEMANTICOS-----------------------------------------------------------------------------------------------
+ // ------------------------------------------ ERRORES SEMANTICOS-----------------------------------------------------------------------------------------------
     Int Identificador Asignacion Texto P_Coma SENTENCIA     |         //No se puede asignar Texto a un Int
     Int Identificador Asignacion Texto P_Coma SENTENCIABOOLEAN        //No se puede asignar Texto a un Int
 ;
+
+//Errores en sentencia IF------------------------------------------------------------------------------------------------------------------------------------------------
+
+ERRORES_IF ::=
+    If SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                         |   //Se esperaba el parentesis de inicio
+    If Parentesis_A SENTENCIABOOLEAN Llave_A SENTENCIA Llave_C SENTENCIA                         |   //Se esperaba el parentesis de cierre
+    If Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                            |   //Se esperaba una condición
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C SENTENCIA Llave_C SENTENCIA                    |   //Se esperaba la Llave de apertura
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C  SENTENCIA Llave_C SENTENCIA                   |   //Se esperaba una Llave de cierre
+
+//Errores en sentencia IF ELSE------------------------------------------------------------------------------------------------------------------------------------------------
+
+    
