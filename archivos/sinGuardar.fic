@@ -1,1 +1,9 @@
-int a;
+class Hola{
+  
+  fun main(){
+    int a;
+    fcomer( true);
+    time(312);    
+    int a;
+  }
+}

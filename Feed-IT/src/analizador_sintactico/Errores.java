@@ -2,23 +2,23 @@
 //Constructores para la gestión de Errores Sintácticos.
 package analizador_sintactico;
 
-public class C_Errores {
+public class Errores {
 
     public String Descripcion;
     public int linea;
     public int columna;
 
-    public C_Errores(String Descripcion){
+    public Errores(String Descripcion){
         this.Descripcion = Descripcion;
     }
     
-    public C_Errores(String Descripcion, int linea,int columna) {
+    public Errores(String Descripcion, int linea,int columna) {
         this.Descripcion = Descripcion;
         this.linea = linea;
         this.columna = columna;
     }
 
-    public C_Errores() {
+    public Errores() {
         this.Descripcion = "";
         this.linea = 0;
         this.columna = 0;

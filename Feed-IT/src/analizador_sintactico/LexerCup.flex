@@ -58,8 +58,7 @@ time {return new Symbol(sym.Time, yychar, yyline, yytext());}
 {SPACE} {/*Ignore*/}
 "#".* {/*Ignore*/}
 "/#"~"#/" {/*Ignore*/}
-//---------------------------------------------
-
+"\n" {/*Ignore*/}
 "=" {return new Symbol(sym.Asignacion, yychar, yyline, yytext());}
 "+" {return new Symbol(sym.Suma, yychar, yyline, yytext());}
 "++" {return new Symbol(sym.Inc, yychar, yyline, yytext());}
@@ -70,16 +69,15 @@ time {return new Symbol(sym.Time, yychar, yyline, yytext());}
 "**" {return new Symbol(sym.Potencia, yychar, yyline, yytext());}
 "%" {return new Symbol(sym.Modulo, yychar, yyline, yytext());}
 // Operadores Relacionales
-(">"| "<" | ">=" | "<=", "==", "!="){return new Symbol(sym.OpR, yychar, yyline, yytext());}
+(">" | "<" | ">=" | "<=" | "==" | "!=" ) {return new Symbol(sym.OpR, yychar, yyline, yytext());}
 "(" {return new Symbol(sym.Parentesis_A, yychar, yyline, yytext());}
 ")" {return new Symbol(sym.Parentesis_C, yychar, yyline, yytext());}
 "{" {return new Symbol(sym.Llave_A, yychar, yyline, yytext());}
 "}" {return new Symbol(sym.Llave_C, yychar, yyline, yytext());}
-"\n" {return new Symbol(sym.Salto_Linea,  yychar, yyline, yytext());}
 ";" {return new Symbol(sym.P_coma,  yychar, yyline, yytext());}
 "," {return new Symbol(sym.Coma,  yychar, yyline, yytext());}
 {L}({L} | {D})* {return new Symbol(sym.Identificador, yychar, yyline, yytext());}
 ("-"{D}+) | {D}+ {return new Symbol(sym.Numero,  yychar, yyline, yytext());}
 [-+]?[0-9]*[.][0-9]+ {return new Symbol(sym.Flotante,  yychar, yyline, yytext());}
-("\""({CADENA}|{SPACE})* "\""){return new Symbol(sym.Texto,  yychar, yyline, yytext());}
+"\"".*"\"" {return new Symbol(sym.Texto,  yychar, yyline, yytext());}
 . {return new Symbol(sym.ERROR,  yychar, yyline, yytext());}

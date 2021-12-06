@@ -5,9 +5,13 @@
  */
 package interfaces;
 import analizador_lexico.AnalizadorLexico;
+import analizador_sintactico.AnalizadorSintactico;
+import analizador_sintactico.Errores;
+import analizador_sintactico.Objetos;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.util.ArrayList;
 import static javax.swing.JOptionPane.showMessageDialog;
 import javax.swing.JTextPane;
 import javax.swing.text.AttributeSet;
@@ -27,6 +31,9 @@ public class FeedIT extends javax.swing.JFrame {
     DefaultStyledDocument doc;
     Directorio dir;
     File archivo;
+    
+    public static ArrayList<Errores> errores = new ArrayList<>();//Almacena todos los errores que se van recuperando de los analisis sintactico y semantico.
+    public static ArrayList<Objetos> objetos = new ArrayList<Objetos>(); //Cada una de las variables que se van creando
     
     
     /**
@@ -121,6 +128,11 @@ public class FeedIT extends javax.swing.JFrame {
 
         btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sintactico.png"))); // NOI18N
         btn_Sintactico.setContentAreaFilled(false);
+        btn_Sintactico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_SintacticoActionPerformed(evt);
+            }
+        });
 
         btn_Lexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lexico.png"))); // NOI18N
         btn_Lexico.setContentAreaFilled(false);
@@ -337,6 +349,10 @@ public class FeedIT extends javax.swing.JFrame {
         txtLog.setText(r);
     }//GEN-LAST:event_btn_LexicoActionPerformed
 
+    private void btn_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SintacticoActionPerformed
+       txtLog.setText(new AnalizadorSintactico().sintactico(jtpCode.getText()));
+    }//GEN-LAST:event_btn_SintacticoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -467,7 +483,9 @@ public class FeedIT extends javax.swing.JFrame {
         txtLog.setText("");
     }
     
-    
+    public static void notificar(Errores error) {
+        errores.add(error);
+    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
