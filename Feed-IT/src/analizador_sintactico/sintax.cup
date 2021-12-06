@@ -47,30 +47,12 @@ non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIA
 
 start with INICIO;
           
-<<<<<<< HEAD
 INICIO ::= 
      Class Identificador Llave_A Llave_C | Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C |
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  |
      Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C | 
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C |
      Class Identificador Llave_A VARIABLESGF Llave_C 
-     
-=======
-INICIO ::= Class Identificador  Llave_A DECLARACION FUNCIONES  Llave_C | 
-           Class Identificador  Llave_A DECLARACION  FUNCIONES  Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
-           ERRORES_INIT
-;
-SENTENCIA ::= 
-              DECLARACION |
-              IF    |
-              FOR|
-              FUNCION|
-              WHILE |
-              ASIGNACION |
-              OPERACION |
-              EPSILON
->>>>>>> f83e963739ce5dc369f58885ed5c489d6e724f38
-;
 
 SENTENCIA ::=
     DECLARACION |
@@ -170,21 +152,14 @@ FOR ::=
 
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   SENTENCIA  Llave_C SENTENCIA |
-<<<<<<< HEAD
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   SENTENCIA  Llave_C  |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   Llave_C  |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   Llave_C  SENTENCIA |
-=======
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador P_coma  Identificador Dec Parentesis_C 
-    Llave_A   SENTENCIA  Llave_C SENTENCIA
-     
-;
-
->>>>>>> f83e963739ce5dc369f58885ed5c489d6e724f38
-
+    Llave_A   SENTENCIA  Llave_C SENTENCIA |
      For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador  P_coma  Identificador Dec Parentesis_C 
     Llave_A   SENTENCIA  Llave_C SENTENCIA |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador  P_coma  Identificador Dec Parentesis_C 
@@ -342,8 +317,6 @@ ACCIONES ::=
 
 ;
 
-
-<<<<<<< HEAD
 ASIGNACION ::=
     Identificador Asignacion Numero  P_coma SENTENCIA |
     Identificador Asignacion Texto P_coma SENTENCIA |
@@ -358,7 +331,8 @@ ASIGNACION ::=
     Identificador Asignacion False  P_coma  |
     Identificador Asignacion Identificador  P_coma
 ;
-=======
+
+
 ERRORES_INIT ::=
     Identificador Llave_A Llave_C   |   //Se esperaba la palabra Class
     Class Llave_A Llave_C           |   //Se esperaba un identificador
