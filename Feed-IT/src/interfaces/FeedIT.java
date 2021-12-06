@@ -57,8 +57,8 @@ public class FeedIT extends javax.swing.JFrame {
         jtpCode = new javax.swing.JTextPane();
         jScrollPane2 = new javax.swing.JScrollPane();
         txtLog = new javax.swing.JTextArea();
-        jLabel1 = new javax.swing.JLabel();
         jPanel_Funciones = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btn_Sintactico = new javax.swing.JButton();
         btn_Lexico = new javax.swing.JButton();
@@ -68,6 +68,7 @@ public class FeedIT extends javax.swing.JFrame {
         btn_Salir = new javax.swing.JButton();
         btnNuevo = new javax.swing.JButton();
         btnAbrir = new javax.swing.JButton();
+        btnGuardarComo = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jToolBar_Informacion = new javax.swing.JToolBar();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -80,6 +81,7 @@ public class FeedIT extends javax.swing.JFrame {
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jtpCode.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jtpCode.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -89,68 +91,71 @@ public class FeedIT extends javax.swing.JFrame {
         });
         scrollCode.setViewportView(jtpCode);
 
+        jPanel1.add(scrollCode, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 1210, 400));
+
         txtLog.setColumns(20);
         txtLog.setRows(5);
         jScrollPane2.setViewportView(txtLog);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(scrollCode, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 1238, Short.MAX_VALUE))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(scrollCode, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 174, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 425, 1210, 174));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 90, 1250, 600));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 60, 1230, 630));
 
+        jPanel_Funciones.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/icon.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 50));
 
-        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/guardar_claro.png"))); // NOI18N
+        btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Guardar.png"))); // NOI18N
+        btnGuardar.setContentAreaFilled(false);
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnGuardarActionPerformed(evt);
             }
         });
 
-        btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/analisis_sintactico.png"))); // NOI18N
+        btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sintactico.png"))); // NOI18N
+        btn_Sintactico.setContentAreaFilled(false);
 
-        btn_Lexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/analisis_lexico.png"))); // NOI18N
+        btn_Lexico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/lexico.png"))); // NOI18N
+        btn_Lexico.setContentAreaFilled(false);
 
-        btn_CodigoMedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/codigo_medio.png"))); // NOI18N
+        btn_CodigoMedio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/intermdialcode.png"))); // NOI18N
+        btn_CodigoMedio.setContentAreaFilled(false);
 
-        btn_CodigoObjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/codigo_objeto.png"))); // NOI18N
+        btn_CodigoObjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/object.png"))); // NOI18N
+        btn_CodigoObjeto.setContentAreaFilled(false);
 
-        btn_Compilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/compilar_claro.png"))); // NOI18N
+        btn_Compilar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/compilar.png"))); // NOI18N
+        btn_Compilar.setContentAreaFilled(false);
 
         btn_Salir.setBackground(new java.awt.Color(255, 51, 51));
         btn_Salir.setForeground(new java.awt.Color(255, 51, 51));
         btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.png"))); // NOI18N
 
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newfile.png"))); // NOI18N
+        btnNuevo.setContentAreaFilled(false);
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNuevoActionPerformed(evt);
             }
         });
 
+        btnAbrir.setBackground(new java.awt.Color(255, 255, 255));
         btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/openfile.png"))); // NOI18N
+        btnAbrir.setContentAreaFilled(false);
         btnAbrir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAbrirActionPerformed(evt);
+            }
+        });
+
+        btnGuardarComo.setBackground(new java.awt.Color(255, 255, 255));
+        btnGuardarComo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/GuardarComo.png"))); // NOI18N
+        btnGuardarComo.setContentAreaFilled(false);
+        btnGuardarComo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarComoActionPerformed(evt);
             }
         });
 
@@ -159,48 +164,52 @@ public class FeedIT extends javax.swing.JFrame {
         jPanel_FuncionesLayout.setHorizontalGroup(
             jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(23, 23, 23))
-            .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(17, 17, 17)
+                .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 17, Short.MAX_VALUE))
         );
         jPanel_FuncionesLayout.setVerticalGroup(
             jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27)
                 .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(9, 9, 9)
+                .addComponent(btnGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
                 .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(10, 10, 10)
                 .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(32, 32, 32)
+                .addGap(10, 10, 10)
                 .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32))
         );
 
-        getContentPane().add(jPanel_Funciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 60, 640));
+        getContentPane().add(jPanel_Funciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 80, 690));
 
+        jToolBar_Informacion.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar_Informacion.setRollover(true);
         jToolBar_Informacion.add(jSeparator2);
 
@@ -231,7 +240,9 @@ public class FeedIT extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1250, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jToolBar_Informacion, javax.swing.GroupLayout.DEFAULT_SIZE, 1240, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,6 +311,12 @@ public class FeedIT extends javax.swing.JFrame {
         dir.Guardar(this);
         clearAllComp();
     }//GEN-LAST:event_btnGuardarActionPerformed
+
+    private void btnGuardarComoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarComoActionPerformed
+       clearAllComp();
+       dir.guardarC(this);
+       clearAllComp();
+    }//GEN-LAST:event_btnGuardarComoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -435,6 +452,7 @@ public class FeedIT extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnGuardarComo;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btn_CodigoMedio;
     private javax.swing.JButton btn_CodigoObjeto;
