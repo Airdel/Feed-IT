@@ -53,7 +53,7 @@ terminal If,Else,
 //Palabras reservadas
 terminal Humedad,Fagua,Peso,
                 Fcomer,Fpremio,Fmasaje,
-                Fluz,Fjuguete,Candil;
+                Fluz,Fjuguete,Candil,Time;
 
 non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,
              FUNCION, FUNCIONES,FOR,WHILE,OPERACION,
@@ -62,8 +62,8 @@ non terminal INICIO, SENTENCIA, DECLARACIÓN, IF,
 ;
 
 start with INICIO;
-
-INICIO ::= Class Identificador  Llave_A DECLARACION  FUNCIONES  Llave_C | 
+          
+INICIO ::= Class Identificador  Llave_A DECLARACION FUNCIONES  Llave_C | 
            Class Identificador  Llave_A DECLARACION  FUNCIONES  Fun Main Parentesis_A Parentesis_C  Llave_A  SENTENCIA Llave_C Llave_C |
            ERRORES_INIT
 ;
@@ -189,9 +189,9 @@ FUNCION ::=
     Fmasaje Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
     Fmasaje Parentesis_A  False Parentesis_C P_Coma SENTENCIA | 
     Fpremio Parentesis_A  True Parentesis_C P_Coma SENTENCIA |
-    Fpremio Parentesis_A  False Parentesis_C P_Coma SENTENCIA 
+    Fpremio Parentesis_A  False Parentesis_C P_Coma SENTENCIA |
+    Time Parentesis_A Numero Parentesis_C P_Coma SENTENCIA
 ;
-
 ARITMETICA:: = 
  
     Identificador Suma ARITMETICA |
@@ -213,10 +213,11 @@ ARITMETICA:: =
     Numero |
     Identificador
 ;
-
+ 
 EPSILON :: = 
 ;
-//uma,Resta,Multiplicacion,Division,Potencia
+
+
 /*--------------------------------------------Errores posibles-----------------------------------------------------------------*/
 
 ERRORES_INIT ::=
@@ -266,5 +267,4 @@ ERRORES_DEC ::=
     ------------------------------------------ ERRORES SEMANTICOS-----------------------------------------------------------------------------------------------
     Int Identificador Asignacion Texto P_Coma SENTENCIA     |         //No se puede asignar Texto a un Int
     Int Identificador Asignacion Texto P_Coma SENTENCIABOOLEAN        //No se puede asignar Texto a un Int
-
 ;

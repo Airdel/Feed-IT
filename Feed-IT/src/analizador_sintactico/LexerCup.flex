@@ -54,6 +54,7 @@ not {return new Symbol(sym.Not, yychar, yyline, yytext());}
 true {return new Symbol(sym.True, yychar, yyline, yytext());}
 false {return new Symbol(sym.False, yychar, yyline, yytext());}
 while {return new Symbol(sym.While, yychar, yyline, yytext());}
+time {return new Symbol(sym.Time, yychar, yyline, yytext());}
 {SPACE} {/*Ignore*/}
 "#".* {/*Ignore*/}
 "/#"~"#/" {/*Ignore*/}

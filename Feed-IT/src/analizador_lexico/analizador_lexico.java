@@ -67,7 +67,8 @@ public class analizador_lexico {
                    case  Not:
                    case  True:
                    case  False:
-                   case  While:
+                   case  While: 
+                   case Time:    
                        r += lexer.lexeme + " Palabra reservada FeedIt: " + tokens + "\n";
                        break;
                    case Identificador:

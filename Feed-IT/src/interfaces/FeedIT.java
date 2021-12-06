@@ -303,7 +303,7 @@ public class FeedIT extends javax.swing.JFrame {
                      if(wordR == after || String.valueOf(text.charAt(wordR)).matches("[\\s;=(){}]")){
                          if(text.substring(wordL,wordR).matches("[\\s]*(class|fun|main|int|float|string|double|null|boolean|"
                                  + "humedad|fagua|peso|fcomer|fpremio|fmasaje|fluz|fjuguete|candil|when|if|else|true|false|"
-                                 + "for|forEach|do|const|goBack|loop|and|or|not|while)")){
+                                 + "for|forEach|do|const|goBack|loop|and|or|not|while|time)")){
                              setCharacterAttributes(wordL,wordR - wordL,  attAzul,false);
                          }//second if
                          else if(text.substring(wordL,wordR).matches("[\\s=(]*(\"\\w*\")")){

@@ -46,6 +46,7 @@ not {lexeme = yytext(); return Not;}
 true {lexeme = yytext(); return True;}
 false {lexeme = yytext(); return False;}
 while {lexeme = yytext(); return While;}
+time {lexeme = yytext(); return Time;}
 {SPACE} {/*Ignore*/}
 "#".* {/*Ignore*/}
 "/#"~"#/" {/*Ignore*/}

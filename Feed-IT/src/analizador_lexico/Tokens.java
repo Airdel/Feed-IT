@@ -68,5 +68,6 @@ public enum Tokens {
     Numero,
     Flotante,
     Main,
+    Time,
     ERROR
 }//Fin de lista de Tokens
