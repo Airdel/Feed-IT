@@ -23,6 +23,7 @@ public class FeedIT extends javax.swing.JFrame {
     //DEclaracion de variables globales
     NumeroLinea numerolinea;
     DefaultStyledDocument doc;
+    Directorio dir;
     /**
      * Creates new form FeedIT
      */
@@ -32,8 +33,11 @@ public class FeedIT extends javax.swing.JFrame {
     }   
     // Metodo para iniciar los componentes
     private void iniciarComponentes(){
-        setTitle("Feed-IT");
+        dir = new Directorio();
+        setTitle("[#FeedIT]");
         setLocationRelativeTo(null);
+        String [] options = new String[] {"Guardar y Continuar","Descargar"};
+        
         //Se agregan las Lineas
         numerolinea = new NumeroLinea(jtpCode);
         scrollCode.setRowHeaderView(numerolinea);
@@ -62,6 +66,8 @@ public class FeedIT extends javax.swing.JFrame {
         btn_CodigoObjeto = new javax.swing.JButton();
         btn_Compilar = new javax.swing.JButton();
         btn_Salir = new javax.swing.JButton();
+        btnNuevo = new javax.swing.JButton();
+        btnAbrir = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jToolBar_Informacion = new javax.swing.JToolBar();
         jSeparator2 = new javax.swing.JToolBar.Separator();
@@ -114,6 +120,11 @@ public class FeedIT extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 40, 50));
 
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/guardar_claro.png"))); // NOI18N
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/iconos_claro/analisis_sintactico.png"))); // NOI18N
 
@@ -128,6 +139,20 @@ public class FeedIT extends javax.swing.JFrame {
         btn_Salir.setBackground(new java.awt.Color(255, 51, 51));
         btn_Salir.setForeground(new java.awt.Color(255, 51, 51));
         btn_Salir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/salir1.png"))); // NOI18N
+
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/newfile.png"))); // NOI18N
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
+
+        btnAbrir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/openfile.png"))); // NOI18N
+        btnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel_FuncionesLayout = new javax.swing.GroupLayout(jPanel_Funciones);
         jPanel_Funciones.setLayout(jPanel_FuncionesLayout);
@@ -145,25 +170,31 @@ public class FeedIT extends javax.swing.JFrame {
                     .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel_FuncionesLayout.setVerticalGroup(
             jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
-                .addGap(5, 5, 5)
+                .addGap(37, 37, 37)
+                .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addComponent(btnGuardar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(104, 104, 104)
-                .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
+                .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
                 .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addGap(35, 35, 35)
                 .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -251,6 +282,24 @@ public class FeedIT extends javax.swing.JFrame {
         TablaGramaticas tg = new TablaGramaticas();
         tg.setVisible(true);
     }//GEN-LAST:event_btn_GramaticasActionPerformed
+
+    private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
+       clearAllComp();
+       dir.Nuevo(this);
+       clearAllComp();
+    }//GEN-LAST:event_btnNuevoActionPerformed
+
+    private void btnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirActionPerformed
+       clearAllComp();
+       dir.Abrir(this);
+       clearAllComp();
+    }//GEN-LAST:event_btnAbrirActionPerformed
+
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+        clearAllComp();
+        dir.Guardar(this);
+        clearAllComp();
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -377,8 +426,16 @@ public class FeedIT extends javax.swing.JFrame {
     }//end colors
     
     
+    //Metodo para limpiar 
+    public void clearAllComp(){
+        txtLog.setText("");
+    }
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrir;
     private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btn_CodigoMedio;
     private javax.swing.JButton btn_CodigoObjeto;
     private javax.swing.JButton btn_Compilar;
@@ -395,8 +452,8 @@ public class FeedIT extends javax.swing.JFrame {
     private javax.swing.JToolBar.Separator jSeparator1;
     private javax.swing.JToolBar.Separator jSeparator2;
     private javax.swing.JToolBar jToolBar_Informacion;
-    private javax.swing.JTextPane jtpCode;
+    public javax.swing.JTextPane jtpCode;
     private javax.swing.JScrollPane scrollCode;
-    private javax.swing.JTextArea txtLog;
+    public javax.swing.JTextArea txtLog;
     // End of variables declaration//GEN-END:variables
 }
