@@ -128,7 +128,8 @@ FOR:: =
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   SENTENCIA  Llave_C SENTENCIA |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador P_coma  Identificador Dec Parentesis_C 
-    Llave_A   SENTENCIA  Llave_C SENTENCIA 
+    Llave_A   SENTENCIA  Llave_C SENTENCIA
+     
 ;
 
 
@@ -276,12 +277,44 @@ ERRORES_DEC ::=
 //Errores en sentencia IF------------------------------------------------------------------------------------------------------------------------------------------------
 
 ERRORES_IF ::=
-    If SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                         |   //Se esperaba el parentesis de inicio
-    If Parentesis_A SENTENCIABOOLEAN Llave_A SENTENCIA Llave_C SENTENCIA                         |   //Se esperaba el parentesis de cierre
-    If Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                            |   //Se esperaba una condición
-    If Parentesis_A SENTENCIABOOLEAN Parentesis_C SENTENCIA Llave_C SENTENCIA                    |   //Se esperaba la Llave de apertura
-    If Parentesis_A SENTENCIABOOLEAN Parentesis_C  SENTENCIA Llave_C SENTENCIA                   |   //Se esperaba una Llave de cierre
+    If SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                          |   //Se esperaba el parentesis de inicio del If
+    If Parentesis_A SENTENCIABOOLEAN Llave_A SENTENCIA Llave_C SENTENCIA                         |   //Se esperaba el parentesis de cierre del If
+    If Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                            |   //Se esperaba una condición del If
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C SENTENCIA Llave_C SENTENCIA                    |   //Se esperaba la Llave de apertura del If
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C  SENTENCIA Llave_C SENTENCIA                   |   //Se esperaba una Llave de cierre del If
 
 //Errores en sentencia IF ELSE------------------------------------------------------------------------------------------------------------------------------------------------
+    If SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA                     |   //Se esperaba el parentesis de inicio del If
+    If Parentesis_A SENTENCIABOOLEAN Llave_A SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA                     |   //Se esperaba el parentesis de cierre del If
+    If Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA                        |   //Se esperaba una condición del If
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA                |   //Se esperaba la Llave de apertura del If
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C  SENTENCIA Llave_C Else Llave_A SENTENCIA Llave_C SENTENCIA               |   //Se esperaba una Llave de cierre del If
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C  Else SENTENCIA Llave_C SENTENCIA               |   //Se esperaba la llave de inicio en la sentencia else
+    If Parentesis_A SENTENCIABOOLEAN Parentesis_C Llave_A SENTENCIA Llave_C  Else Llave_A SENTENCIA  SENTENCIA              |   //Se esperaba la llave de cierre en la sentencia else
+;
 
+//Errores en sentencia FOR------------------------------------------------------------------------------------------------------------------------------------------------
+ERRORES_FOR ::=
+    //Sentencia correcta
+  //For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA    
+    // For ( Int i = 1 ; i > 2 ; i ++){ sentencia } sentencia
+
+    For Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                |   //Se esperaba un parentesis de apertura
+    For Parentesis_A Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA       |   //Se esperaba un tipo de dato(Int)
+    For Parentesis_A Int Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                 |   //Se esperaba un identificador
+    For Parentesis_A Int Identificador Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA              |   //Se esperaba una asignación 
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma Identificador Inc Llave_A SENTENCIA Llave_C SENTENCIA                 |   //Se esperaba un parentesis de cierre
+    For Parentesis_A Int Identificador Asignacion P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA          |   //Se esperaba un valor numerico
+    For Parentesis_A Int Identificador Asignacion Numero Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA          |   //Se esperaba un Punto y coma
+    For Parentesis_A Int Identificador Asignacion Numero P_coma OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                 |   //Se esperaba un Identificador
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA       |   //Se esperaba un operador relacional
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR P_coma Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA           |   //Se esperaba un valor
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA           |   //Se esperaba un Punto y coma
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA                  |   //Se esperaba un Identificador
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA       |   //Se esperaba un operador de incremento
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Llave_A SENTENCIA Llave_C SENTENCIA                |   //Se esperaba un parentesis de cierre
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C SENTENCIA Llave_C SENTENCIA           |   //Se esperaba una llave de apertura
+    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA SENTENCIA           |   //Se esperaba una llave de cierre
+  //For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Inc Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA  
     
+
