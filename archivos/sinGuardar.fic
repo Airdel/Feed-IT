@@ -22,10 +22,9 @@ class ejemploAgua{
       fagua(false);  
     }
     
- }#normalDay
+ } #normalDay
 
   fun main(){
-       normalDay();    
+       normalDay();  
   } #main
 } #class
-

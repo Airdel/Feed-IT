@@ -2,18 +2,48 @@ package analizador_sintactico;
 
 import interfaces.FeedIT;
 import java_cup.runtime.Symbol;
+import analizador_sintactico.Errores;
+import analizador_sintactico.Objetos;
+import java.util.Stack;
 
 parser code
 {:    
     private Symbol s;        
 
     public void syntax_error(Symbol s){
-        this.s = s;
+        //this.s = s;
+
+        Errores e = new Errores("Error sintactico en la linea "+(s.right+1)+"\n\tSintaxis invalida [ " + s.value + " ]");
+        FeedIT.notificar(e);
+        
     }
+
+    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
+        Errores e = new Errores("Error sintactico no recuperable en la Linea " + (s.right+1) + "\n\tSintaxis invalida [ " + s.value +" ]");
+        FeedIT.notificar(e);
+        
+    }
+
+    public void report_error(String message, Object info){ }    
+    public void report_fatal_error(String message, Object info){ }
 
     public Symbol getS(){        
         return this.s;
     }
+:};
+
+action code
+{:   
+    String codObjeto = "";
+    Stack pilaInicio = new Stack();       
+    Stack pilaSent = new Stack();       
+    Stack pilaFin = new Stack();      
+    int i = 1, sentAux;
+    String incAux;
+
+    boolean statusDec, statusTipo, statusOp;
+    String auxObj = "";
+    String auxRec = "";
 :};
 
 //Estructurales
@@ -43,37 +73,66 @@ terminal Humedad,Fagua,Peso,
                 Fluz,Fjuguete,Candil,Time;
 
 non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,BOOLEAN,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES,ASIGNAG,ASIGNACION, LOGICAS,
-        CREAFUN, LLAMARFUN
+        CREAFUN, LLAMARFUN, SENTENCIACLASE, ERRORINICIO, ERRORDECLARACION
 ;
 
 start with INICIO;
-          
-INICIO ::= 
-    Class Identificador Llave_A Llave_C | Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C |
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  |
-    Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C | 
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C |
-    Class Identificador Llave_A VARIABLESGF Llave_C  | 
-    Class Identificador Llave_A CREAFUN  Llave_C 
 
+INICIO ::=
+    SENTENCIACLASE | ERRORINICIO
+;
+
+SENTENCIACLASE ::= 
+    Class:td Identificador:id Llave_A Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tClass Identificador Llave_A Llave_C");
+        Objetos o = new Objetos(id,td,idright,idleft);
+        System.out.println("Objeto creado");
+        FeedIT.objetos.add(o);
+        System.out.println("Objeto agregado");
+    :}| Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tFun Main Parentesis_A Parentesis_C Llave_A Llave_C");
+    :}|
+    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tClass Identificador Llave_A Fun Main Parentesis_A Parentesis_C Llave_A Llave_C Llave_C");
+    :}|
+    Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tFun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C");
+    :}| 
+    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tClass Identificador Llave_A Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C Llave_C");
+    :}|
+    Class Identificador Llave_A VARIABLESGF Llave_C  :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tClass Identificador Llave_A VARIABLESGF Llave_C");
+    :}| 
+    Class Identificador Llave_A CREAFUN  Llave_C :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tClass Identificador Llave_A CREAFUN Llave_C");
+    :}
 ;
 
 SENTENCIA ::=
     DECLARACION |
+    ERRORDECLARACION |
     IF  |
     FOR |
     WHILE |
     ACCIONES|
     ASIGNACION |
+    ERRORASIGNACION |
     LLAMARFUN
 ;
 
 DECLARACION ::=
-    Int Identificador P_coma SENTENCIA     |
+    Int Identificador P_coma SENTENCIA :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tInt Identificador P_coma SENTENCIA");
+        System.out.println("Producción añadida: \n\tInt Identificador P_coma SENTENCIA");
+    :}     |
     Float Identificador P_coma SENTENCIA   |
     String Identificador P_coma SENTENCIA  |
     Boolean Identificador P_coma SENTENCIA |
-    Int Identificador P_coma     |
+    Int Identificador P_coma :s{:
+        FeedIT.Producciones.add("Gramática Correcta:\n\tInt Identificador P_coma");
+        System.out.println("Producción añadida: \n\tInt Identificador P_coma");
+    :}     |
     Float Identificador P_coma   |
     String Identificador P_coma  |
     Boolean Identificador P_coma |
@@ -274,4 +333,254 @@ CREAFUN ::=
 LLAMARFUN ::=
     Identificador Parentesis_A Parentesis_C P_coma SENTENCIA |
     Identificador Parentesis_A Parentesis_C P_coma 
+;
+
+ERRORINICIO ::=
+    Identificador Llave_A Llave_C {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Llave_A Llave_C");
+        Errores e = new Errores("Error sintactico, Se esperaba [class]");
+        FeedIT.errores.add(e);
+    :}  |   //Se esperaba Class
+    Class Llave_A Llave_C {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tClass Llave_A Llave_C");
+        Errores e = new Errores("Error sintactico, Se esperaba [Identificador]");
+        FeedIT.errores.add(e);
+    :}             |   //Se esperaba un Identificador
+    Class Identificador Llave_A {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tClass Identificador Llave_A");
+        Errores e = new Errores("Error sintactico, Se esperaba una llave de cierre");
+        FeedIT.errores.add(e);
+    :}       |   //Se esperaba un Llave_C
+    Class Identificador Llave_C {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tClass Identificador Llave_C");
+        Errores e = new Errores("Error sintactico, Se esperaba una llave de Apertura");
+        FeedIT.errores.add(e);
+    :}       |   //Se esperaba un Llave_A
+    Class Identificador  {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tClass Identificador");
+        Errores e = new Errores("Error sintactico, Se esperaba una llave de Apertura");
+        FeedIT.errores.add(e);
+    :}                       //Se esperaba una Llave_A
+;
+
+ERRORDECLARACION ::=
+    Int P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tInt P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :} |    //Se esperaba un identificador
+    Int Identificador SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :} |    //Se esperaba un [;]
+    Identificador P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un tipo de dato");
+        FeedIT.errores.add(e);
+    :} | //Se esperaba un tipo de dato
+    Int P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tInt P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :} |    //Se esperaba un identificador
+    Int Identificador {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}    //Se esperaba un [;]
+;
+
+ERRORASIGNACION ::=
+    Asignacion Peso Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Peso Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Peso Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_A  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_A Parentesis_C  SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}  |
+
+//----------------------------------------------------------------------------------------------------------------------
+
+Asignacion Peso Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Peso Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Peso Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_A  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Peso Parentesis_A Parentesis_C  {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Peso Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+Asignacion Humedad Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Humedad Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Humedad Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_A  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_A Parentesis_C  SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}
+
+    Asignacion Humedad Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Humedad Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Humedad Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_A  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Humedad Parentesis_A Parentesis_C  {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Humedad Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}
+
+//----------------------------------------------------------------------------------------------------------------------
+
+Asignacion Candil Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Candil Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Candil Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_C  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_A  P_coma SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_A Parentesis_C  SENTENCIA {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}
+
+    Asignacion Candil Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un identificador");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un identificador
+    Identificador Candil Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tIdentificador Candil Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Operador de asignación[=]");
+        FeedIT.errores.add(e);
+    :}  |    //Se esperaba un [=]
+    Identificador Asignacion Parentesis_A Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Parentesis_A Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Valor u funcion reservada");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_C  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_C P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Apertura");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_A  P_coma {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A P_coma SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un Parentesis de Cierre");
+        FeedIT.errores.add(e);
+    :}  |
+        Identificador Asignacion Candil Parentesis_A Parentesis_C  {:
+        FeedIT.Producciones.add("Gramática invalida:\n\tAsignacion Candil Parentesis_A Parentesis_C SENTENCIA");
+        Errores e = new Errores("Error sintactico, Se esperaba un [;]");
+        FeedIT.errores.add(e);
+    :}
 ;
