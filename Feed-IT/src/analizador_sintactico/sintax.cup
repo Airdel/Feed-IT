@@ -42,8 +42,12 @@ terminal Humedad,Fagua,Peso,
                 Fcomer,Fpremio,Fmasaje,
                 Fluz,Fjuguete,Candil,Time;
 
+<<<<<<< HEAD
 non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,BOOLEAN,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES,ASIGNAG,ASIGNACION, LOGICAS,
         CREAFUN, LLAMARFUN
+=======
+non terminal INICIO, SENTENCIA, DECLARACION,ASIGNACION,BOOLEAN,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 
 start with INICIO;
@@ -62,10 +66,16 @@ SENTENCIA ::=
     DECLARACION |
     IF  |
     FOR |
+<<<<<<< HEAD
     WHILE |
     ACCIONES|
     ASIGNACION |
     LLAMARFUN
+=======
+    WHILE    |
+    ACCIONES |
+    ASIGNACION
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 
 DECLARACION ::=
@@ -77,30 +87,50 @@ DECLARACION ::=
     Float Identificador P_coma   |
     String Identificador P_coma  |
     Boolean Identificador P_coma |
+<<<<<<< HEAD
     
     Int ASIGNACION     |
     Float ASIGNACION   |
     String ASIGNACION  |
     Boolean ASIGNACION 
+=======
+    Int   ASIGNACION      |
+    Float ASIGNACION      |
+    String ASIGNACION     |
+    Boolean ASIGNACION        
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 ASIGNACION ::=
     Identificador Asignacion Numero P_coma SENTENCIA   |
     Identificador Asignacion Texto P_coma SENTENCIA    |
     Identificador Asignacion Flotante P_coma SENTENCIA |
     Identificador Asignacion BOOLEAN  P_coma SENTENCIA |
+<<<<<<< HEAD
     Identificador Asignacion Peso Parentesis_A Parentesis_C  P_coma SENTENCIA |
     Identificador Asignacion Humedad Parentesis_A Parentesis_C  P_coma SENTENCIA |
     Identificador Asignacion Candil Parentesis_A Parentesis_C  P_coma SENTENCIA |
+=======
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
     Identificador Asignacion Identificador P_coma SENTENCIA |
     Identificador Asignacion Numero P_coma   |
     Identificador Asignacion Texto P_coma    |
     Identificador Asignacion Flotante P_coma |
     Identificador Asignacion BOOLEAN  P_coma |
+<<<<<<< HEAD
     Identificador Asignacion Peso Parentesis_A Parentesis_C  P_coma |
     Identificador Asignacion Humedad Parentesis_A Parentesis_C  P_coma  |
     Identificador Asignacion Candil Parentesis_A Parentesis_C  P_coma  |
     Identificador Asignacion Identificador P_coma
 ;
+=======
+    Identificador Asignacion Identificador P_coma 
+;
+
+BOOLEAN ::=
+    True |
+    False
+;
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 
 SENTENCIABOOLEANA ::=
        BOOLEAN |
@@ -114,11 +144,17 @@ SENTENCIABOOLEANA ::=
        Identificador Igual Identificador |
        Identificador Igual Numero |
        Numero Igual Identificador | 
+<<<<<<< HEAD
        Identificador Igual BOOLEAN 
 ;
 BOOLEAN ::=
     True |
     False
+=======
+       Identificador Igual True | 
+       Identificador Igual False | 
+       BOOLEAN Igual Identificador 
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 IF ::=
     If Parentesis_A SENTENCIABOOLEANA Parentesis_C Llave_A SENTENCIA Llave_C SENTENCIA |
@@ -192,10 +228,49 @@ WHILE ::=
 ;
 
 VARIABLESGF ::=
+<<<<<<< HEAD
     VARIABLESG Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
     VARIABLESG  Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C |
     ASIGNAG Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
     ASIGNAG Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C 
+=======
+    Int Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Int Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Int Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+
+    Float Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Float Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Float Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+
+    String Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    String Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    String Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+
+    Boolean Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Boolean Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    Boolean Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+
+    Int Identificador Asignacion Numero P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Int Identificador Asignacion Numero P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Int Identificador Asignacion Numero P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Int Identificador Asignacion Numero P_coma   Fun Main Parentesis_A Parentesis_C Llave_A  SENTENCIA Llave_C  |
+
+    Float Identificador Asignacion Flotante P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Float Identificador Asignacion Flotante P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Float Identificador Asignacion Flotante P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Float Identificador Asignacion Flotante P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+
+    String Identificador Asignacion Texto P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    String Identificador Asignacion Texto P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    String Identificador Asignacion Texto P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    String Identificador Asignacion Texto P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C |
+
+    Boolean Identificador Asignacion BOOLEAN P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Boolean Identificador Asignacion BOOLEAN P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Boolean Identificador Asignacion BOOLEAN P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    Boolean Identificador Asignacion BOOLEAN P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C 
+  
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 
 VARIABLESG ::=
@@ -213,6 +288,7 @@ VARIABLESG ::=
     Boolean ASIGNAG 
 ;
 
+<<<<<<< HEAD
 ASIGNAG ::=
     Identificador Asignacion Numero   P_coma   VARIABLESG   |
     Identificador Asignacion Texto    P_coma   VARIABLESG   |
@@ -236,6 +312,18 @@ ASIGNAG ::=
     Identificador Asignacion Humedad Parentesis_A Parentesis_C  P_coma |
     Identificador Asignacion Candil Parentesis_A Parentesis_C  P_coma
     
+=======
+    Int Identificador Asignacion Numero P_coma       VARIABLESG  |
+    Float Identificador Asignacion Flotante P_coma   VARIABLESG  |
+    String Identificador Asignacion Texto P_coma     VARIABLESG  |
+    Boolean Identificador Asignacion True P_coma     VARIABLESG  |
+    Boolean Identificador Asignacion False P_coma    VARIABLESG  |
+    Int Identificador Asignacion Numero P_coma         |
+    Float Identificador Asignacion Flotante P_coma     |
+    String Identificador Asignacion Texto P_coma  |
+    Boolean Identificador Asignacion True P_coma  |
+    Boolean Identificador Asignacion False P_coma
+>>>>>>> 4932b1cba8c11737999bd6de85f82445b0838724
 ;
 
 ACCIONES ::=
