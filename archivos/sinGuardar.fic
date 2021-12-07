@@ -1,9 +1,9 @@
-fun main(){
-  int a = 3;
-  for(int a = 0; a <3;a++){
-     for(int c = 20; c > a; c--){
-      
-      }
-   }
-
+class Hola{
+  
+  fun main(){
+    int a;
+    fcomer( true);
+    time(312);    
+    int a;
+  }
 }
