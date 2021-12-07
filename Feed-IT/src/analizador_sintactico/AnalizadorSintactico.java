@@ -41,13 +41,15 @@ public class AnalizadorSintactico {
                 return (new Integer(p1.getLinea()).compareTo(p2.getLinea()));
             }
         });
-
+        er.txtLog.setText(er.txtLog.getText() + "Lista de Errores encoantrados:\n\tb");
         for (int i = 0; i < er.errores.size(); i++) {
            er.txtLog.setText(er.txtLog.getText() + "\n" + er.errores.get(i).getDescripcion() + "\n");
         }    
     }
     
     public String sintactico(String texto){
+        FeedIT.errores.clear();
+        FeedIT.Producciones.clear();
         Sintax s = new Sintax(new LexerCup(new StringReader(texto)));
         String r = "";
         try{

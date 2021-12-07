@@ -223,11 +223,11 @@ public class FeedIT extends javax.swing.JFrame {
                 .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
-                        .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel_FuncionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btn_Salir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                         .addContainerGap(14, Short.MAX_VALUE))
                     .addGroup(jPanel_FuncionesLayout.createSequentialGroup()
                         .addComponent(jSeparator3)
@@ -435,18 +435,19 @@ public class FeedIT extends javax.swing.JFrame {
     private void btn_LexicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_LexicoActionPerformed
         AnalizadorLexico lex = new AnalizadorLexico();
         String r;
-        
+        txtLog.setText("");
         if(archivo != null){ r = lex.lexico(archivo.getAbsolutePath(),jtpCode.getText());
         }else{ r = lex.lexico("",jtpCode.getText());}
         txtLog.setText(r);
     }//GEN-LAST:event_btn_LexicoActionPerformed
 
     private void btn_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SintacticoActionPerformed
-       Producciones.clear();
-       if(!hayErrores()){
-        txtLog.setText(new AnalizadorSintactico().sintactico(jtpCode.getText()));
-       }else{
-            imprimirErrores();
+       txtLog.setText(""); //Se limpia el txtlog para evitar confusiones
+       Producciones.clear(); //se limpia el arraylist de producciones para evitar solapamientos de compilaciones
+       txtLog.setText(new AnalizadorSintactico().sintactico(jtpCode.getText())); //se instancia al analizador sintactico
+       
+       if(hayErrores()){
+           imprimirErrores();
        }
     }//GEN-LAST:event_btn_SintacticoActionPerformed
 
