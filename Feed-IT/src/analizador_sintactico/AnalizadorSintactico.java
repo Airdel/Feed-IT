@@ -54,7 +54,7 @@ public class AnalizadorSintactico {
         String r = "";
         try{
             s.parse();
-            r = "\\>ANALISIS SINTACTICO CORRECTO";
+            r = "\\>ANALISIS SINTACTICO FINALIZADO";
         }catch(Exception ex){
             Symbol sym = s.getS();
             FeedIT ft = new FeedIT();

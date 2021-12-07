@@ -1,0 +1,31 @@
+#Ejemplo 5 TODAS LAS FUNCIONALIDADES
+fun main(){
+int luz=candil();##Sabremos si es de noche o de dia 
+int comida =peso();##Asignamos a la variable comida la cantidad (peso) de croquetas.
+int agua = humedad(); ##Asignamos a la variable agua el nivel de agua.
+
+if (luzonoche>150){##si la variable luzonoche es mayor a 150 se activara el foco para la mascota.
+	fluz(true);}##Encendemos la luz
+else{
+        fluz(false);##Apagamos la Luz
+  }
+  if(agua < 500){ 
+    fagua(true);
+    time(10000);
+    fagua(false);   
+  }
+  if(comida<500){ 
+      fcomer(true);
+      time(10000);
+      fcomer(false);	
+    }
+   
+    fjuguete(true);
+    time(10000);
+    fjuguete(false);
+
+    fpremio(true);
+    time(5000);
+    fpremio( false);	
+	
+}

@@ -1,6 +1,6 @@
 #Ejemplo2
 fun main(){
-  float agua = humedad(); 
+  float agua = humedad();
   if(agua < 500){   
     fagua( true); 
     time(5000); 
@@ -8,5 +8,5 @@ fun main(){
     fpremio( true);
     time(5000);
     fpremio( false);			
-    }
+   }
 }

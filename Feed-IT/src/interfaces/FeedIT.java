@@ -11,6 +11,7 @@ import analizador_sintactico.Objetos;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -297,6 +298,11 @@ public class FeedIT extends javax.swing.JFrame {
         btn_CodigoObjeto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/object.png"))); // NOI18N
         btn_CodigoObjeto.setToolTipText("Codigo Objeto");
         btn_CodigoObjeto.setContentAreaFilled(false);
+        btn_CodigoObjeto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_CodigoObjetoActionPerformed(evt);
+            }
+        });
         jToolBar_Informacion.add(btn_CodigoObjeto);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -445,12 +451,44 @@ public class FeedIT extends javax.swing.JFrame {
        txtLog.setText(""); //Se limpia el txtlog para evitar confusiones
        Producciones.clear(); //se limpia el arraylist de producciones para evitar solapamientos de compilaciones
        txtLog.setText(new AnalizadorSintactico().sintactico(jtpCode.getText())); //se instancia al analizador sintactico
-       
        if(hayErrores()){
            imprimirErrores();
+       }else{
+           txtLog.setText("Analisis sintactico correcto!");
        }
     }//GEN-LAST:event_btn_SintacticoActionPerformed
+    
+    private void btn_CodigoObjetoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_CodigoObjetoActionPerformed
+       actualizaArduino();
+    }//GEN-LAST:event_btn_CodigoObjetoActionPerformed
 
+    public void actualizaArduino(){
+    try {      
+            if(getTitle().equals("Ejemplo1.fic")){
+            String command = "cmd /c start cmd.exe /K \"" + "C:\\FET\\debug1.bat";            
+            Process process = Runtime.getRuntime().exec(command);
+            }else if(getTitle().equals("Ejemplo2.fic")){
+            String command = "cmd /c start cmd.exe /K \"" + "C:\\FET\\debug2.bat";            
+            Process process = Runtime.getRuntime().exec(command);
+            }else if(getTitle().equals("Ejemplo3.fic")){
+            String command = "cmd /c start cmd.exe /K \"" + "C:\\FET\\debug3.bat";            
+            Process process = Runtime.getRuntime().exec(command);
+            } 
+            if(getTitle().equals("Ejemplo4.fic")){
+            String command = "cmd /c start cmd.exe /K \"" + "C:\\FET\\debug4.bat";            
+            Process process = Runtime.getRuntime().exec(command);
+            }
+             if(getTitle().equals("Ejemplo5.fic")){
+            String command = "cmd /c start cmd.exe /K \"" + "C:\\FET\\debug5.bat";            
+            Process process = Runtime.getRuntime().exec(command);
+            }
+            
+     } catch (IOException ioe) {
+            
+     }
+    }
+    
+    
     /**
      * @param args the command line arguments
      */
@@ -494,9 +532,9 @@ public class FeedIT extends javax.swing.JFrame {
                 return (new Integer(p1.getLinea()).compareTo(p2.getLinea()));
             }
         });
-        txtLog.setText("");
-        txtLog.setText("Compilación fallida...!\n");
+        txtLog.setText(txtLog.getText() + "\n" +"Compilación fallida...!\n");
         for (int i = 0; i < errores.size(); i++) {
+            System.out.println(errores.get(i).getDescripcion());
             txtLog.setText(txtLog.getText() + "\n" + errores.get(i).getDescripcion() + "\n");
         }
     }
