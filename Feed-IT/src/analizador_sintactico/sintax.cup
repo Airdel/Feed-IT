@@ -42,7 +42,7 @@ terminal Humedad,Fagua,Peso,
                 Fcomer,Fpremio,Fmasaje,
                 Fluz,Fjuguete,Candil,Time;
 
-non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES
+non terminal INICIO, SENTENCIA, DECLARACION,ASIGNACION,BOOLEAN,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIABLESGF,VARIABLESG,ACCIONES
 ;
 
 start with INICIO;
@@ -60,8 +60,9 @@ SENTENCIA ::=
     DECLARACION |
     IF  |
     FOR |
-    WHILE |
-    ACCIONES
+    WHILE    |
+    ACCIONES |
+    ASIGNACION
 ;
 
 DECLARACION ::=
@@ -73,23 +74,31 @@ DECLARACION ::=
     Float Identificador P_coma   |
     String Identificador P_coma  |
     Boolean Identificador P_coma |
-    
-    Int Identificador Asignacion Numero P_coma SENTENCIA     |
-    Float Identificador Asignacion  Flotante P_coma SENTENCIA   |
-    String Identificador Asignacion Texto P_coma SENTENCIA  |
-    Boolean Identificador Asignacion True P_coma SENTENCIA |
-    Boolean Identificador Asignacion False P_coma SENTENCIA |
-    Int Identificador Asignacion Numero  P_coma       |
-    Float Identificador Asignacion  Flotante P_coma   |
-    String Identificador Asignacion Texto P_coma   |
-    Boolean Identificador Asignacion True P_coma   |
-    Boolean Identificador Asignacion False P_coma
+    Int   ASIGNACION      |
+    Float ASIGNACION      |
+    String ASIGNACION     |
+    Boolean ASIGNACION        
+;
+ASIGNACION ::=
+    Identificador Asignacion Numero P_coma SENTENCIA   |
+    Identificador Asignacion Texto P_coma SENTENCIA    |
+    Identificador Asignacion Flotante P_coma SENTENCIA |
+    Identificador Asignacion BOOLEAN  P_coma SENTENCIA |
+    Identificador Asignacion Identificador P_coma SENTENCIA |
+    Identificador Asignacion Numero P_coma   |
+    Identificador Asignacion Texto P_coma    |
+    Identificador Asignacion Flotante P_coma |
+    Identificador Asignacion BOOLEAN  P_coma |
+    Identificador Asignacion Identificador P_coma 
 ;
 
+BOOLEAN ::=
+    True |
+    False
+;
 
 SENTENCIABOOLEANA ::=
-       True  |
-       False |
+       BOOLEAN |
        Identificador OpR Identificador | 
        Identificador OpR Numero | 
        Identificador OpR Flotante |
@@ -102,8 +111,7 @@ SENTENCIABOOLEANA ::=
        Numero Igual Identificador | 
        Identificador Igual True | 
        Identificador Igual False | 
-       True Igual Identificador  |
-       False Igual Identificador  
+       BOOLEAN Igual Identificador 
 ;
 
 IF ::=
@@ -169,12 +177,18 @@ VARIABLESGF ::=
     Int Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     Int Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
     Int Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+
     Float Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     Float Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Float Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+
     String Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     String Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    String Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+
     Boolean Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     Boolean Identificador P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    Boolean Identificador P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
 
     Int Identificador Asignacion Numero P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
     Int Identificador Asignacion Numero P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
@@ -182,15 +196,20 @@ VARIABLESGF ::=
     Int Identificador Asignacion Numero P_coma   Fun Main Parentesis_A Parentesis_C Llave_A  SENTENCIA Llave_C  |
 
     Float Identificador Asignacion Flotante P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Float Identificador Asignacion Flotante P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
     Float Identificador Asignacion Flotante P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C  |
+    Float Identificador Asignacion Flotante P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
 
     String Identificador Asignacion Texto P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    String Identificador Asignacion Texto P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
     String Identificador Asignacion Texto P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    String Identificador Asignacion Texto P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C |
 
-    Boolean Identificador Asignacion True P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
-    Boolean Identificador Asignacion True P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
-    Boolean Identificador Asignacion False P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
-    Boolean Identificador Asignacion False P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C 
+    Boolean Identificador Asignacion BOOLEAN P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C  |
+    Boolean Identificador Asignacion BOOLEAN P_coma VARIABLESG   Fun Main Parentesis_A Parentesis_C Llave_A  Llave_C  |
+    Boolean Identificador Asignacion BOOLEAN P_coma   Fun Main Parentesis_A Parentesis_C Llave_A Llave_C |
+    Boolean Identificador Asignacion BOOLEAN P_coma   Fun Main Parentesis_A Parentesis_C Llave_A SENTENCIA Llave_C 
+  
 ;
 
 VARIABLESG ::=
@@ -203,11 +222,11 @@ VARIABLESG ::=
     String Identificador P_coma    |
     Boolean Identificador P_coma   |
 
-    Int Identificador Asignacion Numero P_coma     VARIABLESG  |
+    Int Identificador Asignacion Numero P_coma       VARIABLESG  |
     Float Identificador Asignacion Flotante P_coma   VARIABLESG  |
-    String Identificador Asignacion Texto P_coma  VARIABLESG  |
-    Boolean Identificador Asignacion True P_coma VARIABLESG  |
-    Boolean Identificador Asignacion False P_coma VARIABLESG  |
+    String Identificador Asignacion Texto P_coma     VARIABLESG  |
+    Boolean Identificador Asignacion True P_coma     VARIABLESG  |
+    Boolean Identificador Asignacion False P_coma    VARIABLESG  |
     Int Identificador Asignacion Numero P_coma         |
     Float Identificador Asignacion Flotante P_coma     |
     String Identificador Asignacion Texto P_coma  |
