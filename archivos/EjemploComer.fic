@@ -1,0 +1,10 @@
+fun main(){
+  #SE_ASIGNA_LA_VARIABLE_croquetas_LA_CANTIDAD_DE_peso  
+  float croquetas = peso();
+
+  if( croquetas < 500){
+      fcomer( true);
+      time(5000);
+      fcomer( false);
+   }
+} #end_main

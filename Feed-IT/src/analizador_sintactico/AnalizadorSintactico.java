@@ -22,7 +22,7 @@ public class AnalizadorSintactico {
             r = "ANALISIS SINTACTICO CORRECTO";
         }catch(Exception ex){
             Symbol sym = s.getS();
-            r = "ERROR SINTACTICO. LINEA:" + (sym.right + 1 ) + "COLUMNA:" + (sym.left + 1) + "  Texto:" + sym.value ;
+            r = "ERROR SINTACTICO. LINEA:   " + (sym.right + 1 )  + "  Texto:" + sym.value ;
         }
  
         return r;

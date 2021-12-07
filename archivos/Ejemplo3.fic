@@ -1,0 +1,23 @@
+#Ejemplo3
+fun main(){
+    int luzonoche= candil();
+    int comida = peso();
+    int agua = humedad(); 
+    
+    if(agua < 500 and comida < 500){ 
+        fagua( true);
+        time(10000);
+        fagua(false);    
+        fcomer( true);
+        time(10000);
+        fcomer( false);
+        if (luzonoche>150){
+	    fluz(true);}
+        else{
+            fluz(false);
+         }
+        fjuguete(true);		
+        time(10000);
+        fjuguete(false);
+	}
+}

@@ -45,7 +45,7 @@ public class AnalizadorLexico{
                
                switch(tokens){
                    case ERROR: 
-                       r += "Error Lexico, Simbolo no definido \n";
+                       r += "ERROR LEXICO, SIMBOLO NO RECONOCIDO \n";
                        break;
                    case Int:
                    case Float:
@@ -76,14 +76,15 @@ public class AnalizadorLexico{
                    case  True:
                    case  False:
                    case  While: 
-                   case Time:    
-                       r += lexer.lexeme + " Palabra reservada FeedIt: " + tokens + "\n";
+                   case Time: 
+                   case Main:
+                       r += "PALABRA RESERVADA DE FEEDIT: " + lexer.lexeme + "\n";
                        break;
                    case Identificador:
                    case Numero:
                    case Flotante:
                    case Texto:    
-                       r += lexer.lexeme + " Es un: " + tokens + "\n"; 
+                       r +=" ES UN: " + tokens + "\n"; 
                        break;
                    default:
                        r += "Token: " + tokens + "\n";
