@@ -2,45 +2,19 @@ package analizador_sintactico;
 
 import interfaces.FeedIT;
 import java_cup.runtime.Symbol;
-import java.util.Stack;
 
 parser code
 {:    
     private Symbol s;        
 
     public void syntax_error(Symbol s){
-        Errores e = new Errores("Error sintactico. Linea " + (s.right+1) + "\n\tSintaxis no valida [ " + s.value +" ]");
-        FeedIT.notificar(e);
-        report_error("Error de sintaxis",null);
+        this.s = s;
     }
-
-    public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{ 
-        Errores e = new Errores("Error sintactico no recuperable. Linea " + (s.right+1) + "\n\tSintaxis no valida [ " + s.value +" ]");
-        FeedIT.notificar(e);
-    }
-
-    public void report_error(String message, Object info){ }    
-    public void report_fatal_error(String message, Object info){ }
 
     public Symbol getS(){        
         return this.s;
     }
 :};
-
-action code
-{:   
-    String codObjeto = "";
-    Stack pilaInicio = new Stack();       
-    Stack pilaSent = new Stack();       
-    Stack pilaFin = new Stack();      
-    int i = 1, sentAux;
-    String incAux;
-
-    boolean statusDec, statusTipo, statusOp;
-    String auxObj = "";
-    String auxRec = "";
-:};
-
 
 //Estructurales
 terminal Main,Class,Fun;
@@ -74,18 +48,13 @@ non terminal INICIO, SENTENCIA, DECLARACION,SENTENCIABOOLEANA,IF,FOR,WHILE,VARIA
 start with INICIO;
           
 INICIO ::= 
-     Class:td Identificador:id Llave_A Llave_C :s{:      
-        FeedIT.Producciones.add("GRAMATICA CORRECTA:\n\tClase Identificador Llave_a Llave_c");
-        Objetos o = new Objetos(id,td,idright,idleft);        
-        FeedIT.objetos.add(o); :} |
-      Fun:td Main:id Parentesis_A  Parentesis_C Llave_A Llave_C :s{:      
-        FeedIT.Producciones.add("GRAMATICA CORRECTA:\n\tFun Main Parentesis_A Parentesis_C Llave_a Llave_c");
-        Objetos o = new Objetos(id,td,idright,idleft);        
-        FeedIT.objetos.add(o); :} |
+     Class Identificador Llave_A Llave_C | Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C |
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  |
      Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C | 
      Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C |
-     Class Identificador Llave_A VARIABLESGF Llave_C | ERRORES_INIT 
+     Class Identificador Llave_A VARIABLESGF Llave_C 
+     
+;
 
 SENTENCIA ::=
     DECLARACION |
@@ -191,8 +160,7 @@ FOR ::=
     Llave_A   Llave_C  |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Numero P_coma  Identificador Dec Parentesis_C 
     Llave_A   Llave_C  SENTENCIA |
-    For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador P_coma  Identificador Dec Parentesis_C 
-    Llave_A   SENTENCIA  Llave_C SENTENCIA |
+
      For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador  P_coma  Identificador Dec Parentesis_C 
     Llave_A   SENTENCIA  Llave_C SENTENCIA |
     For Parentesis_A Int Identificador Asignacion Numero P_coma Identificador OpR Identificador  P_coma  Identificador Dec Parentesis_C 
@@ -350,6 +318,7 @@ ACCIONES ::=
 
 ;
 
+
 ASIGNACION ::=
     Identificador Asignacion Numero  P_coma SENTENCIA |
     Identificador Asignacion Texto P_coma SENTENCIA |
@@ -363,210 +332,4 @@ ASIGNACION ::=
     Identificador Asignacion True  P_coma  |
     Identificador Asignacion False  P_coma  |
     Identificador Asignacion Identificador  P_coma
-;
-
-
-//Errores sintacticos posibles------------------------------------------------------------------------------------------------------------------
-//Errores de inicialización
-ERRORES_INIT ::=
-    Identificador Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba [Class]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Identificador");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba Una llave de apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba Una llave de cierre");
-        FeedIT.Errores.add(e);
-    :}|
-    Identificador Llave_A VARIABLESGF Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba [Class]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Llave_A VARIABLESGF Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Identificador");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador VARIABLESGF Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba Una llave de apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A VARIABLESGF {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba Una llave de cierre");
-        FeedIT.Errores.add(e);
-    :}|
-    Main Parentesis_A  Parentesis_C Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tMain Parentesis_A  Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Fun]");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Parentesis_A  Parentesis_C Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Parentesis_A  Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Main]");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_C Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Parentesis de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A Llave_A Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Parentesis de Cierre");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A  Parentesis_C Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Parentesis_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Llave de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A  Parentesis_C Llave_A  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Parentesis_C Llave_A");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Llave de Cierre");
-        FeedIT.Errores.add(e);
-    :}|
-
-    Fun Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Parentesis_A  Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Main]");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_C Llave_A SENTENCIA Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Parentesis de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A Llave_A SENTENCIA Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Parentesis de Cierre");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A  Parentesis_C SENTENCIA Llave_C {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Parentesis_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Llave de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tFun Main Parentesis_A  Parentesis_C Llave_A");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Llave de Cierre");
-        FeedIT.Errores.add(e);
-    :}|
-
-    Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Class]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Identificador de Clase");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba una llave de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Fun]");
-        FeedIT.Errores.add(e);
-    :}|    
-    Class Identificador Llave_A  Fun Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Main]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main  Parentesis_C Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Parentesis de Apertura]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A   Llave_A Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A   Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Parentesis de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Apertura]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C ");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
-
-    
-
-    Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tIdentificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Class]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un Identificador de Clase");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba una llave de Apertura");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Main Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Fun]");
-        FeedIT.Errores.add(e);
-    :}|    
-    Class Identificador Llave_A  Fun Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Parentesis_A  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Main]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main  Parentesis_C Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main  Parentesis_C Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Parentesis de Apertura]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A   Llave_A SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A   Llave_A Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Parentesis de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C SENTENCIA Llave_C Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_C Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Apertura]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA Llave_C  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
-    Class Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A SENTENCIA  {:
-        FeedIT.Producciones.add("Gramatica incorrecta:\n\tClass Identificador Llave_A  Fun Main Parentesis_A  Parentesis_C Llave_A Llave_C ");
-        Errores e = new Errores("Error Sintáctico en la linea: " (idright+1) +"\n\tSe esperaba un [Llave de Cierre]");
-        FeedIT.Errores.add(e);
-    :}|
 ;

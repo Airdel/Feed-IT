@@ -105,6 +105,6 @@ public class TablaGramaticas extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTextArea jtGramaticas;
+    private javax.swing.JTextArea jtGramaticas;
     // End of variables declaration//GEN-END:variables
 }
