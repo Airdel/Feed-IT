@@ -27,5 +27,5 @@ class ejemploAgua{
   fun main(){
        normalDay();    
   } #main
-
 } #class
+

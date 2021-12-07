@@ -72,7 +72,7 @@ public class FeedIT extends javax.swing.JFrame {
         jPanel_Funciones = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
-        btn_Sintactico = new javax.swing.JButton();
+        btnSintactico = new javax.swing.JButton();
         btn_Lexico = new javax.swing.JButton();
         btn_CodigoMedio = new javax.swing.JButton();
         btn_CodigoObjeto = new javax.swing.JButton();
@@ -126,11 +126,11 @@ public class FeedIT extends javax.swing.JFrame {
             }
         });
 
-        btn_Sintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sintactico.png"))); // NOI18N
-        btn_Sintactico.setContentAreaFilled(false);
-        btn_Sintactico.addActionListener(new java.awt.event.ActionListener() {
+        btnSintactico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/sintactico.png"))); // NOI18N
+        btnSintactico.setContentAreaFilled(false);
+        btnSintactico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_SintacticoActionPerformed(evt);
+                btnSintacticoActionPerformed(evt);
             }
         });
 
@@ -194,7 +194,7 @@ public class FeedIT extends javax.swing.JFrame {
                         .addComponent(btnAbrir, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnNuevo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btnGuardarComo, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btnSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_CodigoMedio, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(btn_CodigoObjeto, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -217,7 +217,7 @@ public class FeedIT extends javax.swing.JFrame {
                 .addGap(10, 10, 10)
                 .addComponent(btn_Lexico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
-                .addComponent(btn_Sintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSintactico, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
                 .addComponent(btn_Compilar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10)
@@ -349,9 +349,9 @@ public class FeedIT extends javax.swing.JFrame {
         txtLog.setText(r);
     }//GEN-LAST:event_btn_LexicoActionPerformed
 
-    private void btn_SintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_SintacticoActionPerformed
+    private void btnSintacticoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSintacticoActionPerformed
        txtLog.setText(new AnalizadorSintactico().sintactico(jtpCode.getText()));
-    }//GEN-LAST:event_btn_SintacticoActionPerformed
+    }//GEN-LAST:event_btnSintacticoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -492,6 +492,7 @@ public class FeedIT extends javax.swing.JFrame {
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnGuardarComo;
     private javax.swing.JButton btnNuevo;
+    private javax.swing.JButton btnSintactico;
     private javax.swing.JButton btn_CodigoMedio;
     private javax.swing.JButton btn_CodigoObjeto;
     private javax.swing.JButton btn_Compilar;
@@ -499,7 +500,6 @@ public class FeedIT extends javax.swing.JFrame {
     private javax.swing.JButton btn_Lexico;
     private javax.swing.JButton btn_Salir;
     private javax.swing.JButton btn_Simbolos;
-    private javax.swing.JButton btn_Sintactico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

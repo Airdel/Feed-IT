@@ -120,7 +120,7 @@
                           <Component id="btnAbrir" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btnNuevo" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btnGuardarComo" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
-                          <Component id="btn_Sintactico" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
+                          <Component id="btnSintactico" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btn_Compilar" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btn_CodigoMedio" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
                           <Component id="btn_CodigoObjeto" alignment="0" min="-2" pref="46" max="-2" attributes="0"/>
@@ -147,7 +147,7 @@
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="btn_Lexico" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                  <Component id="btn_Sintactico" min="-2" pref="45" max="-2" attributes="0"/>
+                  <Component id="btnSintactico" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
                   <Component id="btn_Compilar" min="-2" pref="45" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
@@ -183,7 +183,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnGuardarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btn_Sintactico">
+        <Component class="javax.swing.JButton" name="btnSintactico">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/Imagenes/sintactico.png"/>
@@ -191,7 +191,7 @@
             <Property name="contentAreaFilled" type="boolean" value="false"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_SintacticoActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSintacticoActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btn_Lexico">
